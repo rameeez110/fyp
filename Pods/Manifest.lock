@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.5.1)
+  - EZLoadingActivity (1.01)
+  - G3GridView (0.4.0)
+  - Kingfisher (4.1.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - EZLoadingActivity
+  - G3GridView
+  - Kingfisher (~> 4.0)
+  - SQLite.swift (~> 0.11.3)
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
+  G3GridView: 75bc079688f831118d15457ea5abec7d420bb172
+  Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+
+PODFILE CHECKSUM: e5a371ce5f300a42e22951379f93eacbfd1733ce
+
+COCOAPODS: 1.4.0.beta.1

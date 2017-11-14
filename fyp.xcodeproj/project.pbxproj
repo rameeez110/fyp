@@ -1,0 +1,985 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A7567A222BF39F37AFFC99A /* Pods_fyp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2796E83084848B4AE3999222 /* Pods_fyp.framework */; };
+		5163363D1F9388940020C4FF /* FullTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163363C1F9388940020C4FF /* FullTimeTableViewController.swift */; };
+		516336451F938DCD0020C4FF /* DayGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516336431F938DCD0020C4FF /* DayGridViewCell.swift */; };
+		516336461F938DCD0020C4FF /* DayGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516336441F938DCD0020C4FF /* DayGridViewCell.xib */; };
+		516336491F938DEC0020C4FF /* TimeGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516336471F938DEC0020C4FF /* TimeGridViewCell.swift */; };
+		5163364A1F938DEC0020C4FF /* TimeGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516336481F938DEC0020C4FF /* TimeGridViewCell.xib */; };
+		5163364D1F938E060020C4FF /* DataGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163364B1F938E050020C4FF /* DataGridViewCell.swift */; };
+		5163364E1F938E060020C4FF /* DataGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5163364C1F938E060020C4FF /* DataGridViewCell.xib */; };
+		51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */; };
+		51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3161FA5BF88005B5A64 /* Course.swift */; };
+		51A8F31C1FA5D1FE005B5A64 /* fyp.db in Resources */ = {isa = PBXBuildFile; fileRef = 51A8F3131FA5BD6C005B5A64 /* fyp.db */; };
+		51AC640E1F9C787A00E95DD5 /* StudentAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC640D1F9C787A00E95DD5 /* StudentAttachmentViewController.swift */; };
+		51AC64101F9C788E00E95DD5 /* StudentAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */; };
+		51AC64121F9C78A300E95DD5 /* StudentTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */; };
+		51AC64141F9C78B600E95DD5 /* StudentFollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64131F9C78B600E95DD5 /* StudentFollowViewController.swift */; };
+		51AC64161F9C78C600E95DD5 /* TeacherAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64151F9C78C600E95DD5 /* TeacherAttachmentViewController.swift */; };
+		51AC64181F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64171F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift */; };
+		51AC641A1F9C78E300E95DD5 /* TeacherFollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64191F9C78E300E95DD5 /* TeacherFollowsViewController.swift */; };
+		51AC641C1F9C78EF00E95DD5 /* TeacherTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC641B1F9C78EF00E95DD5 /* TeacherTimeViewController.swift */; };
+		51AC641E1F9C791000E95DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC641D1F9C791000E95DD5 /* MainViewController.swift */; };
+		51AC64201F9C796700E95DD5 /* CreateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC641F1F9C796700E95DD5 /* CreateTimeViewController.swift */; };
+		51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */; };
+		51B2C60B1F926AD800E9E44A /* SignupStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */; };
+		51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */; };
+		51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */; };
+		51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */; };
+		51DA248A1FA5DE6F00C69808 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DA24891FA5DE6F00C69808 /* CourseTableViewCell.swift */; };
+		51DA248C1FA5E22600C69808 /* ShowTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DA248B1FA5E22500C69808 /* ShowTimeTableViewController.swift */; };
+		51DAC0F31F9CA7210010739C /* ShowCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DAC0F21F9CA7210010739C /* ShowCoursesViewController.swift */; };
+		51DAC0F51F9CAC6C0010739C /* CreateTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DAC0F41F9CAC6C0010739C /* CreateTimeTableViewCell.swift */; };
+		51DB7DF61F9213F100BCE1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7DF51F9213F100BCE1BC /* AppDelegate.swift */; };
+		51DB7DF81F9213F100BCE1BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7DF71F9213F100BCE1BC /* ViewController.swift */; };
+		51DB7DFB1F9213F100BCE1BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51DB7DF91F9213F100BCE1BC /* Main.storyboard */; };
+		51DB7DFD1F9213F100BCE1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51DB7DFC1F9213F100BCE1BC /* Assets.xcassets */; };
+		51DB7E001F9213F100BCE1BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51DB7DFE1F9213F100BCE1BC /* LaunchScreen.storyboard */; };
+		51DB7E0B1F9213F100BCE1BC /* fypTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7E0A1F9213F100BCE1BC /* fypTests.swift */; };
+		51DB7E161F9213F100BCE1BC /* fypUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7E151F9213F100BCE1BC /* fypUITests.swift */; };
+		D65FD6EDB32276C7567E4062 /* Pods_fypUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E42C3E8E925810653D8A25 /* Pods_fypUITests.framework */; };
+		E85F47F36CDD24E8ED5FAE52 /* Pods_fypTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B47FEAE45F230333C8BC538 /* Pods_fypTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		51DB7E071F9213F100BCE1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51DB7DEA1F9213F000BCE1BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51DB7DF11F9213F000BCE1BC;
+			remoteInfo = fyp;
+		};
+		51DB7E121F9213F100BCE1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51DB7DEA1F9213F000BCE1BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51DB7DF11F9213F000BCE1BC;
+			remoteInfo = fyp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20A51C1CD4C65FB090D1C12D /* Pods-fypUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fypUITests/Pods-fypUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2796E83084848B4AE3999222 /* Pods_fyp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fyp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B47FEAE45F230333C8BC538 /* Pods_fypTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fypTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1DEE905ADD4D1CA40E01ED /* Pods-fyp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fyp.release.xcconfig"; path = "Pods/Target Support Files/Pods-fyp/Pods-fyp.release.xcconfig"; sourceTree = "<group>"; };
+		5163363C1F9388940020C4FF /* FullTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTimeTableViewController.swift; sourceTree = "<group>"; };
+		516336431F938DCD0020C4FF /* DayGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayGridViewCell.swift; sourceTree = "<group>"; };
+		516336441F938DCD0020C4FF /* DayGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayGridViewCell.xib; sourceTree = "<group>"; };
+		516336471F938DEC0020C4FF /* TimeGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeGridViewCell.swift; sourceTree = "<group>"; };
+		516336481F938DEC0020C4FF /* TimeGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeGridViewCell.xib; sourceTree = "<group>"; };
+		5163364B1F938E050020C4FF /* DataGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGridViewCell.swift; sourceTree = "<group>"; };
+		5163364C1F938E060020C4FF /* DataGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataGridViewCell.xib; sourceTree = "<group>"; };
+		51A8F3131FA5BD6C005B5A64 /* fyp.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fyp.db; sourceTree = "<group>"; };
+		51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUtility.swift; sourceTree = "<group>"; };
+		51A8F3161FA5BF88005B5A64 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		51A8F3191FA5C4B9005B5A64 /* fyp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fyp-Bridging-Header.h"; sourceTree = "<group>"; };
+		51AC640D1F9C787A00E95DD5 /* StudentAttachmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAttachmentViewController.swift; sourceTree = "<group>"; };
+		51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnouncementViewController.swift; sourceTree = "<group>"; };
+		51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTimeViewController.swift; sourceTree = "<group>"; };
+		51AC64131F9C78B600E95DD5 /* StudentFollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentFollowViewController.swift; sourceTree = "<group>"; };
+		51AC64151F9C78C600E95DD5 /* TeacherAttachmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAttachmentViewController.swift; sourceTree = "<group>"; };
+		51AC64171F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAnnoncementViewController.swift; sourceTree = "<group>"; };
+		51AC64191F9C78E300E95DD5 /* TeacherFollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherFollowsViewController.swift; sourceTree = "<group>"; };
+		51AC641B1F9C78EF00E95DD5 /* TeacherTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTimeViewController.swift; sourceTree = "<group>"; };
+		51AC641D1F9C791000E95DD5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		51AC641F1F9C796700E95DD5 /* CreateTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeViewController.swift; sourceTree = "<group>"; };
+		51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTeacherViewController.swift; sourceTree = "<group>"; };
+		51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupStudentViewController.swift; sourceTree = "<group>"; };
+		51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
+		51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
+		51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
+		51DA24891FA5DE6F00C69808 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		51DA248B1FA5E22500C69808 /* ShowTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTimeTableViewController.swift; sourceTree = "<group>"; };
+		51DAC0F21F9CA7210010739C /* ShowCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCoursesViewController.swift; sourceTree = "<group>"; };
+		51DAC0F41F9CAC6C0010739C /* CreateTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeTableViewCell.swift; sourceTree = "<group>"; };
+		51DB7DF21F9213F000BCE1BC /* fyp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fyp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51DB7DF51F9213F100BCE1BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		51DB7DF71F9213F100BCE1BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		51DB7DFA1F9213F100BCE1BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		51DB7DFC1F9213F100BCE1BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51DB7DFF1F9213F100BCE1BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		51DB7E011F9213F100BCE1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51DB7E061F9213F100BCE1BC /* fypTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fypTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		51DB7E0A1F9213F100BCE1BC /* fypTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fypTests.swift; sourceTree = "<group>"; };
+		51DB7E0C1F9213F100BCE1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51DB7E111F9213F100BCE1BC /* fypUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fypUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		51DB7E151F9213F100BCE1BC /* fypUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fypUITests.swift; sourceTree = "<group>"; };
+		51DB7E171F9213F100BCE1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E42C3E8E925810653D8A25 /* Pods_fypUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fypUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1205C20055A9D4A78C2E4B1 /* Pods-fypTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-fypTests/Pods-fypTests.release.xcconfig"; sourceTree = "<group>"; };
+		C66AFC4122D39EDDB27604D3 /* Pods-fypTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fypTests/Pods-fypTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBB14A51D03060E8BCEB7DF1 /* Pods-fypUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-fypUITests/Pods-fypUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ED63148B010BA10491D12F72 /* Pods-fyp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fyp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fyp/Pods-fyp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		51DB7DEF1F9213F000BCE1BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A7567A222BF39F37AFFC99A /* Pods_fyp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E031F9213F100BCE1BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E85F47F36CDD24E8ED5FAE52 /* Pods_fypTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E0E1F9213F100BCE1BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D65FD6EDB32276C7567E4062 /* Pods_fypUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5163363A1F93884C0020C4FF /* LoginSignup */ = {
+			isa = PBXGroup;
+			children = (
+				51DB7DF71F9213F100BCE1BC /* ViewController.swift */,
+				51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */,
+				51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */,
+			);
+			path = LoginSignup;
+			sourceTree = "<group>";
+		};
+		5163363B1F9388590020C4FF /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				5163363C1F9388940020C4FF /* FullTimeTableViewController.swift */,
+				51DA248B1FA5E22500C69808 /* ShowTimeTableViewController.swift */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		5163363E1F938C690020C4FF /* TimeTableCells */ = {
+			isa = PBXGroup;
+			children = (
+				516336431F938DCD0020C4FF /* DayGridViewCell.swift */,
+				516336441F938DCD0020C4FF /* DayGridViewCell.xib */,
+				516336471F938DEC0020C4FF /* TimeGridViewCell.swift */,
+				516336481F938DEC0020C4FF /* TimeGridViewCell.xib */,
+				5163364B1F938E050020C4FF /* DataGridViewCell.swift */,
+				5163364C1F938E060020C4FF /* DataGridViewCell.xib */,
+			);
+			name = TimeTableCells;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		51A8F3121FA5BD54005B5A64 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				51A8F3131FA5BD6C005B5A64 /* fyp.db */,
+				51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		51AC640A1F9C781F00E95DD5 /* TeacherViews */ = {
+			isa = PBXGroup;
+			children = (
+				51AC64151F9C78C600E95DD5 /* TeacherAttachmentViewController.swift */,
+				51AC64171F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift */,
+				51AC64191F9C78E300E95DD5 /* TeacherFollowsViewController.swift */,
+				51AC641B1F9C78EF00E95DD5 /* TeacherTimeViewController.swift */,
+			);
+			path = TeacherViews;
+			sourceTree = "<group>";
+		};
+		51AC640B1F9C782F00E95DD5 /* StudentViews */ = {
+			isa = PBXGroup;
+			children = (
+				51AC640D1F9C787A00E95DD5 /* StudentAttachmentViewController.swift */,
+				51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */,
+				51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */,
+				51AC64131F9C78B600E95DD5 /* StudentFollowViewController.swift */,
+			);
+			path = StudentViews;
+			sourceTree = "<group>";
+		};
+		51AC640C1F9C783600E95DD5 /* AdminViews */ = {
+			isa = PBXGroup;
+			children = (
+				51AC641D1F9C791000E95DD5 /* MainViewController.swift */,
+				51AC641F1F9C796700E95DD5 /* CreateTimeViewController.swift */,
+				51DAC0F21F9CA7210010739C /* ShowCoursesViewController.swift */,
+			);
+			path = AdminViews;
+			sourceTree = "<group>";
+		};
+		51DB7DE91F9213F000BCE1BC = {
+			isa = PBXGroup;
+			children = (
+				51DB7DF41F9213F000BCE1BC /* fyp */,
+				51DB7E091F9213F100BCE1BC /* fypTests */,
+				51DB7E141F9213F100BCE1BC /* fypUITests */,
+				51DB7DF31F9213F000BCE1BC /* Products */,
+				9A9D073078928E65D8057AA8 /* Pods */,
+				61715C1FF9BD71195832AB36 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		51DB7DF31F9213F000BCE1BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51DB7DF21F9213F000BCE1BC /* fyp.app */,
+				51DB7E061F9213F100BCE1BC /* fypTests.xctest */,
+				51DB7E111F9213F100BCE1BC /* fypUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51DB7DF41F9213F000BCE1BC /* fyp */ = {
+			isa = PBXGroup;
+			children = (
+				51DB7E261F92151A00BCE1BC /* Models */,
+				51DB7E251F92150800BCE1BC /* Helpers */,
+				51DB7E241F92150000BCE1BC /* CustomCells */,
+				51DB7E231F9214E800BCE1BC /* ViewControllers */,
+				51DB7DF51F9213F100BCE1BC /* AppDelegate.swift */,
+				51DB7DF91F9213F100BCE1BC /* Main.storyboard */,
+				51DB7DFC1F9213F100BCE1BC /* Assets.xcassets */,
+				51DB7DFE1F9213F100BCE1BC /* LaunchScreen.storyboard */,
+				51DB7E011F9213F100BCE1BC /* Info.plist */,
+			);
+			path = fyp;
+			sourceTree = "<group>";
+		};
+		51DB7E091F9213F100BCE1BC /* fypTests */ = {
+			isa = PBXGroup;
+			children = (
+				51DB7E0A1F9213F100BCE1BC /* fypTests.swift */,
+				51DB7E0C1F9213F100BCE1BC /* Info.plist */,
+			);
+			path = fypTests;
+			sourceTree = "<group>";
+		};
+		51DB7E141F9213F100BCE1BC /* fypUITests */ = {
+			isa = PBXGroup;
+			children = (
+				51DB7E151F9213F100BCE1BC /* fypUITests.swift */,
+				51DB7E171F9213F100BCE1BC /* Info.plist */,
+			);
+			path = fypUITests;
+			sourceTree = "<group>";
+		};
+		51DB7E231F9214E800BCE1BC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				51AC640C1F9C783600E95DD5 /* AdminViews */,
+				51AC640B1F9C782F00E95DD5 /* StudentViews */,
+				51AC640A1F9C781F00E95DD5 /* TeacherViews */,
+				5163363B1F9388590020C4FF /* TimeTable */,
+				5163363A1F93884C0020C4FF /* LoginSignup */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		51DB7E241F92150000BCE1BC /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				5163363E1F938C690020C4FF /* TimeTableCells */,
+				51DAC0F41F9CAC6C0010739C /* CreateTimeTableViewCell.swift */,
+				51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */,
+				51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */,
+				51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */,
+				51DA24891FA5DE6F00C69808 /* CourseTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		51DB7E251F92150800BCE1BC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				51A8F3191FA5C4B9005B5A64 /* fyp-Bridging-Header.h */,
+				51A8F3121FA5BD54005B5A64 /* Database */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		51DB7E261F92151A00BCE1BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				51A8F3161FA5BF88005B5A64 /* Course.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		61715C1FF9BD71195832AB36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2796E83084848B4AE3999222 /* Pods_fyp.framework */,
+				3B47FEAE45F230333C8BC538 /* Pods_fypTests.framework */,
+				85E42C3E8E925810653D8A25 /* Pods_fypUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A9D073078928E65D8057AA8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED63148B010BA10491D12F72 /* Pods-fyp.debug.xcconfig */,
+				3D1DEE905ADD4D1CA40E01ED /* Pods-fyp.release.xcconfig */,
+				C66AFC4122D39EDDB27604D3 /* Pods-fypTests.debug.xcconfig */,
+				B1205C20055A9D4A78C2E4B1 /* Pods-fypTests.release.xcconfig */,
+				20A51C1CD4C65FB090D1C12D /* Pods-fypUITests.debug.xcconfig */,
+				DBB14A51D03060E8BCEB7DF1 /* Pods-fypUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		51DB7DF11F9213F000BCE1BC /* fyp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51DB7E1A1F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fyp" */;
+			buildPhases = (
+				94C9EE74D31E117FA45150A3 /* [CP] Check Pods Manifest.lock */,
+				51DB7DEE1F9213F000BCE1BC /* Sources */,
+				51DB7DEF1F9213F000BCE1BC /* Frameworks */,
+				51DB7DF01F9213F000BCE1BC /* Resources */,
+				191267F3C35525E1EE601F27 /* [CP] Embed Pods Frameworks */,
+				A16065758F43D48DA2AF4B60 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fyp;
+			productName = fyp;
+			productReference = 51DB7DF21F9213F000BCE1BC /* fyp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		51DB7E051F9213F100BCE1BC /* fypTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51DB7E1D1F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fypTests" */;
+			buildPhases = (
+				1559B5BB10A7166A2843D68F /* [CP] Check Pods Manifest.lock */,
+				51DB7E021F9213F100BCE1BC /* Sources */,
+				51DB7E031F9213F100BCE1BC /* Frameworks */,
+				51DB7E041F9213F100BCE1BC /* Resources */,
+				0F079DAE2E963010D386CC85 /* [CP] Embed Pods Frameworks */,
+				7265B4A682DCC72626C1B80D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				51DB7E081F9213F100BCE1BC /* PBXTargetDependency */,
+			);
+			name = fypTests;
+			productName = fypTests;
+			productReference = 51DB7E061F9213F100BCE1BC /* fypTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		51DB7E101F9213F100BCE1BC /* fypUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51DB7E201F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fypUITests" */;
+			buildPhases = (
+				8BDECA85375DDAAC58AA5B73 /* [CP] Check Pods Manifest.lock */,
+				51DB7E0D1F9213F100BCE1BC /* Sources */,
+				51DB7E0E1F9213F100BCE1BC /* Frameworks */,
+				51DB7E0F1F9213F100BCE1BC /* Resources */,
+				B080541067BC4B891C183895 /* [CP] Embed Pods Frameworks */,
+				B3F4A1E6FCD133EF1BA1000B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				51DB7E131F9213F100BCE1BC /* PBXTargetDependency */,
+			);
+			name = fypUITests;
+			productName = fypUITests;
+			productReference = 51DB7E111F9213F100BCE1BC /* fypUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		51DB7DEA1F9213F000BCE1BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = AnyCart;
+				TargetAttributes = {
+					51DB7DF11F9213F000BCE1BC = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					51DB7E051F9213F100BCE1BC = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 51DB7DF11F9213F000BCE1BC;
+					};
+					51DB7E101F9213F100BCE1BC = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 51DB7DF11F9213F000BCE1BC;
+					};
+				};
+			};
+			buildConfigurationList = 51DB7DED1F9213F000BCE1BC /* Build configuration list for PBXProject "fyp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 51DB7DE91F9213F000BCE1BC;
+			productRefGroup = 51DB7DF31F9213F000BCE1BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				51DB7DF11F9213F000BCE1BC /* fyp */,
+				51DB7E051F9213F100BCE1BC /* fypTests */,
+				51DB7E101F9213F100BCE1BC /* fypUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		51DB7DF01F9213F000BCE1BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5163364E1F938E060020C4FF /* DataGridViewCell.xib in Resources */,
+				5163364A1F938DEC0020C4FF /* TimeGridViewCell.xib in Resources */,
+				51A8F31C1FA5D1FE005B5A64 /* fyp.db in Resources */,
+				51DB7E001F9213F100BCE1BC /* LaunchScreen.storyboard in Resources */,
+				51DB7DFD1F9213F100BCE1BC /* Assets.xcassets in Resources */,
+				51DB7DFB1F9213F100BCE1BC /* Main.storyboard in Resources */,
+				516336461F938DCD0020C4FF /* DayGridViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E041F9213F100BCE1BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E0F1F9213F100BCE1BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F079DAE2E963010D386CC85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fypTests/Pods-fypTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1559B5BB10A7166A2843D68F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fypTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		191267F3C35525E1EE601F27 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-fyp/Pods-fyp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EZLoadingActivity/EZLoadingActivity.framework",
+				"${BUILT_PRODUCTS_DIR}/G3GridView/G3GridView.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZLoadingActivity.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/G3GridView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fyp/Pods-fyp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7265B4A682DCC72626C1B80D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fypTests/Pods-fypTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BDECA85375DDAAC58AA5B73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fypUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C9EE74D31E117FA45150A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fyp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A16065758F43D48DA2AF4B60 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fyp/Pods-fyp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B080541067BC4B891C183895 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fypUITests/Pods-fypUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3F4A1E6FCD133EF1BA1000B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fypUITests/Pods-fypUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		51DB7DEE1F9213F000BCE1BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AC64181F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift in Sources */,
+				51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */,
+				51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */,
+				5163363D1F9388940020C4FF /* FullTimeTableViewController.swift in Sources */,
+				51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */,
+				51DAC0F51F9CAC6C0010739C /* CreateTimeTableViewCell.swift in Sources */,
+				51AC64161F9C78C600E95DD5 /* TeacherAttachmentViewController.swift in Sources */,
+				51AC64101F9C788E00E95DD5 /* StudentAnnouncementViewController.swift in Sources */,
+				51AC641C1F9C78EF00E95DD5 /* TeacherTimeViewController.swift in Sources */,
+				516336451F938DCD0020C4FF /* DayGridViewCell.swift in Sources */,
+				51AC641A1F9C78E300E95DD5 /* TeacherFollowsViewController.swift in Sources */,
+				51AC641E1F9C791000E95DD5 /* MainViewController.swift in Sources */,
+				51DA248A1FA5DE6F00C69808 /* CourseTableViewCell.swift in Sources */,
+				51B2C60B1F926AD800E9E44A /* SignupStudentViewController.swift in Sources */,
+				51DB7DF81F9213F100BCE1BC /* ViewController.swift in Sources */,
+				51AC64121F9C78A300E95DD5 /* StudentTimeViewController.swift in Sources */,
+				5163364D1F938E060020C4FF /* DataGridViewCell.swift in Sources */,
+				51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */,
+				51DB7DF61F9213F100BCE1BC /* AppDelegate.swift in Sources */,
+				51DA248C1FA5E22600C69808 /* ShowTimeTableViewController.swift in Sources */,
+				516336491F938DEC0020C4FF /* TimeGridViewCell.swift in Sources */,
+				51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */,
+				51AC64201F9C796700E95DD5 /* CreateTimeViewController.swift in Sources */,
+				51AC640E1F9C787A00E95DD5 /* StudentAttachmentViewController.swift in Sources */,
+				51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */,
+				51DAC0F31F9CA7210010739C /* ShowCoursesViewController.swift in Sources */,
+				51AC64141F9C78B600E95DD5 /* StudentFollowViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E021F9213F100BCE1BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51DB7E0B1F9213F100BCE1BC /* fypTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51DB7E0D1F9213F100BCE1BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51DB7E161F9213F100BCE1BC /* fypUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		51DB7E081F9213F100BCE1BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51DB7DF11F9213F000BCE1BC /* fyp */;
+			targetProxy = 51DB7E071F9213F100BCE1BC /* PBXContainerItemProxy */;
+		};
+		51DB7E131F9213F100BCE1BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51DB7DF11F9213F000BCE1BC /* fyp */;
+			targetProxy = 51DB7E121F9213F100BCE1BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		51DB7DF91F9213F100BCE1BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51DB7DFA1F9213F100BCE1BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		51DB7DFE1F9213F100BCE1BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51DB7DFF1F9213F100BCE1BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		51DB7E181F9213F100BCE1BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		51DB7E191F9213F100BCE1BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		51DB7E1B1F9213F100BCE1BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED63148B010BA10491D12F72 /* Pods-fyp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CE5DX6XP9H;
+				INFOPLIST_FILE = fyp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fyp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "fyp/Helpers/fyp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		51DB7E1C1F9213F100BCE1BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D1DEE905ADD4D1CA40E01ED /* Pods-fyp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CE5DX6XP9H;
+				INFOPLIST_FILE = fyp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fyp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "fyp/Helpers/fyp-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		51DB7E1E1F9213F100BCE1BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C66AFC4122D39EDDB27604D3 /* Pods-fypTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = fypTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fypTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fyp.app/fyp";
+			};
+			name = Debug;
+		};
+		51DB7E1F1F9213F100BCE1BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1205C20055A9D4A78C2E4B1 /* Pods-fypTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = fypTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fypTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fyp.app/fyp";
+			};
+			name = Release;
+		};
+		51DB7E211F9213F100BCE1BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A51C1CD4C65FB090D1C12D /* Pods-fypUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = fypUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fypUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = fyp;
+			};
+			name = Debug;
+		};
+		51DB7E221F9213F100BCE1BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBB14A51D03060E8BCEB7DF1 /* Pods-fypUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = fypUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.creekify.fypUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = fyp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		51DB7DED1F9213F000BCE1BC /* Build configuration list for PBXProject "fyp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51DB7E181F9213F100BCE1BC /* Debug */,
+				51DB7E191F9213F100BCE1BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51DB7E1A1F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fyp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51DB7E1B1F9213F100BCE1BC /* Debug */,
+				51DB7E1C1F9213F100BCE1BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51DB7E1D1F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fypTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51DB7E1E1F9213F100BCE1BC /* Debug */,
+				51DB7E1F1F9213F100BCE1BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51DB7E201F9213F100BCE1BC /* Build configuration list for PBXNativeTarget "fypUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51DB7E211F9213F100BCE1BC /* Debug */,
+				51DB7E221F9213F100BCE1BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 51DB7DEA1F9213F000BCE1BC /* Project object */;
+}
