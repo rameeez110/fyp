@@ -1,8 +1,8 @@
 //
-//  FullTimeTableViewController.swift
+//  FullTimeTableMorningViewController.swift
 //  fyp
 //
-//  Created by Rameez Hasan on 10/15/17.
+//  Created by Rameez Hasan on 12/10/17.
 //  Copyright © 2017 AnyCart. All rights reserved.
 //
 
@@ -10,18 +10,8 @@ import UIKit
 import G3GridView
 import Foundation
 
-extension UIColor {
-    fileprivate convenience init(hex: Int, alpha: CGFloat = 1) {
-        let red = CGFloat((hex & 0xFF0000) >> 16) / 255
-        let green = CGFloat((hex & 0x00FF00) >> 8 ) / 255
-        let blue = CGFloat((hex & 0x0000FF) >> 0 ) / 255
-        
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-}
+class FullTimeTableMorningViewController: UIViewController {
 
-class FullTimeTableViewController: UIViewController {
-    
     @IBOutlet weak var timeTableView: GridView!
     @IBOutlet weak var timeListView: GridView!
     @IBOutlet weak var dayView: GridView!
@@ -37,18 +27,21 @@ class FullTimeTableViewController: UIViewController {
     
     public var timeTableMutableArray = NSMutableArray()
     var timeTable2DMutableDict = NSMutableDictionary()
+    var lunchTimeLabelArray = NSMutableArray()
     
     let timeArray = NSMutableArray()
-    var timeListDataSource: TimeListDataSource?
-    private let dayDataSource = DayGridViewDataSource()
-
+    var timeListDataSource: TimeListDataSourceMorning?
+    private let dayDataSource = DayGridViewDataSourceMorning()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         fillTimeArray()
         fillTimeTable2DArray()
+        
+        self.navigationController?.navigationBar.isHidden = true
         
         timeListDataSource = .init(channels: self.timeArray)
         
@@ -103,9 +96,21 @@ class FullTimeTableViewController: UIViewController {
     
     func fillTimeArray()
     {
-        self.timeArray.add("3:30 - 5:10")
-        self.timeArray.add("5:10 - 6:50")
-        self.timeArray.add("6:50 - 8:30")
+        self.timeArray.add("9:00 - 10:50")
+        self.timeArray.add("11:00 - 12:50")
+        self.timeArray.add("12:50 - 1:50")
+        self.timeArray.add("1:50 - 3:30")
+        self.timeArray.add("9:00 - 10:40")
+        self.timeArray.add("10:40 - 12:20")
+        
+        self.lunchTimeLabelArray.add("k  ")
+        self.lunchTimeLabelArray.add("rea")
+        self.lunchTimeLabelArray.add("r B")
+        self.lunchTimeLabelArray.add("aye")
+        self.lunchTimeLabelArray.add(" Pr")
+        self.lunchTimeLabelArray.add("And")
+        self.lunchTimeLabelArray.add("ch ")
+        self.lunchTimeLabelArray.add("Lun")
     }
     
     func fillTimeTable2DArray()
@@ -124,15 +129,15 @@ class FullTimeTableViewController: UIViewController {
                     {
                         let time = dict.value(forKey: "time_duration") as! String
                         // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "10")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "11")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "12")
                         }
@@ -140,15 +145,15 @@ class FullTimeTableViewController: UIViewController {
                     else
                     {
                         let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "00")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "01")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "02")
                         }
@@ -165,15 +170,15 @@ class FullTimeTableViewController: UIViewController {
                     {
                         let time = dict.value(forKey: "time_duration") as! String
                         // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "30")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "31")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "32")
                         }
@@ -181,15 +186,15 @@ class FullTimeTableViewController: UIViewController {
                     else
                     {
                         let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "20")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "21")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "22")
                         }
@@ -206,15 +211,15 @@ class FullTimeTableViewController: UIViewController {
                     {
                         let time = dict.value(forKey: "time_duration") as! String
                         // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "50")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "51")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "52")
                         }
@@ -222,15 +227,15 @@ class FullTimeTableViewController: UIViewController {
                     else
                     {
                         let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "40")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "41")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "42")
                         }
@@ -247,15 +252,15 @@ class FullTimeTableViewController: UIViewController {
                     {
                         let time = dict.value(forKey: "time_duration") as! String
                         // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "70")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "71")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "72")
                         }
@@ -263,15 +268,15 @@ class FullTimeTableViewController: UIViewController {
                     else
                     {
                         let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "60")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "11:00 - 12:50"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "61")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "1:50 - 3:30"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "62")
                         }
@@ -288,39 +293,31 @@ class FullTimeTableViewController: UIViewController {
                     {
                         let time = dict.value(forKey: "time_duration") as! String
                         // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:40"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "90")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "10:40 - 12:20"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "91")
-                        }
-                        else if time == "6:50 - 8:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "92")
                         }
                     }
                     else
                     {
                         let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        if time == "9:00 - 10:40"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "80")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "10:40 - 12:20"
                         {
                             self.timeTable2DMutableDict.setValue(dict, forKey: "81")
-                        }
-                        else if time == "6:50 - 8:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "82")
                         }
                     }
                 }
             }
         }
-//        print(self.timeTable2DMutableDict as Any)
+        //        print(self.timeTable2DMutableDict as Any)
     }
     
     @IBAction func doneButtonPressed()
@@ -328,7 +325,7 @@ class FullTimeTableViewController: UIViewController {
         self.transparentView.isHidden = true
         self.timeTableInfoContainerViewView.isHidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -347,9 +344,9 @@ class FullTimeTableViewController: UIViewController {
 
 }
 
-extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
+extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelegate {
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 3
+        return 4
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -363,44 +360,83 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
         let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DataGridViewCell", for: indexPath)
         if let cell = cell as? DataGridViewCell {
-
-            let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-            if (dict["day"] as? String) != nil {
-                let courseArray = dict.value(forKey: "CourseData") as! NSArray
-                let courseDict = courseArray.object(at: 0) as! NSDictionary
-                let courseNo = courseDict.value(forKey: "number")
-                var theoryStatus = String()
-                let isTheory = dict.value(forKey: "is_theory") as! String
-                if isTheory == "Thoery"
+            
+            if indexPath.column == 2
+            {
+                cell.borderView.backgroundColor = UIColor.white
+                cell.borderView.layer.borderWidth = 0.5
+                cell.borderView.layer.borderColor = UIColor.white.cgColor
+                if indexPath.row != 0 && indexPath.row != 9
                 {
-                    theoryStatus = " (T)"
+                    cell.lunchLabel.isHidden = false
+                    cell.lunchLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+                    cell.lunchLabel.text = self.lunchTimeLabelArray.object(at: indexPath.row - 1) as? String
+                }
+                
+                if indexPath.row == 0
+                {
+                    cell.lunchSeparatorTopView.isHidden = false
+                    cell.lunchSeparatorBottomView.isHidden = true
+                }
+                else if indexPath.row == 9
+                {
+                    cell.lunchSeparatorTopView.isHidden = true
+                    cell.lunchSeparatorBottomView.isHidden = false
                 }
                 else
                 {
-                    theoryStatus = " (L)"
+                    cell.lunchSeparatorTopView.isHidden = true
+                    cell.lunchSeparatorBottomView.isHidden = true
                 }
-                let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-                let techerDict = techerArray.object(at: 0) as! NSDictionary
-                let teacherName = techerDict.value(forKey: "name") as! String
-                let aray = teacherName.components(separatedBy: " ")
-                var teacherCode = String()
-                for i in 0..<aray.count
-                {
-                    let gg = aray[i]
-                    teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
-                }
-                let course = courseNo as? String
-                let cellString = course! + theoryStatus + " (" + teacherCode + ")"
-                cell.configure(cellString)
-            }
-            
-            if indexPath.row % 2 == 0
-            {
-                cell.borderView.backgroundColor = UIColor.white
             }
             else
             {
-                cell.borderView.backgroundColor = UIColor(red: 205/255, green: 215/255, blue: 219/255, alpha: 1)
+                //hide separator view
+                cell.lunchSeparatorTopView.isHidden = true
+                cell.lunchSeparatorBottomView.isHidden = true
+                
+                cell.lunchLabel.isHidden = true
+                let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
+                if (dict["day"] as? String) != nil {
+                    let courseArray = dict.value(forKey: "CourseData") as! NSArray
+                    let courseDict = courseArray.object(at: 0) as! NSDictionary
+                    let courseNo = courseDict.value(forKey: "number")
+                    var theoryStatus = String()
+                    let isTheory = dict.value(forKey: "is_theory") as! String
+                    if isTheory == "Thoery"
+                    {
+                        theoryStatus = " (T)"
+                    }
+                    else
+                    {
+                        theoryStatus = " (L)"
+                    }
+                    let techerArray = dict.value(forKey: "TeacherData") as! NSArray
+                    let techerDict = techerArray.object(at: 0) as! NSDictionary
+                    let teacherName = techerDict.value(forKey: "name") as! String
+                    let aray = teacherName.components(separatedBy: " ")
+                    var teacherCode = String()
+                    for i in 0..<aray.count
+                    {
+                        let gg = aray[i]
+                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
+                    }
+                    let course = courseNo as? String
+                    let cellString = course! + theoryStatus + " (" + teacherCode + ")"
+                    cell.configure(cellString)
+                }
+                cell.configure("T 506 T")
+                
+                if indexPath.row % 2 == 0
+                {
+                    cell.borderView.backgroundColor = UIColor.white
+                }
+                else
+                {
+                    cell.borderView.backgroundColor = UIColor(red: 205/255, green: 215/255, blue: 219/255, alpha: 1)
+                }
+                cell.borderView.layer.borderWidth = 0.5
+                cell.borderView.layer.borderColor = UIColor.black.cgColor
             }
         }
         
@@ -429,27 +465,32 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
         gridView.deselectRow(at: indexPath)
         let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
         if (dict["day"] as? String) != nil {
-            self.transparentView.isHidden = false
-            self.timeTableInfoContainerViewView.isHidden = false
-            let courseArray = dict.value(forKey: "CourseData") as! NSArray
-            let courseDict = courseArray.object(at: 0) as! NSDictionary
-            let courseNo = courseDict.value(forKey: "number")
-            self.courseNoLabel.text = courseNo as? String
-            let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-            let techerDict = techerArray.object(at: 0) as! NSDictionary
-            let teacherName = techerDict.value(forKey: "name") as! String
-            self.courseInstructorLabel.text = teacherName
-            self.courseCreditHoursLabel.text = (courseDict.value(forKey: "credit_hours") as! String)
-            self.courseNameLabel.text = courseDict.value(forKey: "name") as? String
-            let isTheory = dict.value(forKey: "is_theory") as! String
-            if isTheory == "Thoery"
-            {
-                self.courseLocationLabel.text = "GF 22"
-            }
-            else
-            {
-                self.courseLocationLabel.text = "FF 01"
-            }
+            setupCourseInfo(model: dict)
+        }
+    }
+    
+    func setupCourseInfo(model: NSDictionary)
+    {
+        self.transparentView.isHidden = false
+        self.timeTableInfoContainerViewView.isHidden = false
+        let courseArray = model.value(forKey: "CourseData") as! NSArray
+        let courseDict = courseArray.object(at: 0) as! NSDictionary
+        let courseNo = courseDict.value(forKey: "number")
+        self.courseNoLabel.text = courseNo as? String
+        let techerArray = model.value(forKey: "TeacherData") as! NSArray
+        let techerDict = techerArray.object(at: 0) as! NSDictionary
+        let teacherName = techerDict.value(forKey: "name") as! String
+        self.courseInstructorLabel.text = teacherName
+        self.courseCreditHoursLabel.text = (courseDict.value(forKey: "credit_hours") as! String)
+        self.courseNameLabel.text = courseDict.value(forKey: "name") as? String
+        let isTheory = model.value(forKey: "is_theory") as! String
+        if isTheory == "Thoery"
+        {
+            self.courseLocationLabel.text = "GF 22"
+        }
+        else
+        {
+            self.courseLocationLabel.text = "FF 01"
         }
     }
     
@@ -459,7 +500,7 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
     }
 }
 
-final class DayGridViewDataSource: NSObject, GridViewDataSource, GridViewDelegate {
+final class DayGridViewDataSourceMorning: NSObject, GridViewDataSource, GridViewDelegate {
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
         return 5
@@ -479,8 +520,8 @@ final class DayGridViewDataSource: NSObject, GridViewDataSource, GridViewDelegat
     }
 }
 
-final class TimeListDataSource: NSObject, GridViewDataSource, GridViewDelegate {
-//    let channels: [String]
+final class TimeListDataSourceMorning: NSObject, GridViewDataSource, GridViewDelegate {
+    //    let channels: [String]
     var channels = NSMutableArray()
     
     init(channels: NSMutableArray) {
@@ -488,17 +529,39 @@ final class TimeListDataSource: NSObject, GridViewDataSource, GridViewDelegate {
     }
     
     func numberOfColumns(in gridView: GridView) -> Int {
-        return channels.count
+        return 4//channels.count
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
-        return 1
+        return 2
+    }
+    
+    func gridView(_ gridView: GridView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(40)
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
         let cell = gridView.dequeueReusableCell(withReuseIdentifier: "TimeGridViewCell", for: indexPath)
         if let cell = cell as? TimeGridViewCell {
-            cell.configure(self.channels.object(at: indexPath.column) as! String)
+            if indexPath.row == 0
+            {
+                cell.configure(self.channels.object(at: indexPath.column) as! String)
+            }
+            else
+            {
+                if indexPath.column == 0
+                {
+                    cell.configure(self.channels.object(at: 4) as! String)
+                }
+                else if indexPath.column == 1
+                {
+                    cell.configure(self.channels.object(at: 5) as! String)
+                }
+                else
+                {
+                    cell.configure("")
+                }
+            }
         }
         
         return cell

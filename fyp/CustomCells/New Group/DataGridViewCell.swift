@@ -11,9 +11,12 @@ import G3GridView
 
 class DataGridViewCell: GridViewCell {
     
+    @IBOutlet weak var lunchSeparatorTopView: UIView!
+    @IBOutlet weak var lunchSeparatorBottomView: UIView!
     @IBOutlet weak var borderView: UIView!
     
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var lunchLabel: UILabel!
     
     static var nib: UINib {
         return UINib(nibName: "DataGridViewCell", bundle: Bundle(for: self))

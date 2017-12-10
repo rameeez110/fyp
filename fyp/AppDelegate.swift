@@ -47,12 +47,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func instanitateViewController(){
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let isLoggedIn = checkWhichTypeUserIsLoggedIn()
+//        let isLoggedIn = checkWhichTypeUserIsLoggedIn()
         
-        if isLoggedIn == "NOT LOGGED IN"
+        let rootNavigationController = UINavigationController()
+        let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
+        fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
+        self.window!.rootViewController = rootNavigationController
+//        fullTimeTableMorningViewController.timeTableMutableArray = array
+//        self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
+        rootNavigationController.pushViewController(fullTimeTableMorningViewController, animated: true)
+        
+        /*if isLoggedIn == "NOT LOGGED IN"
         {
             let rootNavigationController = UINavigationController()
             rootNavigationController.navigationBar.barTintColor = UIColor(red: 0/255, green: 25/255, blue: 43/255, alpha: 1)
@@ -77,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             let tabBarController: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "StudentTabBarController") as! UITabBarController
             self.window!.rootViewController = tabBarController
-        }
+        }*/
         
         self.window?.makeKeyAndVisible()
     }

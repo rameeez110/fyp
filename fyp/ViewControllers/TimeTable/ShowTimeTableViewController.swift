@@ -262,11 +262,20 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                                 array.add(time)
                             }
                         }
-                        let fullTimeTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTable") as! FullTimeTableViewController
-                        fullTimeTableViewController.timeTableMutableArray = NSMutableArray()
-                        fullTimeTableViewController.timeTableMutableArray = array
-                        self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
-                        
+                        if self.selectedMorning == "Morning"
+                        {
+                            let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
+                            fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
+                            fullTimeTableMorningViewController.timeTableMutableArray = array
+                            self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
+                        }
+                        else
+                        {
+                            let fullTimeTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTable") as! FullTimeTableViewController
+                            fullTimeTableViewController.timeTableMutableArray = NSMutableArray()
+                            fullTimeTableViewController.timeTableMutableArray = array
+                            self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
+                        }
                     }
                 }
             }

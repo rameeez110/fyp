@@ -403,11 +403,20 @@ class CreateTimeViewController: UIViewController ,UITableViewDelegate , UITableV
             }
             else if info == "Morning"
             {
+                let day = self.timeTitleButtonArray.object(at: 4) as! String
                 let array = NSMutableArray()
                 self.pickerDataArray = NSMutableArray()
-                array.add("8:30 - 10:10")
-                array.add("10:10 - 11:50")
-                array.add("11:50 - 1:30")
+                if day == "Friday"
+                {
+                    array.add("9:00 - 10:40")
+                    array.add("10:40 - 12:20")
+                }
+                else
+                {
+                    array.add("9:00 - 10:50")
+                    array.add("11:00 - 12:50")
+                    array.add("1:50 - 3:30")
+                }
                 for data in array
                 {
                     let dict = NSMutableDictionary()
