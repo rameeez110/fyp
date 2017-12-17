@@ -30,8 +30,25 @@ class StudentFollowViewController: UIViewController ,UITableViewDelegate , UITab
         navigationBarLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
         navigationBarLabel.textColor = UIColor(red: 201/255, green: 222/255, blue: 224/255, alpha: 1)
         navigationBarLabel.backgroundColor = UIColor.clear
+        navigationBarLabel.textAlignment = .center
         navigationBarLabel.text = "Follow"
         self.navigationItem.titleView = navigationBarLabel
+        
+        let navigationBarRightButton =  UIButton()
+        navigationBarRightButton.setImage(UIImage(named: "settings"), for: .normal)
+        navigationBarRightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        navigationBarRightButton.addTarget(self, action: #selector(settingsButtonPressed(_:)), for: .touchUpInside)
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = navigationBarRightButton
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    @objc func settingsButtonPressed(_ sender: UIBarButtonItem)
+    {
+//        print("tapped")
+        //settingsView
+        let settingsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingsView") as! SettingsViewController
+        self.navigationController!.pushViewController(settingsViewController, animated:true)
     }
     
     // MARK: - Table View Delegate And Data Source

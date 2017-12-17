@@ -45,7 +45,7 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
     func setNavigationBarUI()
     {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(true, animated:true)
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         
         navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())
         navigationBarLeftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
@@ -239,7 +239,8 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
     
     func performRequestToGetTimeTable(parameters: Parameters)
     {
-        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/gettimetable/", parameters: parameters).responseData { response in
+//        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/gettimetable/", parameters: parameters).responseData { response in
+        Alamofire.request(URLConstants.APPURL.GetFullTimeTable, parameters: parameters).responseData { response in
             if let data = response.data
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary

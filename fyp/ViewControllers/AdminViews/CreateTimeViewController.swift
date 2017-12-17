@@ -70,7 +70,7 @@ class CreateTimeViewController: UIViewController ,UITableViewDelegate , UITableV
     func setNavigationBarUI()
     {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(true, animated:true)
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         
         navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())
         navigationBarLeftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
@@ -190,7 +190,9 @@ class CreateTimeViewController: UIViewController ,UITableViewDelegate , UITableV
     
     func performRequestToGetTeachers(parameters: Parameters)
     {
-        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/getallteachers/", parameters: parameters).responseData { response in
+//        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/getallteachers/", parameters: parameters).responseData { response in
+        Alamofire.request(URLConstants.APPURL.GetAllTeacher, parameters: parameters).responseData { response in
+        
             if let data = response.data
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
@@ -239,7 +241,8 @@ class CreateTimeViewController: UIViewController ,UITableViewDelegate , UITableV
     
     func performRequestToAddTime(parameters: Parameters)
     {
-        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/addtime/", parameters: parameters).responseData { response in
+//        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/addtime/", parameters: parameters).responseData { response in
+        Alamofire.request(URLConstants.APPURL.AddTime, parameters: parameters).responseData { response in
             if let data = response.data
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary

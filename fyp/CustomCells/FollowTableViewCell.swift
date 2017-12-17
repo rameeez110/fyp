@@ -9,6 +9,12 @@
 import UIKit
 
 class FollowTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    
+    @IBOutlet weak var followButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

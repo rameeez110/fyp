@@ -52,8 +52,8 @@ class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITable
     
     func setNavigationBarUI()
     {
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(true, animated:true)
         
         navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())
         navigationBarLeftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)

@@ -38,6 +38,7 @@ class FullTimeTableMorningViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
+        setNavigationBarUI()
         fillTimeArray()
         fillTimeTable2DArray()
         
@@ -92,6 +93,35 @@ class FullTimeTableMorningViewController: UIViewController {
         self.courseCreditHoursLabel.clipsToBounds = true
         self.courseLocationLabel.layer.cornerRadius = 5
         self.courseLocationLabel.clipsToBounds = true
+    }
+    
+    // MARK: - Navigation bar Ui
+    
+    func setNavigationBarUI()
+    {
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationController?.isNavigationBarHidden = false
+        
+        let navigationBarLeftButton = UIButton()
+        navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())
+        navigationBarLeftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        navigationBarLeftButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = navigationBarLeftButton
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        let navigationBarLabel =  UILabel()
+        navigationBarLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        //        navigationBarLabel.font = UIFont(name: "Helvetica Neue")
+        navigationBarLabel.textColor = UIColor(red: 201/255, green: 222/255, blue: 224/255, alpha: 1)
+        navigationBarLabel.backgroundColor = UIColor.clear
+        navigationBarLabel.text = "Full Time Table"
+        self.navigationItem.titleView = navigationBarLabel
+    }
+    
+    @objc func backButtonPressed(_ sender: UIBarButtonItem)
+    {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func fillTimeArray()

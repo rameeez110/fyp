@@ -47,20 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func instanitateViewController(){
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-//        let isLoggedIn = checkWhichTypeUserIsLoggedIn()
+        let isLoggedIn = checkWhichTypeUserIsLoggedIn()
         
-        let rootNavigationController = UINavigationController()
-        let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
-        fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
-        self.window!.rootViewController = rootNavigationController
-//        fullTimeTableMorningViewController.timeTableMutableArray = array
-//        self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
-        rootNavigationController.pushViewController(fullTimeTableMorningViewController, animated: true)
-        
-        /*if isLoggedIn == "NOT LOGGED IN"
+        if isLoggedIn == "NOT LOGGED IN"
         {
             let rootNavigationController = UINavigationController()
             rootNavigationController.navigationBar.barTintColor = UIColor(red: 0/255, green: 25/255, blue: 43/255, alpha: 1)
@@ -85,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             let tabBarController: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "StudentTabBarController") as! UITabBarController
             self.window!.rootViewController = tabBarController
-        }*/
+        }
         
         self.window?.makeKeyAndVisible()
     }
@@ -94,16 +86,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         var user = "NOT LOGGED IN"
         
-        // Admin User
+        let loggedInUserType = UserDefaults.standard.string(forKey: URLConstants.UserDefaults.LoggedInUserRoleId)
         
-        let loggedInUserType = UserDefaults.standard.string(forKey: "LoggedInUserType")
-        
-        if (loggedInUserType != nil) {
-            user = loggedInUserType!
+        if (loggedInUserType != nil){
+            if loggedInUserType == "1"{
+                user = "ADMIN"
+            }
+            else if loggedInUserType == "2"{
+                user = "TEACHER"
+            }
+            else if loggedInUserType == "3"{
+                user = "STUDENT"
+            }
         }
         
-//        return user
-        return "ADMIN"
+        return user
     }
 
 }

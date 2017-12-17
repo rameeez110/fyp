@@ -30,6 +30,7 @@ class TeacherAnnoncementViewController: UIViewController ,UITableViewDelegate , 
         navigationBarLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
         navigationBarLabel.textColor = UIColor(red: 201/255, green: 222/255, blue: 224/255, alpha: 1)
         navigationBarLabel.backgroundColor = UIColor.clear
+        navigationBarLabel.textAlignment = .center
         navigationBarLabel.text = "Announcements"
         self.navigationItem.titleView = navigationBarLabel
     }

@@ -15,6 +15,8 @@
 		5163364A1F938DEC0020C4FF /* TimeGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516336481F938DEC0020C4FF /* TimeGridViewCell.xib */; };
 		5163364D1F938E060020C4FF /* DataGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163364B1F938E050020C4FF /* DataGridViewCell.swift */; };
 		5163364E1F938E060020C4FF /* DataGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5163364C1F938E060020C4FF /* DataGridViewCell.xib */; };
+		5186728A1FE65768005BBD45 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518672891FE65768005BBD45 /* SettingsViewController.swift */; };
+		5186728C1FE6591E005BBD45 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186728B1FE6591E005BBD45 /* ResetPasswordViewController.swift */; };
 		51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */; };
 		51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3161FA5BF88005B5A64 /* Course.swift */; };
 		51A8F31C1FA5D1FE005B5A64 /* fyp.db in Resources */ = {isa = PBXBuildFile; fileRef = 51A8F3131FA5BD6C005B5A64 /* fyp.db */; };
@@ -33,6 +35,9 @@
 		51AFFCD61FDD3CEC0082D7CF /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AFFCD51FDD3CEC0082D7CF /* Time.swift */; };
 		51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */; };
 		51B2C60B1F926AD800E9E44A /* SignupStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */; };
+		51BD2DCF1FE59958004D55DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DCE1FE59958004D55DE /* User.swift */; };
+		51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD01FE59968004D55DE /* Teacher.swift */; };
+		51BD2DD31FE5997A004D55DE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD21FE5997A004D55DE /* Student.swift */; };
 		51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */; };
 		51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */; };
 		51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */; };
@@ -80,6 +85,8 @@
 		516336481F938DEC0020C4FF /* TimeGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeGridViewCell.xib; sourceTree = "<group>"; };
 		5163364B1F938E050020C4FF /* DataGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGridViewCell.swift; sourceTree = "<group>"; };
 		5163364C1F938E060020C4FF /* DataGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataGridViewCell.xib; sourceTree = "<group>"; };
+		518672891FE65768005BBD45 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5186728B1FE6591E005BBD45 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		51A8F3131FA5BD6C005B5A64 /* fyp.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fyp.db; sourceTree = "<group>"; };
 		51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUtility.swift; sourceTree = "<group>"; };
 		51A8F3161FA5BF88005B5A64 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -99,6 +106,9 @@
 		51AFFCD51FDD3CEC0082D7CF /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTeacherViewController.swift; sourceTree = "<group>"; };
 		51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupStudentViewController.swift; sourceTree = "<group>"; };
+		51BD2DCE1FE59958004D55DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		51BD2DD01FE59968004D55DE /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		51BD2DD21FE5997A004D55DE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +198,15 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		518672881FE65702005BBD45 /* Settings Views */ = {
+			isa = PBXGroup;
+			children = (
+				518672891FE65768005BBD45 /* SettingsViewController.swift */,
+				5186728B1FE6591E005BBD45 /* ResetPasswordViewController.swift */,
+			);
+			path = "Settings Views";
+			sourceTree = "<group>";
+		};
 		51A8F3121FA5BD54005B5A64 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,8 +221,8 @@
 			children = (
 				51AC64151F9C78C600E95DD5 /* TeacherAttachmentViewController.swift */,
 				51AC64171F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift */,
-				51AC64191F9C78E300E95DD5 /* TeacherFollowsViewController.swift */,
 				51AC641B1F9C78EF00E95DD5 /* TeacherTimeViewController.swift */,
+				51AC64191F9C78E300E95DD5 /* TeacherFollowsViewController.swift */,
 			);
 			path = TeacherViews;
 			sourceTree = "<group>";
@@ -288,6 +307,7 @@
 		51DB7E231F9214E800BCE1BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				518672881FE65702005BBD45 /* Settings Views */,
 				51AC640C1F9C783600E95DD5 /* AdminViews */,
 				51AC640B1F9C782F00E95DD5 /* StudentViews */,
 				51AC640A1F9C781F00E95DD5 /* TeacherViews */,
@@ -325,6 +345,9 @@
 			children = (
 				51A8F3161FA5BF88005B5A64 /* Course.swift */,
 				51AFFCD51FDD3CEC0082D7CF /* Time.swift */,
+				51BD2DCE1FE59958004D55DE /* User.swift */,
+				51BD2DD01FE59968004D55DE /* Teacher.swift */,
+				51BD2DD21FE5997A004D55DE /* Student.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -662,6 +685,8 @@
 				51AC64181F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift in Sources */,
 				51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */,
 				51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */,
+				51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */,
+				51BD2DCF1FE59958004D55DE /* User.swift in Sources */,
 				5163363D1F9388940020C4FF /* FullTimeTableViewController.swift in Sources */,
 				51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */,
 				51DAC0F51F9CAC6C0010739C /* CreateTimeTableViewCell.swift in Sources */,
@@ -681,9 +706,12 @@
 				51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */,
 				51DB7DF61F9213F100BCE1BC /* AppDelegate.swift in Sources */,
 				51DA248C1FA5E22600C69808 /* ShowTimeTableViewController.swift in Sources */,
+				51BD2DD31FE5997A004D55DE /* Student.swift in Sources */,
 				516336491F938DEC0020C4FF /* TimeGridViewCell.swift in Sources */,
+				5186728C1FE6591E005BBD45 /* ResetPasswordViewController.swift in Sources */,
 				51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */,
 				51AC64201F9C796700E95DD5 /* CreateTimeViewController.swift in Sources */,
+				5186728A1FE65768005BBD45 /* SettingsViewController.swift in Sources */,
 				51AC640E1F9C787A00E95DD5 /* StudentAttachmentViewController.swift in Sources */,
 				51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */,
 				51DAC0F31F9CA7210010739C /* ShowCoursesViewController.swift in Sources */,
