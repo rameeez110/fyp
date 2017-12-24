@@ -87,6 +87,12 @@ class URLConstants: NSObject {
             return BaseURL + RestURL + "getallfollows/"
         }
         
+        static var GetAllTeacherFollowsData: String{
+            return BaseURL + RestURL + "getallteacherfollowdata/"
+        }
+        
+        //actionGetallteacherfollowdata
+        
         // MARK: Time
         
         static var AddTime: String{

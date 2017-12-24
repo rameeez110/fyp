@@ -17,4 +17,5 @@ class Teacher {
     var userID = String()
     var meta = String()
     var name = String()
+    var followStatus = String()
 }

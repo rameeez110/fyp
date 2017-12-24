@@ -38,21 +38,26 @@ class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , U
     // MARK: - Table View Delegate And Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2//self.timeTitleLabelArray.count
+        return 1//self.timeTitleLabelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let attachmentCell = tableView.dequeueReusableCell(withIdentifier: "attachmentCell", for: indexPath) as! AttachmentTableViewCell
         
+        tableView.tableFooterView = UIView()
+        
         return attachmentCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 300
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        editingIndexPath = indexPath as NSIndexPath
+        tableView.deselectRow(at: indexPath, animated: true)
+        let attachmentDetailView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "attachmentDetailView") as! AttachmentDetailViewController
+        attachmentDetailView.teacherName = "teacher 4"
+        self.navigationController!.pushViewController(attachmentDetailView, animated:true)
     }
 
     override func didReceiveMemoryWarning() {

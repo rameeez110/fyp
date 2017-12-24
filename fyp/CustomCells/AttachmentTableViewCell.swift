@@ -9,6 +9,12 @@
 import UIKit
 
 class AttachmentTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var pofilePicImageView: UIImageView!
+    @IBOutlet weak var attachmentImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

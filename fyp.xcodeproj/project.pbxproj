@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A7567A222BF39F37AFFC99A /* Pods_fyp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2796E83084848B4AE3999222 /* Pods_fyp.framework */; };
+		510BF9701FEFA213002CE418 /* AttachmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510BF96F1FEFA213002CE418 /* AttachmentDetailViewController.swift */; };
 		5163363D1F9388940020C4FF /* FullTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163363C1F9388940020C4FF /* FullTimeTableViewController.swift */; };
 		516336451F938DCD0020C4FF /* DayGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516336431F938DCD0020C4FF /* DayGridViewCell.swift */; };
 		516336461F938DCD0020C4FF /* DayGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516336441F938DCD0020C4FF /* DayGridViewCell.xib */; };
@@ -38,6 +39,8 @@
 		51BD2DCF1FE59958004D55DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DCE1FE59958004D55DE /* User.swift */; };
 		51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD01FE59968004D55DE /* Teacher.swift */; };
 		51BD2DD31FE5997A004D55DE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD21FE5997A004D55DE /* Student.swift */; };
+		51C9B2D21FE9611500894789 /* StudentTimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */; };
+		51D8037D1FED58DF0047F4C4 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */; };
 		51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */; };
 		51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */; };
 		51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */; };
@@ -78,6 +81,7 @@
 		2796E83084848B4AE3999222 /* Pods_fyp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fyp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B47FEAE45F230333C8BC538 /* Pods_fypTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fypTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1DEE905ADD4D1CA40E01ED /* Pods-fyp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fyp.release.xcconfig"; path = "Pods/Target Support Files/Pods-fyp/Pods-fyp.release.xcconfig"; sourceTree = "<group>"; };
+		510BF96F1FEFA213002CE418 /* AttachmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentDetailViewController.swift; sourceTree = "<group>"; };
 		5163363C1F9388940020C4FF /* FullTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTimeTableViewController.swift; sourceTree = "<group>"; };
 		516336431F938DCD0020C4FF /* DayGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayGridViewCell.swift; sourceTree = "<group>"; };
 		516336441F938DCD0020C4FF /* DayGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayGridViewCell.xib; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		51BD2DCE1FE59958004D55DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51BD2DD01FE59968004D55DE /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		51BD2DD21FE5997A004D55DE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTimeDetailViewController.swift; sourceTree = "<group>"; };
+		51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
@@ -234,6 +240,8 @@
 				51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */,
 				51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */,
 				51AC64131F9C78B600E95DD5 /* StudentFollowViewController.swift */,
+				51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */,
+				510BF96F1FEFA213002CE418 /* AttachmentDetailViewController.swift */,
 			);
 			path = StudentViews;
 			sourceTree = "<group>";
@@ -326,6 +334,7 @@
 				51D988C71F9E4B60004C7F38 /* AnnouncementTableViewCell.swift */,
 				51D988C91F9E4B6D004C7F38 /* FollowTableViewCell.swift */,
 				51DA24891FA5DE6F00C69808 /* CourseTableViewCell.swift */,
+				51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -683,6 +692,7 @@
 			files = (
 				51AFFCD41FDD3CA50082D7CF /* FullTimeTableMorningViewController.swift in Sources */,
 				51AC64181F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift in Sources */,
+				51D8037D1FED58DF0047F4C4 /* TimeTableViewCell.swift in Sources */,
 				51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */,
 				51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */,
 				51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */,
@@ -709,8 +719,10 @@
 				51BD2DD31FE5997A004D55DE /* Student.swift in Sources */,
 				516336491F938DEC0020C4FF /* TimeGridViewCell.swift in Sources */,
 				5186728C1FE6591E005BBD45 /* ResetPasswordViewController.swift in Sources */,
+				51C9B2D21FE9611500894789 /* StudentTimeDetailViewController.swift in Sources */,
 				51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */,
 				51AC64201F9C796700E95DD5 /* CreateTimeViewController.swift in Sources */,
+				510BF9701FEFA213002CE418 /* AttachmentDetailViewController.swift in Sources */,
 				5186728A1FE65768005BBD45 /* SettingsViewController.swift in Sources */,
 				51AC640E1F9C787A00E95DD5 /* StudentAttachmentViewController.swift in Sources */,
 				51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */,

@@ -1,8 +1,8 @@
 //
-//  ShowCoursesViewController.swift
+//  StudentTimeDetailViewController.swift
 //  fyp
 //
-//  Created by Rameez Hasan on 10/22/17.
+//  Created by Rameez Hasan on 12/19/17.
 //  Copyright © 2017 AnyCart. All rights reserved.
 //
 
@@ -10,59 +10,33 @@ import UIKit
 import EZLoadingActivity
 import Alamofire
 
-class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource ,UIPickerViewDelegate , UIPickerViewDataSource{
+class StudentTimeDetailViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource{
     
-    @IBOutlet weak var pickerContainerView: UIView!
     @IBOutlet weak var alphaView: UIView!
     @IBOutlet weak var timeTableContainerView: UIView!
     
-    @IBOutlet weak var buttonContainerStackView: UIStackView!
-    
-    @IBOutlet weak var courseTableView: UITableView!
+    @IBOutlet weak var teacherTableView: UITableView!
     @IBOutlet weak var timeTableView: UITableView!
     
-    @IBOutlet weak var descriptionPickerView: UIPickerView!
-    
-    @IBOutlet weak var programButton: UIButton!
-    @IBOutlet weak var semesterButton: UIButton!
-    
-    let navigationBarLeftButton = UIButton()
-    let navigationBarRightButton = UIButton()
-    
-    var timeMutableArray = NSMutableArray()
-    var courseTableViewArray = NSMutableArray()
-    var pickerDataArray = NSMutableArray()
-    var selectedPickerIndex = Int()
-    var selectedSemester = String()
-    var selectedProgram = String()
+    public var teacherMutableArray = NSMutableArray()
+    public var timeMutableArray = NSMutableArray()
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        setupUI()
         setNavigationBarUI()
-    }
-    
-    func setupUI()
-    {
-        self.programButton.layer.cornerRadius = 5
-        self.programButton.clipsToBounds = true
-        
-        self.semesterButton.layer.cornerRadius = 5
-        self.semesterButton.clipsToBounds = true
     }
     
     // MARK: - Navigation bar Ui
     
     func setNavigationBarUI()
     {
-        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         
+        let navigationBarLeftButton = UIButton()
         navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())
         navigationBarLeftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         navigationBarLeftButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
@@ -72,45 +46,15 @@ class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITable
         
         let navigationBarLabel =  UILabel()
         navigationBarLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-//        navigationBarLabel.font = UIFont(name: "Helvetica Neue")
         navigationBarLabel.textColor = UIColor(red: 201/255, green: 222/255, blue: 224/255, alpha: 1)
         navigationBarLabel.backgroundColor = UIColor.clear
-        navigationBarLabel.text = "Courses"
+        navigationBarLabel.text = "Teacher's Time"
         self.navigationItem.titleView = navigationBarLabel
-        
-        navigationBarRightButton.setTitle("Show", for: .normal)
-        navigationBarRightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
-        navigationBarRightButton.addTarget(self, action: #selector(showButtonPressed(_:)), for: .touchUpInside)
-        let rightBarButton = UIBarButtonItem()
-        rightBarButton.customView = navigationBarRightButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     @objc func backButtonPressed(_ sender: UIBarButtonItem)
     {
         _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func showButtonPressed(_ sender: UIBarButtonItem)
-    {
-        self.courseTableViewArray = NSMutableArray()
-        self.courseTableViewArray = DataBaseUtility.sharedInstance.getCourseSemesterWise(program: self.selectedProgram, semester: self.selectedSemester)
-        if self.courseTableViewArray.count > 0
-        {
-//            print(self.courseTableViewArray)
-            self.buttonContainerStackView.isHidden = true
-            self.courseTableView.isHidden = false
-            self.courseTableView.reloadData()
-        }
-        else
-        {
-            let alert = UIAlertController(title: "No courses found!", message: nil, preferredStyle: .alert) // 1
-            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(firstAction)
-            self.present(alert, animated: true, completion:nil)
-        }
     }
     
     // MARK: - IBActions
@@ -120,88 +64,29 @@ class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITable
         self.alphaView.isHidden = true
         self.timeTableContainerView.isHidden = true
     }
-    
-    @IBAction func programButtonPressed()
-    {
-        self.pickerContainerView.isHidden = false
-        selectedPickerIndex = 0
-        let array = NSMutableArray()
-        self.pickerDataArray = NSMutableArray()
-        array.add("BSCS")
-        array.add("BSSE")
-        array.add("MCS")
-        for data in array
-        {
-            let dict = NSMutableDictionary()
-            dict.setValue("Program", forKey: "Index")
-            dict.setValue(data as! String, forKey: "Data")
-            self.pickerDataArray.add(dict)
-        }
-        self.descriptionPickerView.reloadAllComponents()
-    }
-    
-    @IBAction func semesterDoneButtonPressed()
-    {
-        self.pickerContainerView.isHidden = false
-        selectedPickerIndex = 0
-        let array = NSMutableArray()
-        self.pickerDataArray = NSMutableArray()
-        array.add("1st")
-        array.add("2nd")
-        array.add("3rd")
-        array.add("4th")
-        array.add("5th")
-        array.add("6th")
-        array.add("7th")
-        array.add("8th")
-        for data in array
-        {
-            let dict = NSMutableDictionary()
-            dict.setValue("Semester", forKey: "Index")
-            dict.setValue(data as! String, forKey: "Data")
-            self.pickerDataArray.add(dict)
-        }
-        self.descriptionPickerView.reloadAllComponents()
-    }
-    
-    @IBAction func pickerDoneButtonPressed()
-    {
-        self.pickerContainerView.isHidden = true
-        let nameDict = self.pickerDataArray.object(at: selectedPickerIndex) as! NSMutableDictionary
-        let index = nameDict.value(forKey: "Index") as! String
-        if index == "Program"
-        {
-            selectedProgram = nameDict.value(forKey: "Data") as! String
-            self.programButton.setTitle(selectedProgram, for: .normal)
-        }
-        else if index == "Semester"
-        {
-            selectedSemester = nameDict.value(forKey: "Data") as! String
-            self.semesterButton.setTitle(selectedSemester, for: .normal)
-        }
-    }
+
     
     // MARK: - Api Calling
     
-    func callApiToGetTimeCourseWise(id: String)
+    func callApiToGetTimeTeacherWise(id: Int)
     {
         EZLoadingActivity.show("Loading...", disableUI: false)
         let parameters: Parameters = [
             "apiCsrfKey": "FASMBQWIFJDAJ28915734BBKBK8945CTIRETE354PA67",
-            "course_id": id,
+            "teacher_id": String(id),
             ]
         performRequestToGetTeachers(parameters: parameters)
     }
     
     func performRequestToGetTeachers(parameters: Parameters)
     {
-        Alamofire.request(URLConstants.APPURL.GetTimeCourseWise, parameters: parameters).responseData { response in
+        Alamofire.request(URLConstants.APPURL.GetTimeTeacherWise, parameters: parameters).responseData { response in
             
             if let data = response.data
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
                 
-                                print(cardJsonObject as Any)
+//                print(cardJsonObject as Any)
                 
                 EZLoadingActivity.hide(true, animated: true)
                 if (cardJsonObject?.value(forKey: "data")) != nil
@@ -384,103 +269,66 @@ class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITable
     // MARK: - Table View Delegate And Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.courseTableView
+        
+        if tableView == self.teacherTableView
         {
-            return self.courseTableViewArray.count
+            return self.teacherMutableArray.count
         }
         else
         {
-            if appDelegate.isComingFromStudentCourseViewController
-            {
-                return self.timeMutableArray.count
-            }
-            else
-            {
-                return 0
-            }
+            return self.timeMutableArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.tableFooterView = UIView()
-        if tableView == self.courseTableView
+        if tableView == self.teacherTableView
         {
-            let courseCell = tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
+            let followCell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as! FollowTableViewCell
             
-            let courseModel = self.courseTableViewArray.object(at: indexPath.row) as! Course
+            let teacherModel = self.teacherMutableArray.object(at: indexPath.row) as! Teacher
             
-            courseCell.courseCreditHourLabel.text = courseModel.credit_hours
-            courseCell.courseNameLabel.text = courseModel.name
-            courseCell.courseNumberLabel.text = courseModel.number
+            followCell.followButton.isHidden = true
             
-            return courseCell
+            followCell.nameLabel.text = teacherModel.name
+            
+            return followCell
         }
         else
         {
-            if appDelegate.isComingFromStudentCourseViewController
-            {
-                let timeCell = tableView.dequeueReusableCell(withIdentifier: "timeCell", for: indexPath) as! TimeTableViewCell
-                
-                let timeModel = self.timeMutableArray.object(at: indexPath.row) as! Time
-                let teacherModel = timeModel.teacherData
-                let courseModel = timeModel.courseData
-                
-                timeCell.teacherValueLabel.text = teacherModel.name
-                timeCell.courseValueLabel.text = courseModel.name
-                timeCell.timeValueLabel.text = timeModel.time_duration
-                timeCell.locationValueLabel.text = "FF 07"
-                
-                return timeCell
-            }
-            else
-            {
-                let timeCell = tableView.dequeueReusableCell(withIdentifier: "timeCell", for: indexPath) as! TimeTableViewCell
-                
-                return timeCell
-            }
+            let timeCell = tableView.dequeueReusableCell(withIdentifier: "timeCell", for: indexPath) as! TimeTableViewCell
+            
+            let timeModel = self.timeMutableArray.object(at: indexPath.row) as! Time
+            let teacherModel = timeModel.teacherData
+            let courseModel = timeModel.courseData
+            
+            timeCell.teacherValueLabel.text = teacherModel.name
+            timeCell.courseValueLabel.text = courseModel.name
+            timeCell.timeValueLabel.text = timeModel.time_duration
+            timeCell.locationValueLabel.text = "FF 07"
+            
+            return timeCell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        editingIndexPath = indexPath as NSIndexPath
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if appDelegate.isComingFromStudentCourseViewController
+        if tableView == self.teacherTableView
         {
-            if tableView == self.courseTableView
-            {
-                let courseModel = self.courseTableViewArray.object(at: indexPath.row) as! Course
-                callApiToGetTimeCourseWise(id: courseModel.server_id)
-            }
+            return 85
+        }
+        else
+        {
+            return 150
         }
     }
     
-    // MARK: - Picker View Delegate And Data Source
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-    {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
-        return self.pickerDataArray.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        selectedPickerIndex = row
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
-        let nameDict = self.pickerDataArray.object(at: row) as! NSMutableDictionary
-        let name = nameDict.value(forKey: "Data") as? String
-        return name
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView == self.teacherTableView
+        {
+            let teacherModel = self.teacherMutableArray.object(at: indexPath.row) as! Teacher
+            callApiToGetTimeTeacherWise(id: teacherModel.id)
+        }
     }
 
     override func didReceiveMemoryWarning() {

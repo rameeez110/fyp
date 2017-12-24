@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import EZLoadingActivity
+import Alamofire
 
 class TeacherFollowsViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource{
     
     @IBOutlet weak var teacherFollowTableView: UITableView!
+    
+    var followMutableArray = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setNavigationBarUI()
+        callApiToGetFollowersInfo()
     }
     
     // MARK: - Navigation bar Ui
@@ -50,15 +55,100 @@ class TeacherFollowsViewController: UIViewController ,UITableViewDelegate , UITa
         self.navigationController!.pushViewController(settingsViewController, animated:true)
     }
     
+    // MARK: - Api Calling
+    
+    func callApiToGetFollowersInfo()
+    {
+        EZLoadingActivity.show("Loading...", disableUI: false)
+        let teacherID = UserDefaults.standard.string(forKey: URLConstants.UserDefaults.LoggedInTeacherID)
+        let parameters: Parameters = [
+            "apiCsrfKey": "FASMBQWIFJDAJ28915734BBKBK8945CTIRETE354PA67",
+            "teacher_id": teacherID!,
+            ]
+        performRequestToGetFollowersInfo(parameters: parameters)
+    }
+    
+    func performRequestToGetFollowersInfo(parameters: Parameters)
+    {
+        Alamofire.request(URLConstants.APPURL.GetAllFollows, parameters: parameters).responseData { response in
+            
+            if let data = response.data
+            {
+                let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+                
+                print(cardJsonObject as Any)
+                
+                EZLoadingActivity.hide(true, animated: true)
+                
+                if (cardJsonObject?.value(forKey: "response")) != nil
+                {
+                    if let dataDict = cardJsonObject?.value(forKey: "data")
+                    {
+                        let followArray = dataDict as! NSArray
+                        let result = cardJsonObject?.value(forKey: "response") as! String
+                        
+                        if result == "SUCCESS"
+                        {
+                            for object in followArray
+                            {
+                                let objectDict = object as! NSDictionary
+                                let objectArray = objectDict.value(forKey: "StudentData") as! NSArray
+                                let followDict = objectArray.object(at: 0) as! NSDictionary
+                                
+                                self.followMutableArray.add(followDict)
+                            }
+                            self.teacherFollowTableView.reloadData()
+                        }
+                        else
+                        {
+                            let alert = UIAlertController(title: "Request not processed succesfuly!", message: nil, preferredStyle: .alert) // 1
+                            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                            }
+                            alert.addAction(firstAction)
+                            self.present(alert, animated: true, completion:nil)
+                        }
+                    }
+                    if self.followMutableArray.count == 0
+                    {
+                        let alert = UIAlertController(title: "You don't have any follower right now!", message: nil, preferredStyle: .alert) // 1
+                        let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                        }
+                        alert.addAction(firstAction)
+                        self.present(alert, animated: true, completion:nil)
+                    }
+                }
+                else
+                {
+                    let alert = UIAlertController(title: "Request not processed succesfuly!", message: "Please check your internet connection.", preferredStyle: .alert) // 1
+                    let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                    }
+                    alert.addAction(firstAction)
+                    self.present(alert, animated: true, completion:nil)
+                }
+            }
+        }
+    }
+    
     // MARK: - Table View Delegate And Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2//self.timeTitleLabelArray.count
+        return self.followMutableArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let followCell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as! FollowTableViewCell
         
+        tableView.tableFooterView = UIView()
+        
+        let followDict = self.followMutableArray.object(at: indexPath.row) as! NSDictionary
+        
+        if let name = followDict.value(forKey: "name") as? String{
+            followCell.nameLabel.text = name
+        }
+        
+        followCell.profilePicImageView.layer.cornerRadius = followCell.profilePicImageView.frame.size.width/2
+        followCell.profilePicImageView.clipsToBounds = true
+
         return followCell
     }
     

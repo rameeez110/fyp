@@ -9,5 +9,19 @@
 import UIKit
 
 class Time{
-
+    var id = Int()
+    var status = String()
+    var day = String()
+    var teacherID = String()
+    var courseID = String()
+    var year = String()
+    var time_duration = String()
+    var semester = String()
+    var section = String()
+    var meta = String()
+    var isTheory = String()
+    var isMorning = String()
+    var teacherData = Teacher()
+    var courseData = Course()
+    var program = String()
 }

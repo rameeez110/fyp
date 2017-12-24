@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var createTimeTableButton: UIButton!
     @IBOutlet weak var showCourseButton: UIButton!
     @IBOutlet weak var showTimeTableButton: UIButton!
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +61,22 @@ class MainViewController: UIViewController {
     
     func setNavigationBarUI()
     {
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true)
+        
+        let navigationBarRightButton =  UIButton()
+        navigationBarRightButton.setImage(UIImage(named: "settings"), for: .normal)
+        navigationBarRightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        navigationBarRightButton.addTarget(self, action: #selector(settingsButtonPressed(_:)), for: .touchUpInside)
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = navigationBarRightButton
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    @objc func settingsButtonPressed(_ sender: UIBarButtonItem)
+    {
+        let settingsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingsView") as! SettingsViewController
+        self.navigationController!.pushViewController(settingsViewController, animated:true)
     }
     
     @IBAction func createTimeTableButtonPressed()
@@ -71,6 +87,7 @@ class MainViewController: UIViewController {
     
     @IBAction func showCourseButtonPressed()
     {
+        appDelegate.isComingFromStudentCourseViewController = false
         let showCoursesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showCourses") as! ShowCoursesViewController
         self.navigationController!.pushViewController(showCoursesViewController, animated:true)
     }

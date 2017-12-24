@@ -113,7 +113,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
                 
-//                print(cardJsonObject as Any)
+                print(cardJsonObject as Any)
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 
                 EZLoadingActivity.hide(true, animated: true)
@@ -142,6 +142,12 @@ class ViewController: UIViewController , UITextFieldDelegate{
                             UserDefaults.standard.set(userModel.roleID, forKey: URLConstants.UserDefaults.LoggedInUserRoleId)
                             UserDefaults.standard.set(userModel.email, forKey: URLConstants.UserDefaults.LoggedInUserEmail)
                             UserDefaults.standard.synchronize()
+                            
+                            if roleID == "1"
+                            {
+                                let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adminMainView") as! MainViewController
+                                self.navigationController?.pushViewController(mainViewController, animated: true)
+                            }
                         }
                     }
                     if (cardJsonObject?.value(forKey: "description")) != nil
@@ -153,10 +159,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
                             if result == "SUCCESS"
                             {
                                 let dict = descriptionDict as! NSDictionary
-                                if roleID == "1"{
-                                    
-                                }
-                                else if roleID == "2"{
+                                if roleID == "2"{
                                     let teacherDict = dict.value(forKey: "TeacherData") as! NSDictionary
                                     print(teacherDict as Any)
                                     let teacherModel = Teacher()

@@ -68,6 +68,9 @@ class SignupStudentViewController: UIViewController , UITextFieldDelegate , UIIm
         
         self.morningEveningButton.layer.cornerRadius = 10
         self.morningEveningButton.clipsToBounds = true
+        
+        self.profilePicButton.layer.cornerRadius = self.profilePicButton.frame.size.width/2
+        self.profilePicButton.clipsToBounds = true
     }
     
     // MARK: - IBActions
