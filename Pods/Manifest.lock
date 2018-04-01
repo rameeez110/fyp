@@ -6,6 +6,7 @@ PODS:
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
+  - UXMPDFKit (0.7.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - G3GridView
   - Kingfisher (~> 4.0)
   - SQLite.swift (~> 0.11.3)
+  - UXMPDFKit
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -20,7 +22,8 @@ SPEC CHECKSUMS:
   G3GridView: 75bc079688f831118d15457ea5abec7d420bb172
   Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  UXMPDFKit: 3cd146f9129a1a33160b1c0f33dd70ecafe60ccf
 
-PODFILE CHECKSUM: e5a371ce5f300a42e22951379f93eacbfd1733ce
+PODFILE CHECKSUM: f21e146a1fa22c85a69a1adbfb206a4ac33e9ab2
 
-COCOAPODS: 1.4.0.beta.1
+COCOAPODS: 1.4.0

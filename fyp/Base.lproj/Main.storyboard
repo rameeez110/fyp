@@ -296,19 +296,44 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NiV-HE-1yc" customClass="PDFSinglePageViewer" customModule="UXMPDFKit">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TW9-xJ-rmt">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bmv-iu-bXE">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NiV-HE-1yc" firstAttribute="width" secondItem="qgY-UH-8yA" secondAttribute="width" id="HkR-Eg-Gqn"/>
+                            <constraint firstItem="qgY-UH-8yA" firstAttribute="leading" secondItem="NiV-HE-1yc" secondAttribute="leading" id="InP-dy-uuH"/>
                             <constraint firstItem="N0y-hj-tE7" firstAttribute="trailing" secondItem="BJ6-Gf-gGC" secondAttribute="trailing" id="Uls-go-1TF"/>
                             <constraint firstItem="N0y-hj-tE7" firstAttribute="bottom" secondItem="BJ6-Gf-gGC" secondAttribute="bottom" id="Y2B-Sv-tih"/>
+                            <constraint firstItem="NiV-HE-1yc" firstAttribute="height" secondItem="qgY-UH-8yA" secondAttribute="height" id="fJt-TQ-wXB"/>
                             <constraint firstItem="BJ6-Gf-gGC" firstAttribute="leading" secondItem="N0y-hj-tE7" secondAttribute="leading" id="gve-OX-LIQ"/>
                             <constraint firstItem="BJ6-Gf-gGC" firstAttribute="top" secondItem="N0y-hj-tE7" secondAttribute="top" id="gy3-4m-DRj"/>
+                            <constraint firstItem="qgY-UH-8yA" firstAttribute="top" secondItem="NiV-HE-1yc" secondAttribute="top" id="iby-pM-pCi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N0y-hj-tE7"/>
                     </view>
                     <connections>
                         <outlet property="attachmentImageView" destination="qgY-UH-8yA" id="LSd-Yw-1Ar"/>
                         <outlet property="descriptionLabel" destination="ifA-Lm-q2A" id="Gf2-8l-UEg"/>
+                        <outlet property="pdfCollectionView" destination="NiV-HE-1yc" id="XjO-bH-JsV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzM-0f-tP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -748,6 +773,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lcn-AT-jz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1256.8" y="1529.6851574212894"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UAQ-fN-af4">
+            <objects>
+                <viewController id="0WK-2Y-3zP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sE1-ME-xxl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otR-9H-fqB">
+                                <rect key="frame" x="147" y="187" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pG-wl-fa8">
+                                <rect key="frame" x="67" y="231" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KAm-pS-sZb">
+                                <rect key="frame" x="139" y="475" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eMG-uo-x9O">
+                                <rect key="frame" x="139" y="529" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvM-Q7-mcP">
+                                <rect key="frame" x="164" y="590" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SSa-hW-WQ2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ufP-dh-fMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2271" y="1429"/>
         </scene>
         <!--Student Attachment View Controller-->
         <scene sceneID="a7N-cZ-X2U">
@@ -2833,6 +2905,7 @@
                         <outlet property="timeListView" destination="UYG-EI-eI2" id="4aZ-CC-MaH"/>
                         <outlet property="timeTableInfoContainerViewView" destination="cSh-VV-7Jb" id="bh3-xe-TKI"/>
                         <outlet property="timeTableView" destination="ouh-9t-DV4" id="exT-PT-Dcz"/>
+                        <outlet property="titleLabel" destination="no3-CE-SpK" id="gtG-77-I2f"/>
                         <outlet property="transparentView" destination="wJY-DU-L5R" id="3CH-AP-qh2"/>
                     </connections>
                 </viewController>
@@ -3023,6 +3096,7 @@
                         <outlet property="timeListView" destination="kBi-YO-DnL" id="jMv-jG-Qks"/>
                         <outlet property="timeTableInfoContainerViewView" destination="25v-q4-mKi" id="Gdr-a0-eI4"/>
                         <outlet property="timeTableView" destination="ZeR-B7-zbh" id="xNc-e9-4nH"/>
+                        <outlet property="titleLabel" destination="eAc-XD-GJE" id="l2P-uf-chs"/>
                         <outlet property="transparentView" destination="21t-RJ-o0K" id="jnw-kh-pGe"/>
                     </connections>
                 </viewController>

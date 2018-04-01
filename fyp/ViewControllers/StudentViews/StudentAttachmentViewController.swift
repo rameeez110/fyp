@@ -11,12 +11,19 @@ import UIKit
 class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource{
     
     @IBOutlet weak var studentAttachmentTableView: UITableView!
+    
+    var imageArray = [String]()
+    var descriptionArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setNavigationBarUI()
+        imageArray.append("admission")
+        imageArray.append("prospectus")
+        descriptionArray.append("Admission advertisement")
+        descriptionArray.append("Admission prospectus of 2018")
     }
     
     // MARK: - Navigation bar Ui
@@ -44,6 +51,8 @@ class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let attachmentCell = tableView.dequeueReusableCell(withIdentifier: "attachmentCell", for: indexPath) as! AttachmentTableViewCell
         
+        attachmentCell.attachmentImageView.image = UIImage(named: self.imageArray[indexPath.row])
+        attachmentCell.descriptionLabel.text = self.descriptionArray[indexPath.row]
         tableView.tableFooterView = UIView()
         
         return attachmentCell
@@ -57,6 +66,11 @@ class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , U
         tableView.deselectRow(at: indexPath, animated: true)
         let attachmentDetailView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "attachmentDetailView") as! AttachmentDetailViewController
         attachmentDetailView.teacherName = "teacher 4"
+        attachmentDetailView.descriptionText = self.descriptionArray[indexPath.row]
+        if indexPath.row == 1
+        {
+            attachmentDetailView.pdfName = ".pdf"
+        }
         self.navigationController!.pushViewController(attachmentDetailView, animated:true)
     }
 

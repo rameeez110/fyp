@@ -29,6 +29,7 @@ class FullTimeTableViewController: UIViewController {
     @IBOutlet weak var transparentView: UIView!
     @IBOutlet weak var timeTableInfoContainerViewView: UIView!
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseNoLabel: UILabel!
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var courseInstructorLabel: UILabel!
@@ -50,6 +51,7 @@ class FullTimeTableViewController: UIViewController {
         setNavigationBarUI()
         fillTimeArray()
         fillTimeTable2DArray()
+//        fillTitle()
         
         timeListDataSource = .init(channels: self.timeArray)
         
@@ -108,6 +110,7 @@ class FullTimeTableViewController: UIViewController {
     {
         self.navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.navigationItem.setHidesBackButton(false, animated: true)
         
         let navigationBarLeftButton = UIButton()
         navigationBarLeftButton.setImage(UIImage(named: "left-arrow"), for: UIControlState())

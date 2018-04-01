@@ -268,7 +268,7 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                             let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
                             fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
                             fullTimeTableMorningViewController.timeTableMutableArray = array
-                            self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
+                        self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
                         }
                         else
                         {

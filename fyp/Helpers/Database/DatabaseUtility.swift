@@ -163,6 +163,9 @@ class DataBaseUtility {
             
             let query = course.filter(course_program == program && course_semester == semester)
             
+//            try database.run(query.delete())
+//            try database.run(query.update(name <- name.replace("mac.com", with: "me.com")))
+            
             for course in try database.prepare(query) {
                 let courseModel = Course()
                 courseModel.id = course[course_id]!

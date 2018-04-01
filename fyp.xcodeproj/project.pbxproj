@@ -36,6 +36,7 @@
 		51AFFCD61FDD3CEC0082D7CF /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AFFCD51FDD3CEC0082D7CF /* Time.swift */; };
 		51B2C6091F926A9F00E9E44A /* SignupTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */; };
 		51B2C60B1F926AD800E9E44A /* SignupStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */; };
+		51B7B7192070C0AC00E71251 /* ep18pros.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 51B7B7182070C0AC00E71251 /* ep18pros.pdf */; };
 		51BD2DCF1FE59958004D55DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DCE1FE59958004D55DE /* User.swift */; };
 		51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD01FE59968004D55DE /* Teacher.swift */; };
 		51BD2DD31FE5997A004D55DE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD21FE5997A004D55DE /* Student.swift */; };
@@ -110,6 +111,7 @@
 		51AFFCD51FDD3CEC0082D7CF /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		51B2C6081F926A9F00E9E44A /* SignupTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTeacherViewController.swift; sourceTree = "<group>"; };
 		51B2C60A1F926AD800E9E44A /* SignupStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupStudentViewController.swift; sourceTree = "<group>"; };
+		51B7B7182070C0AC00E71251 /* ep18pros.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ep18pros.pdf; sourceTree = "<group>"; };
 		51BD2DCE1FE59958004D55DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51BD2DD01FE59968004D55DE /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		51BD2DD21FE5997A004D55DE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				51DB7DF91F9213F100BCE1BC /* Main.storyboard */,
 				51DB7DFC1F9213F100BCE1BC /* Assets.xcassets */,
 				51DB7DFE1F9213F100BCE1BC /* LaunchScreen.storyboard */,
+				51B7B7182070C0AC00E71251 /* ep18pros.pdf */,
 				51DB7E011F9213F100BCE1BC /* Info.plist */,
 			);
 			path = fyp;
@@ -507,6 +510,7 @@
 				51DB7E001F9213F100BCE1BC /* LaunchScreen.storyboard in Resources */,
 				51DB7DFD1F9213F100BCE1BC /* Assets.xcassets in Resources */,
 				51DB7DFB1F9213F100BCE1BC /* Main.storyboard in Resources */,
+				51B7B7192070C0AC00E71251 /* ep18pros.pdf in Resources */,
 				516336461F938DCD0020C4FF /* DayGridViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +577,7 @@
 				"${BUILT_PRODUCTS_DIR}/G3GridView/G3GridView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/UXMPDFKit/UXMPDFKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -581,6 +586,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/G3GridView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UXMPDFKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

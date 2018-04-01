@@ -19,6 +19,7 @@ class FullTimeTableMorningViewController: UIViewController {
     @IBOutlet weak var transparentView: UIView!
     @IBOutlet weak var timeTableInfoContainerViewView: UIView!
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseNoLabel: UILabel!
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var courseInstructorLabel: UILabel!
@@ -152,7 +153,7 @@ class FullTimeTableMorningViewController: UIViewController {
             if day == "Monday"
             {
                 let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                if moring == "Morning"
                 {
                     let section = dict.value(forKey: "section") as! String
                     if section == "Section B"
@@ -193,7 +194,7 @@ class FullTimeTableMorningViewController: UIViewController {
             else if day == "Tuesday"
             {
                 let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                if moring == "Morning"
                 {
                     let section = dict.value(forKey: "section") as! String
                     if section == "Section B"
@@ -234,7 +235,7 @@ class FullTimeTableMorningViewController: UIViewController {
             else if day == "Wednesday"
             {
                 let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                if moring == "Morning"
                 {
                     let section = dict.value(forKey: "section") as! String
                     if section == "Section B"
@@ -275,7 +276,7 @@ class FullTimeTableMorningViewController: UIViewController {
             else if day == "Thursday"
             {
                 let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                if moring == "Morning"
                 {
                     let section = dict.value(forKey: "section") as! String
                     if section == "Section B"
@@ -316,7 +317,7 @@ class FullTimeTableMorningViewController: UIViewController {
             else if day == "Friday"
             {
                 let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                if moring == "Morning"
                 {
                     let section = dict.value(forKey: "section") as! String
                     if section == "Section B"
@@ -455,7 +456,7 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
                     let cellString = course! + theoryStatus + " (" + teacherCode + ")"
                     cell.configure(cellString)
                 }
-                cell.configure("T 506 T")
+//                cell.configure("T 506 T")
                 
                 if indexPath.row % 2 == 0
                 {
@@ -481,6 +482,10 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
         if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
         {
             dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
+        }
+        else
+        {
+            
         }
         
         return dict

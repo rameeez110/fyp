@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C0C1CD9F11E4B7B0A7799CE81B0EB4E8'
-               BlueprintName = 'G3GridView'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'G3GridView.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C0C1CD9F11E4B7B0A7799CE81B0EB4E8"
+               BlueprintName = "G3GridView"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "G3GridView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

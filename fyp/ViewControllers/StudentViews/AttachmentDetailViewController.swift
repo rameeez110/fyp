@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UXMPDFKit
 
 class AttachmentDetailViewController: UIViewController {
     
@@ -14,7 +15,13 @@ class AttachmentDetailViewController: UIViewController {
     
     @IBOutlet weak var attachmentImageView: UIImageView!
     
+    @IBOutlet var pdfCollectionView:PDFSinglePageViewer!
+    
     public var teacherName = String()
+    public var descriptionText = String()
+    public var pdfName = String()
+    
+    var toLoadPdfPage = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +29,15 @@ class AttachmentDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setNavigationBarUI()
+        toLoadPdfPage = 1
+        self.descriptionLabel.text = descriptionText
+        if pdfName.contains(".pdf")
+        {
+//            self.attachmentImageView.isHidden = true
+            self.pdfCollectionView.isHidden = false
+        }
+        loadThePDF()
+
     }
     
     // MARK: - Navigation bar Ui
@@ -38,6 +54,20 @@ class AttachmentDetailViewController: UIViewController {
         navigationBarLabel.textAlignment = .center
         navigationBarLabel.text = self.teacherName
         self.navigationItem.titleView = navigationBarLabel
+    }
+    
+    func loadThePDF()
+    {
+//        let fileManager = FileManager.default
+//        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let destURL = directoryURL.appendingPathComponent(pdfName)
+//        if pdfName.contains(".pdf")
+//        {
+        let path = Bundle.main.path(forResource: "ep18pros", ofType: "pdf")!
+            let document = try! PDFDocument(filePath: path, password: "")
+            self.pdfCollectionView.document = document
+            self.pdfCollectionView.singlePageDelegate = self
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,4 +86,39 @@ class AttachmentDetailViewController: UIViewController {
     }
     */
 
+}
+
+extension AttachmentDetailViewController: PDFSinglePageViewerDelegate
+{
+    func singlePageViewer(_ collectionView: PDFSinglePageViewer, selected annotation: PDFAnnotationView){
+        
+    }
+    
+    // MARK: - UXMPDF Delegates
+    
+    func singlePageViewer(_ collectionView: PDFSinglePageViewer, didDisplayPage page: Int)
+    {
+        toLoadPdfPage = page
+    }
+    
+    func singlePageViewer(_ collectionView: PDFSinglePageViewer, loadedContent content: PDFPageContentView)
+    {
+    }
+    
+    func singlePageViewer(_ collectionView: PDFSinglePageViewer, selected action: PDFAction)
+    {
+    }
+    
+    func singlePageViewer(_ collectionView: PDFSinglePageViewer, tapped recognizer: UITapGestureRecognizer)
+    {
+        
+    }
+    func singlePageViewerDidBeginDragging()
+    {
+        
+    }
+    func singlePageViewerDidEndDragging()
+    {
+        
+    }
 }

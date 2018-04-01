@@ -12,6 +12,7 @@ target 'fyp' do
   pod 'SQLite.swift', '~> 0.11.3'
   pod "G3GridView"
   pod 'EZLoadingActivity'
+  pod "UXMPDFKit"
 
   target 'fypTests' do
     inherit! :search_paths
