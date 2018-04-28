@@ -77,6 +77,33 @@ class DataBaseUtility {
         }
     }
     
+    func createTeacher(teacherModel: TeacherLocalModel)
+    {
+        let teacher = Table("Teacher")
+        
+        let name = Expression<String?>("name")
+        let serverId = Expression<String?>("server_id")
+        let profilePic = Expression<String?>("profile_pic")
+        let status = Expression<String?>("status")
+        let availablity = Expression<String?>("availablity")
+        let userId = Expression<String?>("user_id")
+        let qualification = Expression<Int?>("qualification")
+        
+        let teacherName = teacherModel.name
+        let teacherAvalblity = teacherModel.availablity
+        let teacherPic = teacherModel.profilePicName
+        let teacherStatus = teacherModel.status
+        let teacherServerId = teacherModel.serverID
+        let teacherUserId = teacherModel.userID
+        let teacherQualification = teacherModel.qualification
+        
+        do {
+            try database.run(teacher.insert(name <- teacherName,availablity <- teacherAvalblity,profilePic <- teacherPic,serverId <- teacherServerId,status <- teacherStatus,userId <- teacherUserId,qualification <- teacherQualification))
+        } catch let error as NSError {
+            print("Unable to insert data to user table! \(error)")
+        }
+    }
+    
     // MARK: - get user flow
     
     func isCourseExisted() -> Bool {
@@ -91,6 +118,7 @@ class DataBaseUtility {
             
             for _ in try database.prepare(query) {
                 courseStatus = true
+                break
             }
             
         } catch let error as NSError {
@@ -98,6 +126,28 @@ class DataBaseUtility {
         }
         
         return courseStatus
+    }
+    
+    func isTeacherExisted() -> Bool {
+        
+        var teacherStatus = false
+        let teacher = Table("Teacher")
+        let status = Expression<String?>("status")
+        
+        do {
+            
+            let query = teacher.filter(status == "Yes")
+            
+            for _ in try database.prepare(query) {
+                teacherStatus = true
+                break
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return teacherStatus
     }
     
     func getCourseProgramWise(program: String) -> NSMutableArray {

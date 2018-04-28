@@ -34,14 +34,27 @@ class MainViewController: UIViewController {
     func loadAllCourses()
     {
         let status = DataBaseUtility.sharedInstance.isCourseExisted()
-        if status
-        {
-            print("course pare hen bhai")
+        if status{
+            print("course exists")
+            loadAllTeachers()
         }
         else
         {
             EZLoadingActivity.show("Loading...", disableUI: false)
             callApiToGetAllCourse()
+        }
+    }
+    
+    func loadAllTeachers()
+    {
+        let status = DataBaseUtility.sharedInstance.isTeacherExisted()
+        if status{
+            print("teacher exists")
+        }
+        else
+        {
+            EZLoadingActivity.show("Loading...", disableUI: false)
+            callApiToGetTeachers()
         }
     }
     
@@ -81,7 +94,9 @@ class MainViewController: UIViewController {
     
     @IBAction func createTimeTableButtonPressed()
     {
-        let createTimeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "createTimeView") as! CreateTimeViewController
+//        let createTimeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "createTimeView") as! CreateTimeViewController
+//        self.navigationController!.pushViewController(createTimeViewController, animated:true)
+        let createTimeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newCreateTimeView") as! NewCreateTimeViewController
         self.navigationController!.pushViewController(createTimeViewController, animated:true)
     }
     
@@ -114,7 +129,7 @@ class MainViewController: UIViewController {
             if let data = response.data
             {
                 let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                EZLoadingActivity.hide(true, animated: true)
+//                EZLoadingActivity.hide(true, animated: true)
 //                print(cardJsonObject as Any)
                 
                 if cardJsonObject != nil{
@@ -162,6 +177,74 @@ class MainViewController: UIViewController {
                     self.present(alert, animated: true, completion:nil)
                 }
             }
+            self.loadAllTeachers()
+        }
+    }
+    
+    func callApiToGetTeachers()
+    {
+//        EZLoadingActivity.show("Loading...", disableUI: false)
+        let parameters: Parameters = [
+            "apiCsrfKey": "FASMBQWIFJDAJ28915734BBKBK8945CTIRETE354PA67",
+            ]
+        performRequestToGetTeachers(parameters: parameters)
+    }
+    
+    func performRequestToGetTeachers(parameters: Parameters)
+    {
+        //        Alamofire.request("https://rameeez110.000webhostapp.com/fyp/web/index.php/webservice/getallteachers/", parameters: parameters).responseData { response in
+        Alamofire.request(URLConstants.APPURL.GetAllTeacher, parameters: parameters).responseData { response in
+            
+            if let data = response.data
+            {
+                let cardJsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+                //                print(cardJsonObject as Any)
+                EZLoadingActivity.hide(true, animated: true)
+                if (cardJsonObject?.value(forKey: "data")) != nil
+                {
+                    if let dataDict = cardJsonObject?.value(forKey: "data")
+                    {
+                        //                        print(dataDict as Any)
+                        let teachersDict = dataDict as! NSArray
+                        let result = cardJsonObject?.value(forKey: "response") as! String
+                        
+                        if result == "SUCCESS"
+                        {
+                            for object in teachersDict
+                            {
+                                let teacher = object as! NSDictionary
+                                let teacherModel = TeacherLocalModel()
+                                teacherModel.availablity = teacher.value(forKey: "availablity") as! String
+                                teacherModel.serverID = teacher.value(forKey: "id") as! String
+                                teacherModel.name = teacher.value(forKey: "name") as! String
+                                if let profilePic = teacher.value(forKey: "profile_pic") as? String{
+                                    teacherModel.profilePicName = profilePic
+                                }
+                                teacherModel.status = teacher.value(forKey: "status") as! String
+                                teacherModel.userID = teacher.value(forKey: "user_id") as! String
+                                let quliification = teacher.value(forKey: "qualification") as! String
+                                if quliification == "Masters"{
+                                    teacherModel.qualification = Qualification.Masters.rawValue
+                                }
+                                else if quliification == "Phd"{
+                                    teacherModel.qualification = Qualification.Phd.rawValue
+                                }
+                                else if quliification == "MPhil"{
+                                    teacherModel.qualification = Qualification.MPhil.rawValue
+                                }
+                                else if quliification == "Hod"{
+                                    teacherModel.qualification = Qualification.Hod.rawValue
+                                }
+                                else{
+                                    teacherModel.qualification = Qualification.Bachelors.rawValue
+                                }
+                                
+                                DataBaseUtility.sharedInstance.createTeacher(teacherModel: teacherModel)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -181,4 +264,8 @@ class MainViewController: UIViewController {
     }
     */
 
+}
+
+enum Qualification: Int{
+    case Bachelors = 0 , MPhil , Masters , Phd , Hod
 }

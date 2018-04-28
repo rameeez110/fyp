@@ -21,6 +21,7 @@
 		51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */; };
 		51A8F3171FA5BF88005B5A64 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8F3161FA5BF88005B5A64 /* Course.swift */; };
 		51A8F31C1FA5D1FE005B5A64 /* fyp.db in Resources */ = {isa = PBXBuildFile; fileRef = 51A8F3131FA5BD6C005B5A64 /* fyp.db */; };
+		51AA87D320944916007E6014 /* NewCreateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AA87D220944916007E6014 /* NewCreateTimeViewController.swift */; };
 		51AC640E1F9C787A00E95DD5 /* StudentAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC640D1F9C787A00E95DD5 /* StudentAttachmentViewController.swift */; };
 		51AC64101F9C788E00E95DD5 /* StudentAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */; };
 		51AC64121F9C78A300E95DD5 /* StudentTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */; };
@@ -96,6 +97,7 @@
 		51A8F3141FA5BD83005B5A64 /* DatabaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUtility.swift; sourceTree = "<group>"; };
 		51A8F3161FA5BF88005B5A64 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		51A8F3191FA5C4B9005B5A64 /* fyp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fyp-Bridging-Header.h"; sourceTree = "<group>"; };
+		51AA87D220944916007E6014 /* NewCreateTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCreateTimeViewController.swift; sourceTree = "<group>"; };
 		51AC640D1F9C787A00E95DD5 /* StudentAttachmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAttachmentViewController.swift; sourceTree = "<group>"; };
 		51AC640F1F9C788E00E95DD5 /* StudentAnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnouncementViewController.swift; sourceTree = "<group>"; };
 		51AC64111F9C78A300E95DD5 /* StudentTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTimeViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				51AC641D1F9C791000E95DD5 /* MainViewController.swift */,
 				51AC641F1F9C796700E95DD5 /* CreateTimeViewController.swift */,
 				51DAC0F21F9CA7210010739C /* ShowCoursesViewController.swift */,
+				51AA87D220944916007E6014 /* NewCreateTimeViewController.swift */,
 			);
 			path = AdminViews;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				51AFFCD41FDD3CA50082D7CF /* FullTimeTableMorningViewController.swift in Sources */,
 				51AC64181F9C78D200E95DD5 /* TeacherAnnoncementViewController.swift in Sources */,
 				51D8037D1FED58DF0047F4C4 /* TimeTableViewCell.swift in Sources */,
+				51AA87D320944916007E6014 /* NewCreateTimeViewController.swift in Sources */,
 				51A8F3151FA5BD83005B5A64 /* DatabaseUtility.swift in Sources */,
 				51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */,
 				51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */,

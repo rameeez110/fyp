@@ -45,12 +45,14 @@ class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , U
     // MARK: - Table View Delegate And Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//self.timeTitleLabelArray.count
+        return 2//self.timeTitleLabelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let attachmentCell = tableView.dequeueReusableCell(withIdentifier: "attachmentCell", for: indexPath) as! AttachmentTableViewCell
         
+        attachmentCell.pofilePicImageView.layer.cornerRadius = attachmentCell.pofilePicImageView.frame.size.width / 2
+        attachmentCell.pofilePicImageView.clipsToBounds = true
         attachmentCell.attachmentImageView.image = UIImage(named: self.imageArray[indexPath.row])
         attachmentCell.descriptionLabel.text = self.descriptionArray[indexPath.row]
         tableView.tableFooterView = UIView()

@@ -226,6 +226,10 @@ class TeacherAnnoncementViewController: UIViewController ,UITableViewDelegate , 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        editingIndexPath = indexPath as NSIndexPath
     }
+    
+    func textViewDidEndEditing(_ textView: UITextView){
+        self.view.endEditing(true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

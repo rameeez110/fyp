@@ -19,3 +19,14 @@ class Teacher {
     var name = String()
     var followStatus = String()
 }
+
+class TeacherLocalModel {
+    var id = Int()
+    var status = String()
+    var profilePicName = String()
+    var qualification = Int()
+    var availablity = String()
+    var userID = String()
+    var serverID = String()
+    var name = String()
+}

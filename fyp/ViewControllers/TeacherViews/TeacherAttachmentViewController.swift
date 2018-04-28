@@ -51,6 +51,8 @@ class TeacherAttachmentViewController: UIViewController ,UITableViewDelegate , U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let attachmentCell = tableView.dequeueReusableCell(withIdentifier: "attachmentCell", for: indexPath) as! AttachmentTableViewCell
         
+        attachmentCell.pofilePicImageView.layer.cornerRadius = attachmentCell.pofilePicImageView.frame.size.width / 2
+        attachmentCell.pofilePicImageView.clipsToBounds = true
         attachmentCell.attachmentImageView.image = UIImage(named: self.imageArray[indexPath.row])
         attachmentCell.descriptionLabel.text = self.descriptionArray[indexPath.row]
         tableView.tableFooterView = UIView()
