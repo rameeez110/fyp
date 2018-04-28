@@ -265,7 +265,3 @@ class MainViewController: UIViewController {
     */
 
 }
-
-enum Qualification: Int{
-    case Bachelors = 0 , MPhil , Masters , Phd , Hod
-}

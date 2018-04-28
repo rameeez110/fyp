@@ -150,6 +150,127 @@ class DataBaseUtility {
         return teacherStatus
     }
     
+    func getAllTeacher() -> NSMutableArray {
+        
+        let teacherArray = NSMutableArray()
+        let teacher = Table("Teacher")
+        
+        let name = Expression<String?>("name")
+        let serverId = Expression<String?>("server_id")
+        let profilePic = Expression<String?>("profile_pic")
+        let status = Expression<String?>("status")
+        let availablity = Expression<String?>("availablity")
+        let userId = Expression<String?>("user_id")
+        let qualification = Expression<Int?>("qualification")
+        let id = Expression<Int?>("id")
+        
+        do {
+            
+            let query = teacher.filter(status == "Yes")
+            
+            for teachers in try database.prepare(query) {
+                let teacherLocalModel = TeacherLocalModel()
+                teacherLocalModel.id = teachers[id]!
+                teacherLocalModel.name = teachers[name]!
+                teacherLocalModel.availablity = teachers[availablity]!
+                teacherLocalModel.profilePicName = teachers[profilePic]!
+                teacherLocalModel.serverID = teachers[serverId]!
+                teacherLocalModel.qualification = teachers[qualification]!
+                teacherLocalModel.userID = teachers[userId]!
+                teacherLocalModel.status = teachers[status]!
+                
+                teacherArray.add(teacherLocalModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return teacherArray
+    }
+    
+    func getTeacher(serverId: String) -> NSMutableArray {
+        
+        let teacherArray = NSMutableArray()
+        let teacher = Table("Teacher")
+        
+        let name = Expression<String?>("name")
+        let serverId = Expression<String?>("server_id")
+        let profilePic = Expression<String?>("profile_pic")
+        let status = Expression<String?>("status")
+        let availablity = Expression<String?>("availablity")
+        let userId = Expression<String?>("user_id")
+        let qualification = Expression<Int?>("qualification")
+        let id = Expression<Int?>("id")
+        
+        do {
+            
+            let query = teacher.filter(serverId == serverId)
+            
+            for teachers in try database.prepare(query) {
+                let teacherLocalModel = TeacherLocalModel()
+                teacherLocalModel.id = teachers[id]!
+                teacherLocalModel.name = teachers[name]!
+                teacherLocalModel.availablity = teachers[availablity]!
+                teacherLocalModel.profilePicName = teachers[profilePic]!
+                teacherLocalModel.serverID = teachers[serverId]!
+                teacherLocalModel.qualification = teachers[qualification]!
+                teacherLocalModel.userID = teachers[userId]!
+                teacherLocalModel.status = teachers[status]!
+                
+                teacherArray.add(teacherLocalModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return teacherArray
+    }
+    
+    func getCourse(serverId: String) -> NSMutableArray {
+        
+        let courseArray = NSMutableArray()
+        let course = Table("Course")
+        
+        let name = Expression<String?>("name")
+        let number = Expression<String?>("number")
+        let course_program = Expression<String?>("program")
+        let server_id = Expression<String?>("server_id")
+        let semester = Expression<String?>("semester")
+        let status = Expression<String?>("status")
+        let meta = Expression<String?>("meta")
+        let code = Expression<String?>("code")
+        let credit_hours = Expression<String?>("credit_hours")
+        let course_id = Expression<Int?>("id")
+        
+        do {
+            
+            let query = course.filter(server_id == serverId)
+            
+            for course in try database.prepare(query) {
+                let courseModel = Course()
+                courseModel.id = course[course_id]!
+                courseModel.name = course[name]!
+                courseModel.number = course[number]!
+                courseModel.program = course[course_program]!
+                courseModel.server_id = course[server_id]!
+                courseModel.semester = course[semester]!
+                courseModel.meta = course[meta]!
+                courseModel.status = course[status]!
+                courseModel.code = course[code]!
+                courseModel.credit_hours = course[credit_hours]!
+                
+                courseArray.add(courseModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return courseArray
+    }
+    
     func getCourseProgramWise(program: String) -> NSMutableArray {
         
         let courseArray = NSMutableArray()
@@ -212,9 +333,6 @@ class DataBaseUtility {
         do {
             
             let query = course.filter(course_program == program && course_semester == semester)
-            
-//            try database.run(query.delete())
-//            try database.run(query.update(name <- name.replace("mac.com", with: "me.com")))
             
             for course in try database.prepare(query) {
                 let courseModel = Course()

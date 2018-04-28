@@ -30,6 +30,9 @@ class NewCreateTimeViewController: UIViewController{
     var pickerDataArray = NSMutableArray()
     var selectedPickerIndex = Int()
     let navigationBarLeftButton = UIButton()
+    var timeTableModel = TimeTable()
+    var selectedCourseIndex = Int()
+    var selectedTeacherIndex = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,7 @@ class NewCreateTimeViewController: UIViewController{
         // Do any additional setup after loading the view.
         
         setNavigationBarUI()
+        self.generateButton.isHidden = true
     }
     
     // MARK: - Navigation bar Ui
@@ -66,232 +70,102 @@ class NewCreateTimeViewController: UIViewController{
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - IBActions
-    
-    /*@objc func addressStateButtonPressed(sender: UIButton) {
-     let buttonTag = sender.tag
-     self.navigationController?.isNavigationBarHidden = true
-     self.pickerContainerView.isHidden = false
-     selectedPickerIndex = 0
-     self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
-     if buttonTag == 0
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("BSCS")
-     array.add("BSSE")
-     array.add("MCS")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Program", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if buttonTag == 1
-     {
-     self.pickerDataArray = NSMutableArray()
-     for data in self.teacherMutableArray
-     {
-     let model = data as! NSDictionary
-     let dict = NSMutableDictionary()
-     dict.setValue("Teacher Name", forKey: "Index")
-     dict.setValue(model.value(forKey: "name") as! String, forKey: "Data")
-     dict.setValue(model.value(forKey: "id") as! String, forKey: "ID")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if buttonTag == 2
-     {
-     let program = self.timeTitleButtonArray.object(at: 0) as! String
-     if program == "Select Here"
-     {
-     self.pickerContainerView.isHidden = true
-     let alert = UIAlertController(title: "Please select program first!", message: nil, preferredStyle: .alert) // 1
-     let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
-     }
-     alert.addAction(firstAction)
-     self.present(alert, animated: true, completion:nil)
-     }
-     else
-     {
-     self.pickerDataArray = NSMutableArray()
-     let array = DataBaseUtility.sharedInstance.getCourseProgramWise(program: program)
-     for data in array
-     {
-     let model = data as! Course
-     let dict = NSMutableDictionary()
-     dict.setValue("Course Name", forKey: "Index")
-     dict.setValue(model.name, forKey: "Data")
-     dict.setValue(model.server_id, forKey: "ID")
-     dict.setValue(model.semester, forKey: "Semester")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     }
-     else if buttonTag == 3
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("Morning")
-     array.add("Evening")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Morning/Evening", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if buttonTag == 4
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("Monday")
-     array.add("Tuesday")
-     array.add("Wednesday")
-     array.add("Thursday")
-     array.add("Friday")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Day", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if buttonTag == 5
-     {
-     let info = self.timeTitleButtonArray.object(at: 3) as! String
-     if info == "Select Here"
-     {
-     self.pickerContainerView.isHidden = true
-     let alert = UIAlertController(title: "Please Select Morning or Evening!", message: nil, preferredStyle: .alert) // 1
-     let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
-     }
-     alert.addAction(firstAction)
-     self.present(alert, animated: true, completion:nil)
-     }
-     else if info == "Morning"
-     {
-     let day = self.timeTitleButtonArray.object(at: 4) as! String
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     if day == "Friday"
-     {
-     array.add("9:00 - 10:40")
-     array.add("10:40 - 12:20")
-     }
-     else
-     {
-     array.add("9:00 - 10:50")
-     array.add("11:00 - 12:50")
-     array.add("1:50 - 3:30")
-     }
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Time", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if info == "Evening"
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("3:30 - 5:10")
-     array.add("5:10 - 6:50")
-     array.add("6:50 - 8:30")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Time", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     }
-     else if buttonTag == 6
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("Thoery")
-     array.add("Lab")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Theory/Lab", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     else if buttonTag == 7
-     {
-     let array = NSMutableArray()
-     self.pickerDataArray = NSMutableArray()
-     array.add("Section A")
-     array.add("Section B")
-     for data in array
-     {
-     let dict = NSMutableDictionary()
-     dict.setValue("Section", forKey: "Index")
-     dict.setValue(data as! String, forKey: "Data")
-     self.pickerDataArray.add(dict)
-     }
-     self.timeTableMetaPickerView.reloadAllComponents()
-     }
-     }*/
-    
-    func choices(){
+    func choices(choice: Choice){
         self.pickerContainerView.isHidden = false
         selectedPickerIndex = 0
+        self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("Monday")
-        array.add("Tuesday")
-        array.add("Wednesday")
-        array.add("Thursday")
-        array.add("Friday")
+        array.add(Days.Monday.rawValue)
+        array.add(Days.Tuesday.rawValue)
+        array.add(Days.Wednesday.rawValue)
+        array.add(Days.Thursday.rawValue)
+        array.add(Days.Friday.rawValue)
         for data in array
         {
             let dict = NSMutableDictionary()
             dict.setValue("Day", forKey: "Index")
+            dict.setValue(choice.rawValue, forKey: "Choice")
             dict.setValue(data as! String, forKey: "Data")
             self.pickerDataArray.add(dict)
         }
         self.timeTableMetaPickerView.reloadAllComponents()
     }
     
+    // MARK: - IBActions
+    
     @IBAction func teacherButtonPressed(){
-        
+        self.pickerContainerView.isHidden = false
+        selectedPickerIndex = 0
+        self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
+        self.pickerDataArray = NSMutableArray()
+        let array = DataBaseUtility.sharedInstance.getAllTeacher()
+        for data in array
+        {
+            let model = data as! TeacherLocalModel
+            let dict = NSMutableDictionary()
+            dict.setValue("Teacher Name", forKey: "Index")
+            dict.setValue(model.name, forKey: "Data")
+            dict.setValue(model.serverID, forKey: "ID")
+            self.pickerDataArray.add(dict)
+        }
+        self.timeTableMetaPickerView.reloadAllComponents()
     }
     
     @IBAction func courseButtonPressed(){
-        
+        let program = self.programButton.title(for: .normal)
+        let semester = self.semesterButton.title(for: .normal)
+        if program == "Select Program"
+        {
+            self.pickerContainerView.isHidden = true
+            let alert = UIAlertController(title: "Please select program first!", message: nil, preferredStyle: .alert) // 1
+            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+            }
+            alert.addAction(firstAction)
+            self.present(alert, animated: true, completion:nil)
+        }
+        else if semester == "Select Semester"
+        {
+            self.pickerContainerView.isHidden = true
+            let alert = UIAlertController(title: "Please select semester first!", message: nil, preferredStyle: .alert) // 1
+            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+            }
+            alert.addAction(firstAction)
+            self.present(alert, animated: true, completion:nil)
+        }
+        else
+        {
+            self.pickerContainerView.isHidden = false
+            selectedPickerIndex = 0
+            self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
+            self.pickerDataArray = NSMutableArray()
+//            let array = DataBaseUtility.sharedInstance.getCourseProgramWise(program: program!)
+            let array = DataBaseUtility.sharedInstance.getCourseSemesterWise(program: program!, semester: semester!)
+            for data in array
+            {
+                let model = data as! Course
+                let dict = NSMutableDictionary()
+                dict.setValue("Course Name", forKey: "Index")
+                dict.setValue(model.name, forKey: "Data")
+                dict.setValue(model.server_id, forKey: "ID")
+                dict.setValue(model.semester, forKey: "Semester")
+                self.pickerDataArray.add(dict)
+            }
+            self.timeTableMetaPickerView.reloadAllComponents()
+        }
     }
     
     @IBAction func firstChoiceButtonPressed(){
-        choices()
+        choices(choice: Choice(rawValue: Choice.First.rawValue)!)
     }
-    
     @IBAction func secondChoiceButtonPressed(){
-        choices()
+        choices(choice: Choice(rawValue: Choice.Second.rawValue)!)
     }
     @IBAction func thirdChoiceButtonPressed(){
-        choices()
+        choices(choice: Choice(rawValue: Choice.Third.rawValue)!)
     }
     @IBAction func fourthChoiceButtonPressed(){
-        choices()
+        choices(choice: Choice(rawValue: Choice.Fourth.rawValue)!)
     }
     @IBAction func programButtonPressed(){
         self.pickerContainerView.isHidden = false
@@ -300,8 +174,8 @@ class NewCreateTimeViewController: UIViewController{
         
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("BSCS")
-        array.add("BSSE")
+        array.add(Program.BSCS.rawValue)
+        array.add(Program.BSSE.rawValue)
 //        array.add("MCS")
         for data in array
         {
@@ -331,16 +205,17 @@ class NewCreateTimeViewController: UIViewController{
     @IBAction func semesterButtonPressed(){
         self.pickerContainerView.isHidden = false
         selectedPickerIndex = 0
+        self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("1st")
-        array.add("2nd")
-        array.add("3rd")
-        array.add("4th")
-        array.add("5th")
-        array.add("6th")
-        array.add("7th")
-        array.add("8th")
+        array.add(Semester.First.rawValue)
+        array.add(Semester.Second.rawValue)
+        array.add(Semester.Third.rawValue)
+        array.add(Semester.Fourth.rawValue)
+        array.add(Semester.Fifth.rawValue)
+        array.add(Semester.Sixth.rawValue)
+        array.add(Semester.Seventh.rawValue)
+        array.add(Semester.Eighth.rawValue)
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -353,10 +228,11 @@ class NewCreateTimeViewController: UIViewController{
     @IBAction func morningButtonPressed(){
         self.pickerContainerView.isHidden = false
         selectedPickerIndex = 0
+        self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("Morning")
-        array.add("Evening")
+        array.add(Shift.Morning.rawValue)
+        array.add(Shift.Evening.rawValue)
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -367,78 +243,105 @@ class NewCreateTimeViewController: UIViewController{
         self.timeTableMetaPickerView.reloadAllComponents()
     }
     @IBAction func nextButtonPressed(){
-        
+        if self.selectedTeacherIndex == 6
+        {
+            self.nextButton.isHidden = true
+            self.generateButton.isHidden = false
+        }
+        else{
+            if self.timeTableModel.isMorning != "" && self.timeTableModel.semester != "" && self.timeTableModel.program != "" && self.timeTableModel.year != ""{
+                self.programButton.isHidden = true
+                self.yearButton.isHidden = true
+                self.moringButton.isHidden = true
+                self.semesterButton.isHidden = true
+                if self.selectedTeacherIndex < self.timeTableModel.teacherModel.count{
+                    self.selectedTeacherIndex = self.selectedTeacherIndex + 1
+                    self.teacherButton.setTitle("Select Teacher", for: .normal)
+                    self.firstChoiceButton.setTitle("1st Choice", for: .normal)
+                    self.secondChoiceButton.setTitle("2nd Choice", for: .normal)
+                    self.thirdChoiceButton.setTitle("3rd Choice", for: .normal)
+                    self.fourthChoiceButton.setTitle("4th Choice", for: .normal)
+                }
+                if self.selectedCourseIndex < self.timeTableModel.courseModel.count{
+                    self.selectedCourseIndex = self.selectedCourseIndex + 1
+                    self.courseButton.setTitle("Select Course", for: .normal)
+                }
+            }
+            else{
+                let alert = UIAlertController(title: "Please fill all fields!", message: nil, preferredStyle: .alert) // 1
+                let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                }
+                alert.addAction(firstAction)
+                self.present(alert, animated: true, completion:nil)
+            }
+        }
     }
     @IBAction func generateButtonPressed(){
         
+        print(self.timeTableModel as Any)
     }
     @IBAction func doneButtonPressed()
     {
-//        self.navigationController?.isNavigationBarHidden = false
-        /*self.pickerContainerView.isHidden = true
+        self.pickerContainerView.isHidden = true
         let nameDict = self.pickerDataArray.object(at: selectedPickerIndex) as! NSMutableDictionary
         let index = nameDict.value(forKey: "Index") as! String
         if index == "Program"
         {
-            self.timeTitleButtonArray.replaceObject(at: 0, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 0, section: 0)], with: .none)
+            self.programButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            self.timeTableModel.program = nameDict.value(forKey: "Data") as! String
+        }
+        else if index == "Semester"
+        {
+            self.semesterButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            self.timeTableModel.semester = nameDict.value(forKey: "Data") as! String
+        }
+        else if index == "Year"
+        {
+            self.yearButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            self.timeTableModel.year = nameDict.value(forKey: "Data") as! String
         }
         else if index == "Teacher Name"
         {
-            selectedTeacherID = nameDict.value(forKey: "ID") as! String
-            self.timeTitleButtonArray.replaceObject(at: 1, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 1, section: 0)], with: .none)
+            self.teacherButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            let teacherServerId = nameDict.value(forKey: "ID") as! String
+            if let teacherModel = DataBaseUtility.sharedInstance.getTeacher(serverId: teacherServerId).firstObject as? TeacherLocalModel{
+                self.timeTableModel.teacherModel.append(teacherModel)
+            }
         }
         else if index == "Course Name"
         {
-            semester = nameDict.value(forKey: "Semester") as! String
-            selectedCourseID = nameDict.value(forKey: "ID") as! String
-            self.timeTitleButtonArray.replaceObject(at: 2, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 2, section: 0)], with: .none)
+            self.courseButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            let courseServerId = nameDict.value(forKey: "ID") as! String
+            if let courseModel = DataBaseUtility.sharedInstance.getCourse(serverId: courseServerId).firstObject as? Course{
+                self.timeTableModel.courseModel.append(courseModel)
+            }
         }
         else if index == "Morning/Evening"
         {
-            self.timeTitleButtonArray.replaceObject(at: 3, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 3, section: 0)], with: .none)
+            self.moringButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+            self.timeTableModel.isMorning = nameDict.value(forKey: "Data") as! String
         }
         else if index == "Day"
         {
-            self.timeTitleButtonArray.replaceObject(at: 4, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 4, section: 0)], with: .none)
+            let choice = nameDict.value(forKey: "Choice") as! Choice.RawValue
+            if choice == Choice.First.rawValue{
+                self.firstChoiceButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+                self.timeTableModel.teacherModel[self.selectedTeacherIndex].firstChoice = nameDict.value(forKey: "Data") as! String
+            }
+            else if choice == Choice.Second.rawValue{
+                self.secondChoiceButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+                self.timeTableModel.teacherModel[self.selectedTeacherIndex].firstChoice = nameDict.value(forKey: "Data") as! String
+            }
+            else if choice == Choice.Third.rawValue{
+                self.thirdChoiceButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+                self.timeTableModel.teacherModel[self.selectedTeacherIndex].firstChoice = nameDict.value(forKey: "Data") as! String
+            }
+            else{
+                self.fourthChoiceButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
+                self.timeTableModel.teacherModel[self.selectedTeacherIndex].firstChoice = nameDict.value(forKey: "Data") as! String
+            }
         }
-        else if index == "Time"
-        {
-            self.timeTitleButtonArray.replaceObject(at: 5, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 5, section: 0)], with: .none)
-        }
-        else if index == "Theory/Lab"
-        {
-            self.timeTitleButtonArray.replaceObject(at: 6, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 6, section: 0)], with: .none)
-        }
-        else if index == "Section"
-        {
-            self.timeTitleButtonArray.replaceObject(at: 7, with: nameDict.value(forKey: "Data") as! String)
-            self.timeTableView.reloadRows(at: [IndexPath (row: 7, section: 0)], with: .none)
-        }*/
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension NewCreateTimeViewController: UIPickerViewDelegate , UIPickerViewDataSource{

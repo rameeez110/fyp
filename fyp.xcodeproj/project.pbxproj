@@ -41,6 +41,7 @@
 		51BD2DCF1FE59958004D55DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DCE1FE59958004D55DE /* User.swift */; };
 		51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD01FE59968004D55DE /* Teacher.swift */; };
 		51BD2DD31FE5997A004D55DE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD21FE5997A004D55DE /* Student.swift */; };
+		51C78202209502C300B7BD50 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C78201209502C300B7BD50 /* TimeTable.swift */; };
 		51C9B2D21FE9611500894789 /* StudentTimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */; };
 		51D8037D1FED58DF0047F4C4 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */; };
 		51D988C61F9E4B52004C7F38 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */; };
@@ -57,6 +58,7 @@
 		51DB7E001F9213F100BCE1BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51DB7DFE1F9213F100BCE1BC /* LaunchScreen.storyboard */; };
 		51DB7E0B1F9213F100BCE1BC /* fypTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7E0A1F9213F100BCE1BC /* fypTests.swift */; };
 		51DB7E161F9213F100BCE1BC /* fypUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DB7E151F9213F100BCE1BC /* fypUITests.swift */; };
+		51F3A12B2094E3660000CA8E /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3A12A2094E3660000CA8E /* Enums.swift */; };
 		D65FD6EDB32276C7567E4062 /* Pods_fypUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E42C3E8E925810653D8A25 /* Pods_fypUITests.framework */; };
 		E85F47F36CDD24E8ED5FAE52 /* Pods_fypTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B47FEAE45F230333C8BC538 /* Pods_fypTests.framework */; };
 /* End PBXBuildFile section */
@@ -117,6 +119,7 @@
 		51BD2DCE1FE59958004D55DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51BD2DD01FE59968004D55DE /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		51BD2DD21FE5997A004D55DE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		51C78201209502C300B7BD50 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTimeDetailViewController.swift; sourceTree = "<group>"; };
 		51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 		51D988C51F9E4B52004C7F38 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		51DB7E111F9213F100BCE1BC /* fypUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fypUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51DB7E151F9213F100BCE1BC /* fypUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fypUITests.swift; sourceTree = "<group>"; };
 		51DB7E171F9213F100BCE1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51F3A12A2094E3660000CA8E /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		85E42C3E8E925810653D8A25 /* Pods_fypUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fypUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1205C20055A9D4A78C2E4B1 /* Pods-fypTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-fypTests/Pods-fypTests.release.xcconfig"; sourceTree = "<group>"; };
 		C66AFC4122D39EDDB27604D3 /* Pods-fypTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fypTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fypTests/Pods-fypTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 		51DB7DF41F9213F000BCE1BC /* fyp */ = {
 			isa = PBXGroup;
 			children = (
+				51F3A1292094E3460000CA8E /* Enums */,
 				51DB7E261F92151A00BCE1BC /* Models */,
 				51DB7E251F92150800BCE1BC /* Helpers */,
 				51DB7E241F92150000BCE1BC /* CustomCells */,
@@ -363,8 +368,17 @@
 				51BD2DCE1FE59958004D55DE /* User.swift */,
 				51BD2DD01FE59968004D55DE /* Teacher.swift */,
 				51BD2DD21FE5997A004D55DE /* Student.swift */,
+				51C78201209502C300B7BD50 /* TimeTable.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		51F3A1292094E3460000CA8E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				51F3A12A2094E3660000CA8E /* Enums.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		61715C1FF9BD71195832AB36 /* Frameworks */ = {
@@ -715,12 +729,14 @@
 				51AC641C1F9C78EF00E95DD5 /* TeacherTimeViewController.swift in Sources */,
 				516336451F938DCD0020C4FF /* DayGridViewCell.swift in Sources */,
 				51AC641A1F9C78E300E95DD5 /* TeacherFollowsViewController.swift in Sources */,
+				51C78202209502C300B7BD50 /* TimeTable.swift in Sources */,
 				51AFFCD61FDD3CEC0082D7CF /* Time.swift in Sources */,
 				51AC641E1F9C791000E95DD5 /* MainViewController.swift in Sources */,
 				51DA248A1FA5DE6F00C69808 /* CourseTableViewCell.swift in Sources */,
 				51B2C60B1F926AD800E9E44A /* SignupStudentViewController.swift in Sources */,
 				51DB7DF81F9213F100BCE1BC /* ViewController.swift in Sources */,
 				51AC64121F9C78A300E95DD5 /* StudentTimeViewController.swift in Sources */,
+				51F3A12B2094E3660000CA8E /* Enums.swift in Sources */,
 				5163364D1F938E060020C4FF /* DataGridViewCell.swift in Sources */,
 				51AFFCD21FDD3B360082D7CF /* URLConstants.swift in Sources */,
 				51D988C81F9E4B60004C7F38 /* AnnouncementTableViewCell.swift in Sources */,

@@ -29,4 +29,8 @@ class TeacherLocalModel {
     var userID = String()
     var serverID = String()
     var name = String()
+    var firstChoice = String()
+    var secondChoice = String()
+    var thirdChoice = String()
+    var fourthChoice = String()
 }
