@@ -44,9 +44,49 @@ class NewCreateTimeViewController: UIViewController{
 
         // Do any additional setup after loading the view.
         
+        setupUI()
         setNavigationBarUI()
         teacherArray = DataBaseUtility.sharedInstance.getAllTeacher()
         self.generateButton.isHidden = true
+    }
+    
+    func setupUI()
+    {
+        self.teacherButton.layer.cornerRadius = 10
+        self.teacherButton.clipsToBounds = true
+        
+        self.courseButton.layer.cornerRadius = 10
+        self.courseButton.clipsToBounds = true
+        
+        self.programButton.layer.cornerRadius = 10
+        self.programButton.clipsToBounds = true
+        
+        self.yearButton.layer.cornerRadius = 10
+        self.yearButton.clipsToBounds = true
+        
+        self.semesterButton.layer.cornerRadius = 10
+        self.semesterButton.clipsToBounds = true
+        
+        self.moringButton.layer.cornerRadius = 10
+        self.moringButton.clipsToBounds = true
+        
+        self.firstChoiceButton.layer.cornerRadius = 10
+        self.firstChoiceButton.clipsToBounds = true
+        
+        self.secondChoiceButton.layer.cornerRadius = 10
+        self.secondChoiceButton.clipsToBounds = true
+        
+        self.thirdChoiceButton.layer.cornerRadius = 10
+        self.thirdChoiceButton.clipsToBounds = true
+        
+        self.fourthChoiceButton.layer.cornerRadius = 10
+        self.fourthChoiceButton.clipsToBounds = true
+        
+        self.nextButton.layer.cornerRadius = 10
+        self.nextButton.clipsToBounds = true
+        
+        self.generateButton.layer.cornerRadius = 10
+        self.generateButton.clipsToBounds = true
     }
     
     // MARK: - Navigation bar Ui

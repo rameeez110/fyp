@@ -21,6 +21,7 @@ class SignupTeacherViewController: UIViewController , UITextFieldDelegate , UIIm
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var qualificationTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var availablityTextField: UITextField!
     
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var profilePicButton: UIButton!
@@ -122,6 +123,7 @@ class SignupTeacherViewController: UIViewController , UITextFieldDelegate , UIIm
             "role_id": "2",
             "meta": self.descriptionTextField.text!,
             "qualification": self.qualificationTextField.text!,
+            "available":self.availablityTextField.text ?? "",
         ]
         performRequestToRegister(parameters: parameters)
     }

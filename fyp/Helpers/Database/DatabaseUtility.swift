@@ -104,6 +104,44 @@ class DataBaseUtility {
         }
     }
     
+    func createTime(timeModel: TimeLocalModel)
+    {
+        let time = Table("Time")
+        
+        let day = Expression<String?>("day")
+        let isMoring = Expression<String?>("is_morning")
+        let program = Expression<String?>("program")
+        let isTheory = Expression<String?>("is_theory")
+        let semester = Expression<String?>("semester")
+        let status = Expression<String?>("status")
+        let year = Expression<String?>("year")
+        let section = Expression<String?>("section")
+        let duration = Expression<String?>("time_duration")
+        let meta = Expression<String?>("meta")
+        let teacherID = Expression<String?>("teacher_id")
+        let courseID = Expression<String?>("course_id")
+        
+        
+        let timeDay = timeModel.day
+        let timeIsMorning = timeModel.isMorning
+        let timeProgram = timeModel.program
+        let timeisTheory = timeModel.isTheory
+        let timeSemester = timeModel.semester
+        let timeSection = timeModel.section
+        let timeYear = timeModel.year
+        let timeDuration = timeModel.time_duration
+        let timeTeacherID = timeModel.teacherID
+        let timeCourseID = timeModel.courseID
+        let timeMeta = timeModel.meta
+        let timeStatus = timeModel.status
+        
+        do {
+            try database.run(time.insert(day <- timeDay, isMoring <- timeIsMorning ,program <- timeProgram, isTheory <- timeisTheory, semester <- timeSemester, status <- timeStatus ,meta <- timeMeta, courseID <- timeCourseID, teacherID <- timeTeacherID, section <- timeSection, year <- timeYear, duration <- timeDuration))
+        } catch let error as NSError {
+            print("Unable to insert data to user table! \(error)")
+        }
+    }
+    
     // MARK: - get user flow
     
     func isCourseExisted() -> Bool {
@@ -148,6 +186,79 @@ class DataBaseUtility {
         }
         
         return teacherStatus
+    }
+    
+    func isTimeExisted() -> Bool {
+        
+        var timeStatus = false
+        let time = Table("Time")
+        let status = Expression<String?>("status")
+        
+        do {
+            
+            let query = time.filter(status == "Yes")
+            
+            for _ in try database.prepare(query) {
+                timeStatus = true
+                break
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return timeStatus
+    }
+    
+    func getTimeTable(semesters : String, years: String, programs: String, isMorning: String) -> [TimeLocalModel] {
+        
+        var timeArray = [TimeLocalModel]()
+        let time = Table("Time")
+        
+        let day = Expression<String?>("day")
+        let isMoring = Expression<String?>("is_morning")
+        let program = Expression<String?>("program")
+        let isTheory = Expression<String?>("is_theory")
+        let semester = Expression<String?>("semester")
+        let status = Expression<String?>("status")
+        let year = Expression<String?>("year")
+        let section = Expression<String?>("section")
+        let duration = Expression<String?>("time_duration")
+        let meta = Expression<String?>("meta")
+        let teacherID = Expression<String?>("teacher_id")
+        let courseID = Expression<String?>("course_id")
+        let id = Expression<Int?>("id")
+        
+        do {
+            
+            let query = time.filter(isMoring == isMorning && semester == semesters && year == years && program == programs)
+            
+            for time in try database.prepare(query) {
+                let timeLocalModel = TimeLocalModel()
+                timeLocalModel.id = time[id]!
+                timeLocalModel.status = time[status]!
+                timeLocalModel.day = time[day]!
+                timeLocalModel.semester = time[semester]!
+                timeLocalModel.year = time[year]!
+                timeLocalModel.isTheory = time[isTheory]!
+                timeLocalModel.isMorning = time[isMoring]!
+                timeLocalModel.teacherID = time[teacherID]!
+                timeLocalModel.courseID = time[courseID]!
+                timeLocalModel.time_duration = time[duration]!
+                timeLocalModel.section = time[section]!
+                timeLocalModel.meta = time[meta]!
+                timeLocalModel.program = time[program]!
+                timeLocalModel.teacherData =  self.getTeacher(serverID: timeLocalModel.teacherID).first!
+                timeLocalModel.courseData = self.getCourse(serverID: timeLocalModel.courseID).first!
+                
+                timeArray.append(timeLocalModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return timeArray
     }
     
     func getAllTeacher() -> [TeacherLocalModel] {
@@ -332,8 +443,6 @@ class DataBaseUtility {
         let course_id = Expression<Int?>("id")
         
         do {
-            
-//            let query = course.filter(course_program == program && course_semester == semester)
             let query = course.group(name).filter(course_program == program && course_semester == semester)
             
             for course in try database.prepare(query) {
