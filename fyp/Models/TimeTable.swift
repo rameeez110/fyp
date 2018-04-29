@@ -15,4 +15,5 @@ class TimeTable {
     var isMorning = String()
     var teacherModel = [TeacherLocalModel]()
     var courseModel = [Course]()
+    var teacherCourse = [TeacherCourse]()
 }

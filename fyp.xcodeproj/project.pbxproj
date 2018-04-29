@@ -41,6 +41,7 @@
 		51BD2DCF1FE59958004D55DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DCE1FE59958004D55DE /* User.swift */; };
 		51BD2DD11FE59968004D55DE /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD01FE59968004D55DE /* Teacher.swift */; };
 		51BD2DD31FE5997A004D55DE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD2DD21FE5997A004D55DE /* Student.swift */; };
+		51C2E6DE2095D67A007A650F /* TeacherCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C2E6DD2095D67A007A650F /* TeacherCourse.swift */; };
 		51C78202209502C300B7BD50 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C78201209502C300B7BD50 /* TimeTable.swift */; };
 		51C9B2D21FE9611500894789 /* StudentTimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */; };
 		51D8037D1FED58DF0047F4C4 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */; };
@@ -119,6 +120,7 @@
 		51BD2DCE1FE59958004D55DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51BD2DD01FE59968004D55DE /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		51BD2DD21FE5997A004D55DE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		51C2E6DD2095D67A007A650F /* TeacherCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourse.swift; sourceTree = "<group>"; };
 		51C78201209502C300B7BD50 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		51C9B2D11FE9611500894789 /* StudentTimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTimeDetailViewController.swift; sourceTree = "<group>"; };
 		51D8037C1FED58DF0047F4C4 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				51BD2DD01FE59968004D55DE /* Teacher.swift */,
 				51BD2DD21FE5997A004D55DE /* Student.swift */,
 				51C78201209502C300B7BD50 /* TimeTable.swift */,
+				51C2E6DD2095D67A007A650F /* TeacherCourse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				5163363D1F9388940020C4FF /* FullTimeTableViewController.swift in Sources */,
 				51D988CA1F9E4B6D004C7F38 /* FollowTableViewCell.swift in Sources */,
 				51DAC0F51F9CAC6C0010739C /* CreateTimeTableViewCell.swift in Sources */,
+				51C2E6DE2095D67A007A650F /* TeacherCourse.swift in Sources */,
 				51AC64161F9C78C600E95DD5 /* TeacherAttachmentViewController.swift in Sources */,
 				51AC64101F9C788E00E95DD5 /* StudentAnnouncementViewController.swift in Sources */,
 				51AC641C1F9C78EF00E95DD5 /* TeacherTimeViewController.swift in Sources */,

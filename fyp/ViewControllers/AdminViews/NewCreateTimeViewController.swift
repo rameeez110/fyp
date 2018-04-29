@@ -258,11 +258,13 @@ class NewCreateTimeViewController: UIViewController{
             self.yearButton.isHidden = true
             self.moringButton.isHidden = true
             self.semesterButton.isHidden = true
+            let teacherCourse = TeacherCourse()
             if self.selectedTeacherIndex < self.timeTableModel.teacherModel.count{
                 let model = self.timeTableModel.teacherModel[self.selectedTeacherIndex]
                 if let index = self.teacherArray.index(where: {$0.serverID == model.serverID}){
                     self.teacherArray[index].isSelected = true
                 }
+                teacherCourse.teacherID = self.timeTableModel.teacherModel[self.selectedTeacherIndex].serverID
                 self.selectedTeacherIndex = self.selectedTeacherIndex + 1
                 self.teacherButton.setTitle("Select Teacher", for: .normal)
                 self.firstChoiceButton.setTitle("1st Choice", for: .normal)
@@ -275,8 +277,12 @@ class NewCreateTimeViewController: UIViewController{
                 if let index = self.courseArray.index(where: {$0.server_id == model.server_id}){
                     self.courseArray[index].isSelected = true
                 }
+                teacherCourse.courseID = self.timeTableModel.courseModel[self.selectedCourseIndex].server_id
                 self.selectedCourseIndex = self.selectedCourseIndex + 1
                 self.courseButton.setTitle("Select Course", for: .normal)
+            }
+            if teacherCourse.courseID != "" && teacherCourse.teacherID != ""{
+                self.timeTableModel.teacherCourse.append(teacherCourse)
             }
         }
         else{
