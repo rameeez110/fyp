@@ -19,4 +19,5 @@ class Course{
     var meta = String()
     var code = String()
     var credit_hours = String()
+    var isSelected = Bool()
 }

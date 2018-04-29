@@ -33,6 +33,11 @@ class NewCreateTimeViewController: UIViewController{
     var timeTableModel = TimeTable()
     var selectedCourseIndex = Int()
     var selectedTeacherIndex = Int()
+//    var teacherArray = NSMutableArray()
+//    var courseArray = NSMutableArray()
+    var teacherArray = [TeacherLocalModel]()
+    var courseArray = [Course]()
+    var isFirstTime = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ class NewCreateTimeViewController: UIViewController{
         // Do any additional setup after loading the view.
         
         setNavigationBarUI()
+        teacherArray = DataBaseUtility.sharedInstance.getAllTeacher()
         self.generateButton.isHidden = true
     }
     
@@ -99,15 +105,15 @@ class NewCreateTimeViewController: UIViewController{
         selectedPickerIndex = 0
         self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
         self.pickerDataArray = NSMutableArray()
-        let array = DataBaseUtility.sharedInstance.getAllTeacher()
-        for data in array
+        for model in teacherArray
         {
-            let model = data as! TeacherLocalModel
-            let dict = NSMutableDictionary()
-            dict.setValue("Teacher Name", forKey: "Index")
-            dict.setValue(model.name, forKey: "Data")
-            dict.setValue(model.serverID, forKey: "ID")
-            self.pickerDataArray.add(dict)
+            if !model.isSelected{
+                let dict = NSMutableDictionary()
+                dict.setValue("Teacher Name", forKey: "Index")
+                dict.setValue(model.name, forKey: "Data")
+                dict.setValue(model.serverID, forKey: "ID")
+                self.pickerDataArray.add(dict)
+            }
         }
         self.timeTableMetaPickerView.reloadAllComponents()
     }
@@ -139,17 +145,20 @@ class NewCreateTimeViewController: UIViewController{
             selectedPickerIndex = 0
             self.timeTableMetaPickerView.selectRow(0, inComponent: 0, animated: true)
             self.pickerDataArray = NSMutableArray()
-//            let array = DataBaseUtility.sharedInstance.getCourseProgramWise(program: program!)
-            let array = DataBaseUtility.sharedInstance.getCourseSemesterWise(program: program!, semester: semester!)
-            for data in array
+            if self.isFirstTime{
+                courseArray = DataBaseUtility.sharedInstance.getCourseSemesterWise(program: program!, semester: semester!)
+                self.isFirstTime = false
+            }
+            for model in courseArray
             {
-                let model = data as! Course
-                let dict = NSMutableDictionary()
-                dict.setValue("Course Name", forKey: "Index")
-                dict.setValue(model.name, forKey: "Data")
-                dict.setValue(model.server_id, forKey: "ID")
-                dict.setValue(model.semester, forKey: "Semester")
-                self.pickerDataArray.add(dict)
+                if !model.isSelected{
+                    let dict = NSMutableDictionary()
+                    dict.setValue("Course Name", forKey: "Index")
+                    dict.setValue(model.name, forKey: "Data")
+                    dict.setValue(model.server_id, forKey: "ID")
+                    dict.setValue(model.semester, forKey: "Semester")
+                    self.pickerDataArray.add(dict)
+                }
             }
             self.timeTableMetaPickerView.reloadAllComponents()
         }
@@ -176,7 +185,6 @@ class NewCreateTimeViewController: UIViewController{
         self.pickerDataArray = NSMutableArray()
         array.add(Program.BSCS.rawValue)
         array.add(Program.BSSE.rawValue)
-//        array.add("MCS")
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -243,38 +251,49 @@ class NewCreateTimeViewController: UIViewController{
         self.timeTableMetaPickerView.reloadAllComponents()
     }
     @IBAction func nextButtonPressed(){
-        if self.selectedTeacherIndex == 6
+        print(self.timeTableModel as Any)
+        
+        if self.timeTableModel.isMorning != "" && self.timeTableModel.semester != "" && self.timeTableModel.program != "" && self.timeTableModel.year != ""{
+            self.programButton.isHidden = true
+            self.yearButton.isHidden = true
+            self.moringButton.isHidden = true
+            self.semesterButton.isHidden = true
+            if self.selectedTeacherIndex < self.timeTableModel.teacherModel.count{
+                let model = self.timeTableModel.teacherModel[self.selectedTeacherIndex]
+                if let index = self.teacherArray.index(where: {$0.serverID == model.serverID}){
+                    self.teacherArray[index].isSelected = true
+                }
+                self.selectedTeacherIndex = self.selectedTeacherIndex + 1
+                self.teacherButton.setTitle("Select Teacher", for: .normal)
+                self.firstChoiceButton.setTitle("1st Choice", for: .normal)
+                self.secondChoiceButton.setTitle("2nd Choice", for: .normal)
+                self.thirdChoiceButton.setTitle("3rd Choice", for: .normal)
+                self.fourthChoiceButton.setTitle("4th Choice", for: .normal)
+            }
+            if self.selectedCourseIndex < self.timeTableModel.courseModel.count{
+                let model = self.timeTableModel.courseModel[self.selectedCourseIndex]
+                if let index = self.courseArray.index(where: {$0.server_id == model.server_id}){
+                    self.courseArray[index].isSelected = true
+                }
+                self.selectedCourseIndex = self.selectedCourseIndex + 1
+                self.courseButton.setTitle("Select Course", for: .normal)
+            }
+        }
+        else{
+            let alert = UIAlertController(title: "Please fill all fields!", message: nil, preferredStyle: .alert) // 1
+            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+            }
+            alert.addAction(firstAction)
+            self.present(alert, animated: true, completion:nil)
+        }
+        
+        let array = self.teacherArray.filter({$0.isSelected == true})
+        if array.count == self.teacherArray.count
         {
             self.nextButton.isHidden = true
             self.generateButton.isHidden = false
         }
-        else{
-            if self.timeTableModel.isMorning != "" && self.timeTableModel.semester != "" && self.timeTableModel.program != "" && self.timeTableModel.year != ""{
-                self.programButton.isHidden = true
-                self.yearButton.isHidden = true
-                self.moringButton.isHidden = true
-                self.semesterButton.isHidden = true
-                if self.selectedTeacherIndex < self.timeTableModel.teacherModel.count{
-                    self.selectedTeacherIndex = self.selectedTeacherIndex + 1
-                    self.teacherButton.setTitle("Select Teacher", for: .normal)
-                    self.firstChoiceButton.setTitle("1st Choice", for: .normal)
-                    self.secondChoiceButton.setTitle("2nd Choice", for: .normal)
-                    self.thirdChoiceButton.setTitle("3rd Choice", for: .normal)
-                    self.fourthChoiceButton.setTitle("4th Choice", for: .normal)
-                }
-                if self.selectedCourseIndex < self.timeTableModel.courseModel.count{
-                    self.selectedCourseIndex = self.selectedCourseIndex + 1
-                    self.courseButton.setTitle("Select Course", for: .normal)
-                }
-            }
-            else{
-                let alert = UIAlertController(title: "Please fill all fields!", message: nil, preferredStyle: .alert) // 1
-                let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
-                }
-                alert.addAction(firstAction)
-                self.present(alert, animated: true, completion:nil)
-            }
-        }
+        
     }
     @IBAction func generateButtonPressed(){
         
@@ -304,7 +323,7 @@ class NewCreateTimeViewController: UIViewController{
         {
             self.teacherButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
             let teacherServerId = nameDict.value(forKey: "ID") as! String
-            if let teacherModel = DataBaseUtility.sharedInstance.getTeacher(serverId: teacherServerId).firstObject as? TeacherLocalModel{
+            if let teacherModel = DataBaseUtility.sharedInstance.getTeacher(serverID: teacherServerId).first{
                 self.timeTableModel.teacherModel.append(teacherModel)
             }
         }
@@ -312,7 +331,7 @@ class NewCreateTimeViewController: UIViewController{
         {
             self.courseButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
             let courseServerId = nameDict.value(forKey: "ID") as! String
-            if let courseModel = DataBaseUtility.sharedInstance.getCourse(serverId: courseServerId).firstObject as? Course{
+            if let courseModel = DataBaseUtility.sharedInstance.getCourse(serverID: courseServerId).first{
                 self.timeTableModel.courseModel.append(courseModel)
             }
         }

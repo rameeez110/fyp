@@ -33,4 +33,5 @@ class TeacherLocalModel {
     var secondChoice = String()
     var thirdChoice = String()
     var fourthChoice = String()
+    var isSelected = Bool()
 }

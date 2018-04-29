@@ -150,9 +150,9 @@ class DataBaseUtility {
         return teacherStatus
     }
     
-    func getAllTeacher() -> NSMutableArray {
+    func getAllTeacher() -> [TeacherLocalModel] {
         
-        let teacherArray = NSMutableArray()
+        var teacherArray = [TeacherLocalModel]()
         let teacher = Table("Teacher")
         
         let name = Expression<String?>("name")
@@ -179,7 +179,8 @@ class DataBaseUtility {
                 teacherLocalModel.userID = teachers[userId]!
                 teacherLocalModel.status = teachers[status]!
                 
-                teacherArray.add(teacherLocalModel)
+//                teacherArray.add()
+                teacherArray.append(teacherLocalModel)
             }
             
         } catch let error as NSError {
@@ -189,9 +190,9 @@ class DataBaseUtility {
         return teacherArray
     }
     
-    func getTeacher(serverId: String) -> NSMutableArray {
+    func getTeacher(serverID: String) -> [TeacherLocalModel] {
         
-        let teacherArray = NSMutableArray()
+        var teacherArray = [TeacherLocalModel]()
         let teacher = Table("Teacher")
         
         let name = Expression<String?>("name")
@@ -205,7 +206,7 @@ class DataBaseUtility {
         
         do {
             
-            let query = teacher.filter(serverId == serverId)
+            let query = teacher.filter(serverId == serverID)
             
             for teachers in try database.prepare(query) {
                 let teacherLocalModel = TeacherLocalModel()
@@ -218,7 +219,7 @@ class DataBaseUtility {
                 teacherLocalModel.userID = teachers[userId]!
                 teacherLocalModel.status = teachers[status]!
                 
-                teacherArray.add(teacherLocalModel)
+                teacherArray.append(teacherLocalModel)//.add(teacherLocalModel)
             }
             
         } catch let error as NSError {
@@ -228,9 +229,9 @@ class DataBaseUtility {
         return teacherArray
     }
     
-    func getCourse(serverId: String) -> NSMutableArray {
+    func getCourse(serverID: String) -> [Course] {
         
-        let courseArray = NSMutableArray()
+        var courseArray = [Course]()
         let course = Table("Course")
         
         let name = Expression<String?>("name")
@@ -246,7 +247,7 @@ class DataBaseUtility {
         
         do {
             
-            let query = course.filter(server_id == serverId)
+            let query = course.filter(server_id == serverID)
             
             for course in try database.prepare(query) {
                 let courseModel = Course()
@@ -261,7 +262,7 @@ class DataBaseUtility {
                 courseModel.code = course[code]!
                 courseModel.credit_hours = course[credit_hours]!
                 
-                courseArray.add(courseModel)
+                courseArray.append(courseModel)//.add(courseModel)
             }
             
         } catch let error as NSError {
@@ -314,7 +315,50 @@ class DataBaseUtility {
         return courseArray
     }
     
-    func getCourseSemesterWise(program: String , semester: String) -> NSMutableArray {
+    func getCourseSemesterWise(program: String , semester: String) -> [Course] {
+        
+        var courseArray = [Course]()
+        let course = Table("Course")
+        
+        let name = Expression<String?>("name")
+        let number = Expression<String?>("number")
+        let course_program = Expression<String?>("program")
+        let server_id = Expression<String?>("server_id")
+        let course_semester = Expression<String?>("semester")
+        let status = Expression<String?>("status")
+        let meta = Expression<String?>("meta")
+        let code = Expression<String?>("code")
+        let credit_hours = Expression<String?>("credit_hours")
+        let course_id = Expression<Int?>("id")
+        
+        do {
+            
+//            let query = course.filter(course_program == program && course_semester == semester)
+            let query = course.group(name).filter(course_program == program && course_semester == semester)
+            
+            for course in try database.prepare(query) {
+                let courseModel = Course()
+                courseModel.id = course[course_id]!
+                courseModel.name = course[name]!
+                courseModel.number = course[number]!
+                courseModel.program = course[course_program]!
+                courseModel.server_id = course[server_id]!
+                courseModel.semester = course[course_semester]!
+                courseModel.meta = course[meta]!
+                courseModel.status = course[status]!
+                courseModel.code = course[code]!
+                courseModel.credit_hours = course[credit_hours]!
+                
+                courseArray.append(courseModel)//.add(courseModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        return courseArray
+    }
+    
+    func getCourseSemesterWiseArray(program: String , semester: String) -> NSMutableArray {
         
         let courseArray = NSMutableArray()
         let course = Table("Course")

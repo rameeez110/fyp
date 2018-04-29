@@ -94,7 +94,7 @@ class ShowCoursesViewController: UIViewController ,UITableViewDelegate , UITable
     @objc func showButtonPressed(_ sender: UIBarButtonItem)
     {
         self.courseTableViewArray = NSMutableArray()
-        self.courseTableViewArray = DataBaseUtility.sharedInstance.getCourseSemesterWise(program: self.selectedProgram, semester: self.selectedSemester)
+        self.courseTableViewArray = DataBaseUtility.sharedInstance.getCourseSemesterWiseArray(program: self.selectedProgram, semester: self.selectedSemester)
         if self.courseTableViewArray.count > 0
         {
 //            print(self.courseTableViewArray)
