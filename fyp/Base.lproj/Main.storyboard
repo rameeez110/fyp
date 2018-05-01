@@ -2290,7 +2290,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h1-Ut-8xB">
-                                                        <rect key="frame" x="147.5" y="0.0" width="127.5" height="50"/>
+                                                        <rect key="frame" x="-50" y="0.0" width="127.5" height="50"/>
                                                         <color key="backgroundColor" red="0.13725490200000001" green="0.80392156859999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <state key="normal" title="Student">
@@ -2992,10 +2992,10 @@
                                 <rect key="frame" x="126" y="120" width="244" height="537"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouh-9t-DV4" customClass="GridView" customModule="G3GridView">
-                                        <rect key="frame" x="42" y="62" width="160" height="475"/>
+                                        <rect key="frame" x="62" y="62" width="120" height="475"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="tpb-v7-gIb"/>
+                                            <constraint firstAttribute="width" constant="120" id="tpb-v7-gIb"/>
                                         </constraints>
                                     </scrollView>
                                 </subviews>
@@ -3010,7 +3010,7 @@
                                 <rect key="frame" x="5" y="120" width="365" height="55"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYG-EI-eI2" customClass="GridView" customModule="G3GridView">
-                                        <rect key="frame" x="163" y="0.0" width="160" height="55"/>
+                                        <rect key="frame" x="183" y="0.0" width="120" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </scrollView>
                                 </subviews>

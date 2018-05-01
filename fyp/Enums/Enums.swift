@@ -30,6 +30,17 @@ enum Shift: String{
     case Evening = "Evening"
 }
 
+enum Section: String{
+    case SectionA = "Section A"
+    case SectionB = "Section B"
+}
+
+enum Availablity: String{
+    case Morning = "Morning"
+    case Evening = "Evening"
+    case Both = "Both"
+}
+
 enum Semester: String{
     case First = "1st"
     case Second = "2nd"

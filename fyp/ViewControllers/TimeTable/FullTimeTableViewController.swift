@@ -36,7 +36,7 @@ class FullTimeTableViewController: UIViewController {
     @IBOutlet weak var courseCreditHoursLabel: UILabel!
     @IBOutlet weak var courseLocationLabel: UILabel!
     
-    public var timeTableMutableArray = NSMutableArray()
+    public var timeTableArray = [TimeLocalModel]()
     var timeTable2DMutableDict = NSMutableDictionary()
     
     let timeArray = NSMutableArray()
@@ -136,224 +136,344 @@ class FullTimeTableViewController: UIViewController {
     
     func fillTimeArray()
     {
-        self.timeArray.add("3:30 - 5:10")
-        self.timeArray.add("5:10 - 6:50")
-        self.timeArray.add("6:50 - 8:30")
+        self.timeArray.add("3:30 - 4:20")
+        self.timeArray.add("4:20 - 5:10")
+        self.timeArray.add("5:10 - 6:00")
+        self.timeArray.add("6:00 - 6:50")
+        self.timeArray.add("6:50 - 7:40")
+        self.timeArray.add("7:40 - 8:30")
     }
     
     func fillTimeTable2DArray()
     {
-        for object in self.timeTableMutableArray
-        {
-            let dict = object as! NSDictionary
-            let day = dict.value(forKey: "day") as! String
-            if day == "Monday"
+        for eachTime in self.timeTableArray{
+            let day = eachTime.day
+            if day == Days.Monday.rawValue
             {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                let moring = eachTime.isMorning
+                if moring == Shift.Evening.rawValue
                 {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
+                    let section = eachTime.section
+                    if section == Section.SectionB.rawValue
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        // first value is row second is column
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "10")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "10")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "11")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "11")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "12")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "12")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "13")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "14")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "15")
                         }
                     }
                     else
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "00")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "00")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "01")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "01")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "02")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "02")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "03")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "04")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "05")
                         }
                     }
                 }
             }
-            else if day == "Tuesday"
+            else if day == Days.Tuesday.rawValue
             {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                let moring = eachTime.isMorning
+                if moring == Shift.Evening.rawValue
                 {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
+                    let section = eachTime.section
+                    if section == Section.SectionB.rawValue
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        // first value is row second is column
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "30")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "30")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "31")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "31")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "32")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "32")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "33")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "34")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "35")
                         }
                     }
                     else
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "20")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "20")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "21")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "21")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "22")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "22")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "23")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "24")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "25")
                         }
                     }
                 }
             }
-            else if day == "Wednesday"
+            else if day == Days.Wednesday.rawValue
             {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                let moring = eachTime.isMorning
+                if moring == Shift.Evening.rawValue
                 {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
+                    let section = eachTime.section
+                    if section == Section.SectionB.rawValue
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        // first value is row second is column
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "50")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "50")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "51")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "51")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "52")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "52")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "53")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "54")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "55")
                         }
                     }
                     else
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "40")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "40")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "41")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "41")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "42")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "42")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "43")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "44")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "45")
                         }
                     }
                 }
             }
-            else if day == "Thursday"
+            else if day == Days.Thursday.rawValue
             {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                let moring = eachTime.isMorning
+                if moring == Shift.Evening.rawValue
                 {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
+                    let section = eachTime.section
+                    if section == Section.SectionB.rawValue
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        // first value is row second is column
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "70")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "70")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "71")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "71")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "72")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "72")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "73")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "74")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "75")
                         }
                     }
                     else
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "60")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "60")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "61")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "61")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "62")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "62")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "63")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "64")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "65")
                         }
                     }
                 }
             }
-            else if day == "Friday"
+            else if day == Days.Friday.rawValue
             {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Evening"
+                let moring = eachTime.isMorning
+                if moring == Shift.Evening.rawValue
                 {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
+                    let section = eachTime.section
+                    if section == Section.SectionB.rawValue
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        // first value is row second is column
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "90")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "90")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "91")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "91")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "92")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "92")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "93")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "94")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "95")
                         }
                     }
                     else
                     {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "3:30 - 5:10"
+                        let time = eachTime.time_duration
+                        if time == "3:30 - 4:20"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "80")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "80")
                         }
-                        else if time == "5:10 - 6:50"
+                        else if time == "4:20 - 5:10"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "81")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "81")
                         }
-                        else if time == "6:50 - 8:30"
+                        else if time == "5:10 - 6:00"
                         {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "82")
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "82")
+                        }
+                        else if time == "6:00 - 6:50"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "83")
+                        }
+                        else if time == "6:50 - 7:40"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "84")
+                        }
+                        else if time == "7:40 - 8:30"
+                        {
+                            self.timeTable2DMutableDict.setValue(eachTime, forKey: "85")
                         }
                     }
                 }
             }
         }
-//        print(self.timeTable2DMutableDict as Any)
     }
     
     @IBAction func doneButtonPressed()
@@ -382,7 +502,7 @@ class FullTimeTableViewController: UIViewController {
 
 extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 3
+        return 6
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -398,13 +518,77 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
         if let cell = cell as? DataGridViewCell {
 
             let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-            if (dict["day"] as? String) != nil {
-                let courseArray = dict.value(forKey: "CourseData") as! NSArray
-                let courseDict = courseArray.object(at: 0) as! NSDictionary
-                let courseNo = courseDict.value(forKey: "number")
+            let cm = dict.courseData
+            var dict1CellString = ""
+            var dict2CellString = ""
+            if cm.credit_hours == "2+1"
+            {
+                // has lab and theory
+            }
+            else{
+                // has only theory
+                let tempDict = getObjectAtIntersectionOfDayAndTime(row: indexPath.row - 1, column: indexPath.column - 1)
+                let tempDict1 = getObjectAtIntersectionOfDayAndTime(row: indexPath.row + 1, column: indexPath.column + 1)
+                if tempDict.day != ""{
+                    let courseModel = dict.courseData
+                    let courseNo = courseModel.number
+                    var theoryStatus = String()
+                    let isTheory = dict.isTheory
+                    if isTheory == "Yes"
+                    {
+                        theoryStatus = " (T)"
+                    }
+                    else
+                    {
+                        theoryStatus = " (L)"
+                    }
+                    let teacherModel = dict.teacherData
+                    let teacherName = teacherModel.name
+                    let aray = teacherName.components(separatedBy: " ")
+                    var teacherCode = String()
+                    for i in 0..<aray.count
+                    {
+                        let gg = aray[i]
+                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
+                    }
+                    let course = courseNo
+                    let cellString = course + theoryStatus + " (" + teacherCode + ")"
+                    dict2CellString = cellString
+                }
+                if tempDict1.day != ""{
+                    let courseModel = dict.courseData
+                    let courseNo = courseModel.number
+                    var theoryStatus = String()
+                    let isTheory = dict.isTheory
+                    if isTheory == "Yes"
+                    {
+                        theoryStatus = " (T)"
+                    }
+                    else
+                    {
+                        theoryStatus = " (L)"
+                    }
+                    let teacherModel = dict.teacherData
+                    let teacherName = teacherModel.name
+                    let aray = teacherName.components(separatedBy: " ")
+                    var teacherCode = String()
+                    for i in 0..<aray.count
+                    {
+                        let gg = aray[i]
+                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
+                    }
+                    let course = courseNo
+                    let cellString = course + theoryStatus + " (" + teacherCode + ")"
+                    dict1CellString = cellString
+                }
+            }
+            if dict.day != ""
+            {
+                let courseModel = dict.courseData
+                let courseNo = courseModel.number
                 var theoryStatus = String()
-                let isTheory = dict.value(forKey: "is_theory") as! String
-                if isTheory == "Thoery"
+                let isTheory = dict.isTheory
+                if isTheory == "Yes"
                 {
                     theoryStatus = " (T)"
                 }
@@ -412,9 +596,8 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
                 {
                     theoryStatus = " (L)"
                 }
-                let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-                let techerDict = techerArray.object(at: 0) as! NSDictionary
-                let teacherName = techerDict.value(forKey: "name") as! String
+                let teacherModel = dict.teacherData
+                let teacherName = teacherModel.name
                 let aray = teacherName.components(separatedBy: " ")
                 var teacherCode = String()
                 for i in 0..<aray.count
@@ -422,8 +605,17 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
                     let gg = aray[i]
                     teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
                 }
-                let course = courseNo as? String
-                let cellString = course! + theoryStatus + " (" + teacherCode + ")"
+                let course = courseNo
+                let cellString = course + theoryStatus + " (" + teacherCode + ")"
+                
+//                if cellString == dict2CellString && cellString == dict2CellString{
+//                    if dict.time_duration == "4:20 - 5:10" || dict.time_duration == "6:50 - 7:40"{
+//                        cell.configure(cellString)
+//                    }
+//                }
+//                if dict.time_duration == "4:20 - 5:10" || dict.time_duration == "6:50 - 7:40"{
+//                    cell.configure(cellString)
+//                }
                 cell.configure(cellString)
             }
             
@@ -440,17 +632,46 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
         return cell
     }
     
-    func getObjectAtIntersectionOfDayAndTime(indexPath: IndexPath) -> NSDictionary
+    func getObjectAtIntersectionOfDayAndTime(row: Int, column: Int) -> TimeLocalModel
     {
-        let key = String(indexPath.row) + String(indexPath.column)
-        var dict = NSDictionary()
+        let key = String(row) + String(column)
+        //        var dict = NSDictionary()
+        //
+        //        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
+        //        {
+        //            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
+        //        }
         
-        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
+        var model = TimeLocalModel()
+        
+        if (self.timeTable2DMutableDict[key] as? TimeLocalModel) != nil
         {
-            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
+            model = self.timeTable2DMutableDict.value(forKey: key) as! TimeLocalModel
         }
         
-        return dict
+        
+        return model
+    }
+    
+    func getObjectAtIntersectionOfDayAndTime(indexPath: IndexPath) -> TimeLocalModel
+    {
+        let key = String(indexPath.row) + String(indexPath.column)
+//        var dict = NSDictionary()
+//
+//        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
+//        {
+//            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
+//        }
+        
+        var model = TimeLocalModel()
+        
+        if (self.timeTable2DMutableDict[key] as? TimeLocalModel) != nil
+        {
+            model = self.timeTable2DMutableDict.value(forKey: key) as! TimeLocalModel
+        }
+
+        
+        return model
     }
     
     func gridView(_ gridView: GridView, didScaleAt scale: CGFloat) {
@@ -461,21 +682,25 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
     func gridView(_ gridView: GridView, didSelectRowAt indexPath: IndexPath) {
         gridView.deselectRow(at: indexPath)
         let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-        if (dict["day"] as? String) != nil {
+//        if (dict["day"] as? String) != nil
+        if dict.day != ""
+        {
             self.transparentView.isHidden = false
             self.timeTableInfoContainerViewView.isHidden = false
-            let courseArray = dict.value(forKey: "CourseData") as! NSArray
-            let courseDict = courseArray.object(at: 0) as! NSDictionary
-            let courseNo = courseDict.value(forKey: "number")
-            self.courseNoLabel.text = courseNo as? String
-            let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-            let techerDict = techerArray.object(at: 0) as! NSDictionary
-            let teacherName = techerDict.value(forKey: "name") as! String
+//            let courseArray = dict.value(forKey: "CourseData") as! NSArray
+//            let courseDict = courseArray.object(at: 0) as! NSDictionary
+            let courseModel = dict.courseData
+            let courseNo = courseModel.number//courseDict.value(forKey: "number")
+            self.courseNoLabel.text = courseNo//courseNo as? String
+//            let techerArray = dict.value(forKey: "TeacherData") as! NSArray
+//            let techerDict = techerArray.object(at: 0) as! NSDictionary
+            let teacherModel = dict.teacherData
+            let teacherName = teacherModel.name//techerDict.value(forKey: "name") as! String
             self.courseInstructorLabel.text = teacherName
-            self.courseCreditHoursLabel.text = (courseDict.value(forKey: "credit_hours") as! String)
-            self.courseNameLabel.text = courseDict.value(forKey: "name") as? String
-            let isTheory = dict.value(forKey: "is_theory") as! String
-            if isTheory == "Thoery"
+            self.courseCreditHoursLabel.text = courseModel.credit_hours//(courseDict.value(forKey: "credit_hours") as! String)
+            self.courseNameLabel.text = courseModel.name//courseDict.value(forKey: "name") as? String
+            let isTheory = dict.isTheory//dict.value(forKey: "is_theory") as! String
+            if isTheory == "Yes"
             {
                 self.courseLocationLabel.text = "GF 22"
             }

@@ -87,8 +87,26 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         }
         else
         {
-            EZLoadingActivity.show("Loading...", disableUI: false)
-            callApiToGetTimeTable()
+//            EZLoadingActivity.show("Loading...", disableUI: false)
+//            callApiToGetTimeTable()
+            let timeArray = DataBaseUtility.sharedInstance.getTimeTable(semesters: selectedSemester, years: selectedYear, programs: selectedProgram, isMorning: selectedMorning)
+            print(timeArray.count)
+            if timeArray.count > 0{
+                if self.selectedMorning == "Morning"
+                {
+                    let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
+//                    fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
+//                    fullTimeTableMorningViewController.timeTableMutableArray = array
+                    fullTimeTableMorningViewController.timeTableArray = timeArray
+                    self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
+                }
+                else
+                {
+                    let fullTimeTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTable") as! FullTimeTableViewController
+                    fullTimeTableViewController.timeTableArray = timeArray
+                    self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
+                }
+            }
         }
     }
     
@@ -117,9 +135,9 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         self.descriptionPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("BSCS")
-        array.add("BSSE")
-        array.add("MCS")
+        array.add(Program.BSCS.rawValue)
+        array.add(Program.BSSE.rawValue)
+//        array.add("MCS")
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -138,14 +156,14 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         self.descriptionPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("1st")
-        array.add("2nd")
-        array.add("3rd")
-        array.add("4th")
-        array.add("5th")
-        array.add("6th")
-        array.add("7th")
-        array.add("8th")
+        array.add(Semester.First.rawValue)
+        array.add(Semester.Second.rawValue)
+        array.add(Semester.Third.rawValue)
+        array.add(Semester.Fourth.rawValue)
+        array.add(Semester.Fifth.rawValue)
+        array.add(Semester.Sixth.rawValue)
+        array.add(Semester.Seventh.rawValue)
+        array.add(Semester.Eighth.rawValue)
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -164,8 +182,8 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         self.descriptionPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("Morning")
-        array.add("Evening")
+        array.add(Shift.Morning.rawValue)
+        array.add(Shift.Evening.rawValue)
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -184,7 +202,7 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         self.descriptionPickerView.selectRow(0, inComponent: 0, animated: true)
         let array = NSMutableArray()
         self.pickerDataArray = NSMutableArray()
-        array.add("2017")
+        array.add("2018")
         for data in array
         {
             let dict = NSMutableDictionary()
@@ -266,15 +284,15 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                         if self.selectedMorning == "Morning"
                         {
                             let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
-                            fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
-                            fullTimeTableMorningViewController.timeTableMutableArray = array
+//                            fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
+//                            fullTimeTableMorningViewController.timeTableMutableArray = array
                         self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
                         }
                         else
                         {
                             let fullTimeTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTable") as! FullTimeTableViewController
-                            fullTimeTableViewController.timeTableMutableArray = NSMutableArray()
-                            fullTimeTableViewController.timeTableMutableArray = array
+//                            fullTimeTableViewController.timeTableMutableArray = NSMutableArray()
+//                            fullTimeTableViewController.timeTableMutableArray = array
                             self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
                         }
                     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class NewCreateTimeViewController: UIViewController{
     
@@ -36,6 +37,7 @@ class NewCreateTimeViewController: UIViewController{
 //    var teacherArray = NSMutableArray()
 //    var courseArray = NSMutableArray()
     var teacherArray = [TeacherLocalModel]()
+    var finalTimeArray = [TimeLocalModel]()
     var courseArray = [Course]()
     var isFirstTime = true
 
@@ -334,7 +336,7 @@ class NewCreateTimeViewController: UIViewController{
         }
         
         let array = self.teacherArray.filter({$0.isSelected == true})
-        if array.count == self.teacherArray.count
+        if array.count == 6//self.teacherArray.count
         {
             self.nextButton.isHidden = true
             self.generateButton.isHidden = false
@@ -343,7 +345,15 @@ class NewCreateTimeViewController: UIViewController{
     }
     @IBAction func generateButtonPressed(){
         
-        print(self.timeTableModel as Any)
+        self.generateTimeEntries(section: Section.SectionA.rawValue)
+        self.generateTimeEntries(section: Section.SectionB.rawValue)
+        
+        let timeArrayFromDatabase = DataBaseUtility.sharedInstance.getTimeTable(semesters: self.timeTableModel.semester, years: self.timeTableModel.year, programs: self.timeTableModel.program, isMorning: self.timeTableModel.isMorning)
+        
+        for timeModel in timeArrayFromDatabase {
+            print("timeModel : \(timeModel.description)")
+        }
+        
     }
     @IBAction func doneButtonPressed()
     {
@@ -407,6 +417,217 @@ class NewCreateTimeViewController: UIViewController{
             }
         }
     }
+    
+    // MARK: Time Entries Generation
+    func generateTimeEntries(section: String) {
+        
+        // Get teachers
+        let teacherModelArray = self.timeTableModel.teacherModel
+        
+        // Sort teachers array on basis of qualification
+        let sortedTeacherModelArray = teacherModelArray.sorted{
+            return $0.qualification > $1.qualification
+        }
+        
+        // Iterate teachers for every information needed
+        for teacherModel in sortedTeacherModelArray {
+            
+            // Get course for this teacher
+            let teacherID = teacherModel.serverID
+            let teacherCourseModel = self.timeTableModel.teacherCourse.filter{ $0.teacherID == teacherID }.first
+            
+            let courseID = teacherCourseModel?.courseID
+            let courseModel = self.timeTableModel.courseModel.filter{ $0.server_id == courseID }.first
+            
+            print("courseID : \(courseID ?? "")")
+            print("course name : \(courseModel?.name ?? "")")
+            
+            // Get credit hours of this course
+            let creditHours = courseModel?.credit_hours
+            print("courseID : \(courseID ?? "")")
+            
+            // Get availability time for this teacher
+            let availabilityTime = teacherModel.availablity
+            
+//            // Get minimum and maximum availability time
+//            let availabilityTimeArray = availabilityTime.components(separatedBy: "to")
+//            var minAvailabilityTime = availabilityTimeArray[0]
+//            minAvailabilityTime = minAvailabilityTime.replacingOccurrences(of: " ", with: "")
+//
+//            var maxAvailabilityTime = availabilityTimeArray[1]
+//            maxAvailabilityTime = maxAvailabilityTime.replacingOccurrences(of: " ", with: "")
+//
+//            let minAvailabilityTimeInt = Int(minAvailabilityTime)
+//            let maxAvailabilityTimeInt = Int(maxAvailabilityTime)
+            
+            // Get choice of day for this teacher
+            let choiceOfDays = getChoiceOfDay(teacherModel: teacherModel)
+            
+            // Get morning or evening
+            let isMorning = self.timeTableModel.isMorning
+            
+            // Credit hours
+            // 3+0 has three time slots a day - duration is 50 minutes
+            // 2+1 has six time slots - duration is 50 minutes
+            
+            if(isMorning == Shift.Morning.rawValue){
+                // Morning
+                // Timeslots are
+                // 9:00 - 10:50
+                // 11:00 - 12:50
+                // 01:50 - 3:30
+                // Friday
+                // 09:00 - 10:40
+                // 10:40 - 12:20
+                
+                if(availabilityTime == Availablity.Morning.rawValue || availabilityTime == Availablity.Both.rawValue) {
+                    
+                    let timeSlotsArray = ["9:00 - 9:50", "10:00 - 10:50", "11:00 - 11:50", "12:00 - 12:50", "1:50 - 2:40", "2:40 - 3:30"]
+                    createTimeSlotModels(section: section, creditHours: creditHours!, choiceOfDays: choiceOfDays, timeSlotsArray: timeSlotsArray, courseModel: courseModel!, teacherModel: teacherModel)
+                    
+                }
+                
+            }
+            else {
+                // Evening
+                // Timeslots are
+                // 3:30 - 4:20
+                // 4:20 - 5:10
+                // 5:10 - 6:00
+                // 6:00 - 6:50
+                // 6:50 - 7:40
+                // 7:40 - 8:30
+                
+                if(availabilityTime == Availablity.Evening.rawValue || availabilityTime == Availablity.Both.rawValue) {
+                    
+                    let timeSlotsArray = ["3:30 - 4:20", "4:20 - 5:10", "5:10 - 6:00", "6:00 - 6:50", "6:50 - 7:40", "7:40 - 8:30"]
+                    createTimeSlotModels(section: section, creditHours: creditHours!, choiceOfDays: choiceOfDays, timeSlotsArray: timeSlotsArray, courseModel: courseModel!, teacherModel: teacherModel)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func createTimeSlotModels(section: String, creditHours: String, choiceOfDays: [String], timeSlotsArray: [String], courseModel: Course, teacherModel: TeacherLocalModel) {
+        
+        var thisTimeSlotsArray = [String]()
+        thisTimeSlotsArray = timeSlotsArray
+        
+        var noOfEntries = Int()
+        if creditHours == "3+0"{
+            noOfEntries = 3
+        }
+        else{
+            noOfEntries = 6
+        }
+        
+        var entryCount = 0
+        var theoryCount = 2
+        var labCount = 4
+        for day in choiceOfDays{
+            
+            if(self.timeTableModel.isMorning == Shift.Morning.rawValue) {
+                if(day == Days.Friday.rawValue) {
+                    thisTimeSlotsArray.removeLast()
+                    thisTimeSlotsArray.removeLast()
+                }
+                else {
+                    thisTimeSlotsArray = timeSlotsArray
+                }
+            }
+            
+            for eachTimeSlot in thisTimeSlotsArray{
+                let timeSlotIsAvailable = checkIfTimeSlotIsAvailable(section: section, day: day, timeSlot: eachTimeSlot,teacherID: teacherModel.serverID)
+                if !timeSlotIsAvailable{
+                    // Need to create time slot
+                    if entryCount < noOfEntries{
+                        entryCount = entryCount + 1
+                        let timeLocalModel = TimeLocalModel()
+                        timeLocalModel.day = day
+                        timeLocalModel.time_duration = eachTimeSlot
+                        timeLocalModel.program = self.timeTableModel.program
+                        timeLocalModel.year = self.timeTableModel.year
+                        timeLocalModel.semester = self.timeTableModel.semester
+                        timeLocalModel.isMorning = self.timeTableModel.isMorning
+                        timeLocalModel.courseID = courseModel.server_id
+                        timeLocalModel.teacherID = teacherModel.serverID
+                        timeLocalModel.status = "Yes"
+                        timeLocalModel.meta = "meta"
+                        timeLocalModel.section = section
+                        if noOfEntries == 3{
+                            timeLocalModel.isTheory = "Yes"
+                        }
+                        else{
+                            if theoryCount > 0{
+                                timeLocalModel.isTheory = "Yes"
+                                theoryCount = theoryCount - 1
+                            }
+                            else{
+                                timeLocalModel.isTheory = "No"
+                                labCount = labCount - 1
+                            }
+                        }
+                        //                                self.finalTimeArray.append(timeLocalModel)
+                        DataBaseUtility.sharedInstance.createTime(timeModel: timeLocalModel)
+                    }
+                    else{
+                        break
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func getChoiceOfDay(teacherModel: TeacherLocalModel) -> [String] {
+        
+        // Get choice of day for this teacher
+        let firstChoice = teacherModel.firstChoice
+        let secondChoice = teacherModel.secondChoice
+        let thirdChoice = teacherModel.thirdChoice
+        let fourthChoice = teacherModel.fourthChoice
+        
+        var dayChoices = [String]()
+        
+        if firstChoice == "" && secondChoice == "" && thirdChoice == "" && fourthChoice == ""{
+            dayChoices.append(Days.Monday.rawValue)
+            dayChoices.append(Days.Tuesday.rawValue)
+            dayChoices.append(Days.Wednesday.rawValue)
+            dayChoices.append(Days.Thursday.rawValue)
+            dayChoices.append(Days.Friday.rawValue)
+        }
+        else{
+            if firstChoice != ""{
+                dayChoices.append(firstChoice)
+            }
+            if secondChoice != ""{
+                dayChoices.append(secondChoice)
+            }
+            if thirdChoice != ""{
+                dayChoices.append(thirdChoice)
+            }
+            if fourthChoice != ""{
+                dayChoices.append(fourthChoice)
+            }
+        }
+        
+        return dayChoices
+        
+    }
+    
+    func checkIfTimeSlotIsAvailable(section: String, day: String, timeSlot: String,teacherID: String) -> Bool {
+        
+        var isAvailable = false
+        
+        isAvailable = DataBaseUtility.sharedInstance.isTimeExisted(section: section, day: day, timeSlot: timeSlot, semesters: self.timeTableModel.semester, years: self.timeTableModel.year, programs: self.timeTableModel.program, isMorning: self.timeTableModel.isMorning,teacherID: teacherID)
+        
+        return isAvailable
+        
+    }
+    
 }
 
 extension NewCreateTimeViewController: UIPickerViewDelegate , UIPickerViewDataSource{

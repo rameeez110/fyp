@@ -188,15 +188,22 @@ class DataBaseUtility {
         return teacherStatus
     }
     
-    func isTimeExisted() -> Bool {
+    func isTimeExisted(section: String, day: String, timeSlot: String, semesters : String, years: String, programs: String, isMorning: String,teacherID: String) -> Bool {
         
         var timeStatus = false
         let time = Table("Time")
-        let status = Expression<String?>("status")
+        
+        let thisDay = Expression<String?>("day")
+        let isMoring = Expression<String?>("is_morning")
+        let program = Expression<String?>("program")
+        let semester = Expression<String?>("semester")
+        let year = Expression<String?>("year")
+        let duration = Expression<String?>("time_duration")
+//        let teachId = Expression<String?>("teacher_id")
         
         do {
             
-            let query = time.filter(status == "Yes")
+            let query = time.filter(thisDay == day && duration == timeSlot && isMoring == isMorning && semester == semesters && year == years && program == programs)
             
             for _ in try database.prepare(query) {
                 timeStatus = true
