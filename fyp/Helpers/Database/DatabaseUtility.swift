@@ -188,7 +188,7 @@ class DataBaseUtility {
         return teacherStatus
     }
     
-    func isTimeExisted(section: String, day: String, timeSlot: String, semesters : String, years: String, programs: String, isMorning: String,teacherID: String) -> Bool {
+    func isTimeExisted(section: String, day: String, timeSlot: String, semesters : String, years: String, programs: String, isMorning: String) -> Bool {
         
         var timeStatus = false
         let time = Table("Time")
@@ -199,11 +199,11 @@ class DataBaseUtility {
         let semester = Expression<String?>("semester")
         let year = Expression<String?>("year")
         let duration = Expression<String?>("time_duration")
-//        let teachId = Expression<String?>("teacher_id")
+        let thisSection = Expression<String?>("section")
         
         do {
             
-            let query = time.filter(thisDay == day && duration == timeSlot && isMoring == isMorning && semester == semesters && year == years && program == programs)
+            let query = time.filter(thisDay == day && duration == timeSlot && isMoring == isMorning && semester == semesters && year == years && program == programs && thisSection == section)
             
             for _ in try database.prepare(query) {
                 timeStatus = true
@@ -211,10 +211,87 @@ class DataBaseUtility {
             }
             
         } catch let error as NSError {
-            print("Unable to select data from User table! \(error)")
+            print("Unable to select data from Time table! \(error)")
         }
         
         return timeStatus
+    }
+    
+    // Check if teacher is available at particular time slot
+    func isTeacherAvailableAtTimeSlot(day: String, timeSlot: String, teacherID: String) -> Bool {
+        
+        var teacherAvailable = true
+        let time = Table("Time")
+        
+        let thisDay = Expression<String?>("day")
+        let duration = Expression<String?>("time_duration")
+        let thisTeacherID = Expression<String?>("teacher_id")
+        
+        do {
+            
+            let query = time.filter(thisDay == day && duration == timeSlot && thisTeacherID == teacherID)
+            
+            for _ in try database.prepare(query) {
+                teacherAvailable = false
+                break
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from Time table! \(error)")
+        }
+        
+        return teacherAvailable
+    }
+    
+    func getTimeTable(teacherId: String) -> [TimeLocalModel] {
+        
+        var timeArray = [TimeLocalModel]()
+        let time = Table("Time")
+        
+        let day = Expression<String?>("day")
+        let isMoring = Expression<String?>("is_morning")
+        let program = Expression<String?>("program")
+        let isTheory = Expression<String?>("is_theory")
+        let semester = Expression<String?>("semester")
+        let status = Expression<String?>("status")
+        let year = Expression<String?>("year")
+        let section = Expression<String?>("section")
+        let duration = Expression<String?>("time_duration")
+        let meta = Expression<String?>("meta")
+        let teacherID = Expression<String?>("teacher_id")
+        let courseID = Expression<String?>("course_id")
+        let id = Expression<Int?>("id")
+        
+        do {
+            
+            let query = time.filter(teacherID == teacherId)
+            
+            for time in try database.prepare(query) {
+                let timeLocalModel = TimeLocalModel()
+                timeLocalModel.id = time[id]!
+                timeLocalModel.status = time[status]!
+                timeLocalModel.day = time[day]!
+                timeLocalModel.semester = time[semester]!
+                timeLocalModel.year = time[year]!
+                timeLocalModel.isTheory = time[isTheory]!
+                timeLocalModel.isMorning = time[isMoring]!
+                timeLocalModel.teacherID = time[teacherID]!
+                timeLocalModel.courseID = time[courseID]!
+                timeLocalModel.time_duration = time[duration]!
+                timeLocalModel.section = time[section]!
+                timeLocalModel.meta = time[meta]!
+                timeLocalModel.program = time[program]!
+                timeLocalModel.teacherData =  self.getTeacher(serverID: timeLocalModel.teacherID).first!
+                timeLocalModel.courseData = self.getCourse(serverID: timeLocalModel.courseID).first!
+                
+                timeArray.append(timeLocalModel)
+            }
+            
+        } catch let error as NSError {
+            print("Unable to select data from User table! \(error)")
+        }
+        
+        return timeArray
     }
     
     func getTimeTable(semesters : String, years: String, programs: String, isMorning: String) -> [TimeLocalModel] {

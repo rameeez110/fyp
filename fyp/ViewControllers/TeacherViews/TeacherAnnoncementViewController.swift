@@ -42,6 +42,8 @@ class TeacherAnnoncementViewController: UIViewController ,UITableViewDelegate , 
         
         self.cancelButton.layer.cornerRadius = 15
         self.cancelButton.clipsToBounds = true
+        
+//        addAccessoryView()
     }
     
     // MARK: - Navigation bar Ui
@@ -73,6 +75,21 @@ class TeacherAnnoncementViewController: UIViewController ,UITableViewDelegate , 
     @objc func addButtonPressed(_ sender: UIBarButtonItem)
     {
         self.addAnnoncementContainerView.isHidden = false
+    }
+    
+    func addAccessoryView(){
+        let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        numberToolbar.barStyle = .default
+//        let rightNavItem = UIBarButtonItem()
+//        rightNavItem.action = Selector(("Done"))
+        numberToolbar.items = [
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: Selector(("doneWithNumberPad")))]
+        numberToolbar.sizeToFit()
+        self.announcementTextView.inputAccessoryView = numberToolbar
+    }
+
+    func doneWithNumberPad() {
+        //Done with number pad
     }
     
     // MARK: - IBActions
@@ -228,7 +245,15 @@ class TeacherAnnoncementViewController: UIViewController ,UITableViewDelegate , 
     }
     
     func textViewDidEndEditing(_ textView: UITextView){
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 
     override func didReceiveMemoryWarning() {

@@ -18,6 +18,8 @@ class TimeTableViewCell: UITableViewCell {
     @IBOutlet weak var timeValueLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationValueLabel: UILabel!
+    @IBOutlet weak var dayValueLabel: UILabel!
+    @IBOutlet weak var sectionValueLabel: UILabel!
 
     
     override func awakeFromNib() {

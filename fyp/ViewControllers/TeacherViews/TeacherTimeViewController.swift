@@ -18,6 +18,7 @@ class TeacherTimeViewController: UIViewController ,UITableViewDelegate , UITable
     @IBOutlet weak var timeTableView: UITableView!
     
     public var timeMutableArray = NSMutableArray()
+    var myCommitments = [TimeLocalModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,20 @@ class TeacherTimeViewController: UIViewController ,UITableViewDelegate , UITable
     @IBAction func myCommitmentTimeButtonPressed()
     {
         let teacherID = UserDefaults.standard.string(forKey: URLConstants.UserDefaults.LoggedInTeacherID)
-        callApiToGetMyCommitments(id: teacherID!)
+//        callApiToGetMyCommitments(id: teacherID!)
+        myCommitments = DataBaseUtility.sharedInstance.getTimeTable(teacherId: teacherID!)
+        if myCommitments.count > 0{
+            self.alphaView.isHidden = false
+            self.timeTableContainerView.isHidden = false
+            self.timeTableView.reloadData()
+        }
+        else{
+            let alert = UIAlertController(title: "No commitments found!", message: "You don't have any commitments right now.", preferredStyle: .alert) // 1
+            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+            }
+            alert.addAction(firstAction)
+            self.present(alert, animated: true, completion:nil)
+        }
     }
     
     @IBAction func fullTimeTableButtonPressed()
@@ -248,7 +262,7 @@ class TeacherTimeViewController: UIViewController ,UITableViewDelegate , UITable
     // MARK: - Table View Delegate And Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.timeMutableArray.count
+        return self.myCommitments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -256,14 +270,106 @@ class TeacherTimeViewController: UIViewController ,UITableViewDelegate , UITable
         
         tableView.tableFooterView = UIView()
         
-        let timeModel = self.timeMutableArray.object(at: indexPath.row) as! Time
+        let timeModel = self.myCommitments[indexPath.row]//.object(at: indexPath.row) as! Time
         let teacherModel = timeModel.teacherData
         let courseModel = timeModel.courseData
         
         timeCell.teacherValueLabel.text = teacherModel.name
         timeCell.courseValueLabel.text = courseModel.name
         timeCell.timeValueLabel.text = timeModel.time_duration
-        timeCell.locationValueLabel.text = "FF 07"
+//        timeCell.locationValueLabel.text = "FF 07"
+        timeCell.dayValueLabel.text = timeModel.day
+        timeCell.sectionValueLabel.text = timeModel.section
+        
+        let isTheory = timeModel.isTheory
+        if isTheory == "Yes"
+        {
+            if timeModel.semester == Semester.Seventh.rawValue || timeModel.semester == Semester.Eighth.rawValue
+            {
+                if timeModel.program == Program.BSCS.rawValue{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "GF 22"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "GF 23"
+                    }
+                }
+                else{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "GF 16"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "GF 17"
+                    }
+                }
+            }
+            else if timeModel.semester == Semester.Fifth.rawValue || timeModel.semester == Semester.Sixth.rawValue
+            {
+                if timeModel.program == Program.BSCS.rawValue{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "FF 22"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "FF 23"
+                    }
+                }
+                else{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "FF 16"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "FF 17"
+                    }
+                }
+            }
+            else{
+                timeCell.locationValueLabel.text = "SF 16"
+            }
+        }
+        else
+        {
+            if timeModel.semester == Semester.Seventh.rawValue || timeModel.semester == Semester.Eighth.rawValue
+            {
+                if timeModel.program == Program.BSCS.rawValue{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "FF 01"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "FF 02"
+                    }
+                }
+                else{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "GF 03"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "GF 04"
+                    }
+                }
+            }
+            else if timeModel.semester == Semester.Fifth.rawValue || timeModel.semester == Semester.Sixth.rawValue
+            {
+                if timeModel.program == Program.BSCS.rawValue{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "FF 07"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "FF 08"
+                    }
+                }
+                else{
+                    if timeModel.section == Section.SectionA.rawValue{
+                        timeCell.locationValueLabel.text = "GF 09"
+                    }
+                    else{
+                        timeCell.locationValueLabel.text = "GF 10"
+                    }
+                }
+            }
+            else{
+                timeCell.locationValueLabel.text = "FF 11"
+            }
+        }
         
         return timeCell
     }

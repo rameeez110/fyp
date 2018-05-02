@@ -11,6 +11,8 @@ import Foundation
 
 class NewCreateTimeViewController: UIViewController{
     
+    @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var pickerContainerView: UIView!
     
     @IBOutlet weak var timeTableMetaPickerView: UIPickerView!
@@ -336,10 +338,11 @@ class NewCreateTimeViewController: UIViewController{
         }
         
         let array = self.teacherArray.filter({$0.isSelected == true})
-        if array.count == 6//self.teacherArray.count
+        if array.count == self.courseArray.count//self.teacherArray.count
         {
             self.nextButton.isHidden = true
             self.generateButton.isHidden = false
+            self.stackView.isHidden = true
         }
         
     }
@@ -352,6 +355,15 @@ class NewCreateTimeViewController: UIViewController{
         
         for timeModel in timeArrayFromDatabase {
             print("timeModel : \(timeModel.description)")
+        }
+        
+        if timeArrayFromDatabase.count > 0{
+            let alert = UIAlertController(title: "Time Table Generated!", message: nil, preferredStyle: .alert) // 1
+            let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(firstAction)
+            self.present(alert, animated: true, completion:nil)
         }
         
     }
@@ -377,19 +389,29 @@ class NewCreateTimeViewController: UIViewController{
         }
         else if index == "Teacher Name"
         {
-            self.teacherButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
             let teacherServerId = nameDict.value(forKey: "ID") as! String
             if let teacherModel = DataBaseUtility.sharedInstance.getTeacher(serverID: teacherServerId).first{
-                self.timeTableModel.teacherModel.append(teacherModel)
+                if self.teacherButton.title(for: .normal) == "Select Teacher"{
+                    self.timeTableModel.teacherModel.append(teacherModel)
+                }
+                else{
+                    self.timeTableModel.teacherModel[self.selectedTeacherIndex] = teacherModel
+                }
             }
+             self.teacherButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
         }
         else if index == "Course Name"
         {
-            self.courseButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
             let courseServerId = nameDict.value(forKey: "ID") as! String
             if let courseModel = DataBaseUtility.sharedInstance.getCourse(serverID: courseServerId).first{
-                self.timeTableModel.courseModel.append(courseModel)
+                if self.courseButton.title(for: .normal) == "Select Course"{
+                    self.timeTableModel.courseModel.append(courseModel)
+                }
+                else{
+                    self.timeTableModel.courseModel[self.selectedCourseIndex] = courseModel
+                }
             }
+            self.courseButton.setTitle(nameDict.value(forKey: "Data") as? String, for: .normal)
         }
         else if index == "Morning/Evening"
         {
@@ -448,17 +470,6 @@ class NewCreateTimeViewController: UIViewController{
             
             // Get availability time for this teacher
             let availabilityTime = teacherModel.availablity
-            
-//            // Get minimum and maximum availability time
-//            let availabilityTimeArray = availabilityTime.components(separatedBy: "to")
-//            var minAvailabilityTime = availabilityTimeArray[0]
-//            minAvailabilityTime = minAvailabilityTime.replacingOccurrences(of: " ", with: "")
-//
-//            var maxAvailabilityTime = availabilityTimeArray[1]
-//            maxAvailabilityTime = maxAvailabilityTime.replacingOccurrences(of: " ", with: "")
-//
-//            let minAvailabilityTimeInt = Int(minAvailabilityTime)
-//            let maxAvailabilityTimeInt = Int(maxAvailabilityTime)
             
             // Get choice of day for this teacher
             let choiceOfDays = getChoiceOfDay(teacherModel: teacherModel)
@@ -540,41 +551,45 @@ class NewCreateTimeViewController: UIViewController{
             }
             
             for eachTimeSlot in thisTimeSlotsArray{
-                let timeSlotIsAvailable = checkIfTimeSlotIsAvailable(section: section, day: day, timeSlot: eachTimeSlot,teacherID: teacherModel.serverID)
-                if !timeSlotIsAvailable{
-                    // Need to create time slot
-                    if entryCount < noOfEntries{
-                        entryCount = entryCount + 1
-                        let timeLocalModel = TimeLocalModel()
-                        timeLocalModel.day = day
-                        timeLocalModel.time_duration = eachTimeSlot
-                        timeLocalModel.program = self.timeTableModel.program
-                        timeLocalModel.year = self.timeTableModel.year
-                        timeLocalModel.semester = self.timeTableModel.semester
-                        timeLocalModel.isMorning = self.timeTableModel.isMorning
-                        timeLocalModel.courseID = courseModel.server_id
-                        timeLocalModel.teacherID = teacherModel.serverID
-                        timeLocalModel.status = "Yes"
-                        timeLocalModel.meta = "meta"
-                        timeLocalModel.section = section
-                        if noOfEntries == 3{
-                            timeLocalModel.isTheory = "Yes"
-                        }
-                        else{
-                            if theoryCount > 0{
+                let timeSlotIsAvailable = checkIfTimeSlotIsAvailable(section: section, day: day, timeSlot: eachTimeSlot)
+                let teacherIsAvailable = checkIfTeacherIsAvailable(day: day, timeSlot: eachTimeSlot, teacherID: teacherModel.serverID)
+                print("teacherIsAvailable : \(teacherIsAvailable)")
+                if(teacherIsAvailable) {
+                    if !timeSlotIsAvailable{
+                        // Need to create time slot
+                        if entryCount < noOfEntries{
+                            entryCount = entryCount + 1
+                            let timeLocalModel = TimeLocalModel()
+                            timeLocalModel.day = day
+                            timeLocalModel.time_duration = eachTimeSlot
+                            timeLocalModel.program = self.timeTableModel.program
+                            timeLocalModel.year = self.timeTableModel.year
+                            timeLocalModel.semester = self.timeTableModel.semester
+                            timeLocalModel.isMorning = self.timeTableModel.isMorning
+                            timeLocalModel.courseID = courseModel.server_id
+                            timeLocalModel.teacherID = teacherModel.serverID
+                            timeLocalModel.status = "Yes"
+                            timeLocalModel.meta = "meta"
+                            timeLocalModel.section = section
+                            if noOfEntries == 3{
                                 timeLocalModel.isTheory = "Yes"
-                                theoryCount = theoryCount - 1
                             }
                             else{
-                                timeLocalModel.isTheory = "No"
-                                labCount = labCount - 1
+                                if theoryCount > 0{
+                                    timeLocalModel.isTheory = "Yes"
+                                    theoryCount = theoryCount - 1
+                                }
+                                else{
+                                    timeLocalModel.isTheory = "No"
+                                    labCount = labCount - 1
+                                }
                             }
+                            //                                self.finalTimeArray.append(timeLocalModel)
+                            DataBaseUtility.sharedInstance.createTime(timeModel: timeLocalModel)
                         }
-                        //                                self.finalTimeArray.append(timeLocalModel)
-                        DataBaseUtility.sharedInstance.createTime(timeModel: timeLocalModel)
-                    }
-                    else{
-                        break
+                        else{
+                            break
+                        }
                     }
                 }
             }
@@ -618,11 +633,21 @@ class NewCreateTimeViewController: UIViewController{
         
     }
     
-    func checkIfTimeSlotIsAvailable(section: String, day: String, timeSlot: String,teacherID: String) -> Bool {
+    func checkIfTimeSlotIsAvailable(section: String, day: String, timeSlot: String) -> Bool {
         
         var isAvailable = false
         
-        isAvailable = DataBaseUtility.sharedInstance.isTimeExisted(section: section, day: day, timeSlot: timeSlot, semesters: self.timeTableModel.semester, years: self.timeTableModel.year, programs: self.timeTableModel.program, isMorning: self.timeTableModel.isMorning,teacherID: teacherID)
+        isAvailable = DataBaseUtility.sharedInstance.isTimeExisted(section: section, day: day, timeSlot: timeSlot, semesters: self.timeTableModel.semester, years: self.timeTableModel.year, programs: self.timeTableModel.program, isMorning: self.timeTableModel.isMorning)
+        
+        return isAvailable
+        
+    }
+    
+    func checkIfTeacherIsAvailable(day: String, timeSlot: String, teacherID: String) -> Bool {
+        
+        var isAvailable = false
+        
+        isAvailable = DataBaseUtility.sharedInstance.isTeacherAvailableAtTimeSlot(day: day, timeSlot: timeSlot, teacherID: teacherID)
         
         return isAvailable
         

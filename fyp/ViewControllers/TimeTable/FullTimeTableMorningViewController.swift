@@ -33,6 +33,7 @@ class FullTimeTableMorningViewController: UIViewController {
     let timeArray = NSMutableArray()
     var timeListDataSource: TimeListDataSourceMorning?
     private let dayDataSource = DayGridViewDataSourceMorning()
+    public var titleString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class FullTimeTableMorningViewController: UIViewController {
         fillTimeArray()
         fillTimeTable2DArray()
         
-        self.navigationController?.navigationBar.isHidden = true
+//        self.navigationController?.navigationBar.isHidden = false
         
         timeListDataSource = .init(channels: self.timeArray)
         
@@ -133,6 +134,7 @@ class FullTimeTableMorningViewController: UIViewController {
         self.timeArray.add("10:00 - 10:50")
         self.timeArray.add("11:00 - 11:50")
         self.timeArray.add("12:00 - 12:50")
+        self.timeArray.add("12:50 - 1:50")
         self.timeArray.add("1:50 - 2:40")
         self.timeArray.add("2:40 - 3:30")
         self.timeArray.add("9:00 - 9:50")
@@ -183,11 +185,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "14")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "15")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "15")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "16")
                         }
                     }
                     else
@@ -212,11 +214,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "04")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "05")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "05")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "06")
                         }
                     }
                 }
@@ -249,11 +251,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "34")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "35")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "35")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "36")
                         }
                     }
                     else
@@ -278,11 +280,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "24")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "25")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "25")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "26")
                         }
                     }
                 }
@@ -315,11 +317,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "54")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "55")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "55")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "56")
                         }
                     }
                     else
@@ -344,11 +346,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "44")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "45")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "45")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "46")
                         }
                     }
                 }
@@ -381,11 +383,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "74")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "75")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "75")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "76")
                         }
                     }
                     else
@@ -410,11 +412,11 @@ class FullTimeTableMorningViewController: UIViewController {
                         }
                         else if time == "1:50 - 2:40"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "64")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "65")
                         }
                         else if time == "2:40 - 3:30"
                         {
-                            self.timeTable2DMutableDict.setValue(object, forKey: "65")
+                            self.timeTable2DMutableDict.setValue(object, forKey: "66")
                         }
                     }
                 }
@@ -469,205 +471,7 @@ class FullTimeTableMorningViewController: UIViewController {
                     }
                 }
             }
-            /*if day == Days.Monday.rawValue
-            {
-                let moring = object.isMorning
-                if moring == Shift.Morning.rawValue
-                {
-                    let section = object.section
-                    if section == Section.SectionB.rawValue
-                    {
-                        let time = object.time_duration
-                        // first value is row scond is column
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "10")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "11")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "12")
-                        }
-                    }
-                    else
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "00")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "01")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "02")
-                        }
-                    }
-                }
-            }
-            else if day == "Tuesday"
-            {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Morning"
-                {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "30")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "31")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "32")
-                        }
-                    }
-                    else
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "20")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "21")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "22")
-                        }
-                    }
-                }
-            }
-            else if day == "Wednesday"
-            {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Morning"
-                {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "50")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "51")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "52")
-                        }
-                    }
-                    else
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "40")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "41")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "42")
-                        }
-                    }
-                }
-            }
-            else if day == "Thursday"
-            {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Morning"
-                {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "70")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "71")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "72")
-                        }
-                    }
-                    else
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "9:00 - 10:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "60")
-                        }
-                        else if time == "11:00 - 12:50"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "61")
-                        }
-                        else if time == "1:50 - 3:30"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "62")
-                        }
-                    }
-                }
-            }
-            else if day == "Friday"
-            {
-                let moring = dict.value(forKey: "is_morning") as! String
-                if moring == "Morning"
-                {
-                    let section = dict.value(forKey: "section") as! String
-                    if section == "Section B"
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        // first value is row scond is column
-                        if time == "9:00 - 10:40"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "90")
-                        }
-                        else if time == "10:40 - 12:20"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "91")
-                        }
-                    }
-                    else
-                    {
-                        let time = dict.value(forKey: "time_duration") as! String
-                        if time == "9:00 - 10:40"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "80")
-                        }
-                        else if time == "10:40 - 12:20"
-                        {
-                            self.timeTable2DMutableDict.setValue(dict, forKey: "81")
-                        }
-                    }
-                }
-            }*/
         }
-        //        print(self.timeTable2DMutableDict as Any)
     }
     
     @IBAction func doneButtonPressed()
@@ -675,28 +479,12 @@ class FullTimeTableMorningViewController: UIViewController {
         self.transparentView.isHidden = true
         self.timeTableInfoContainerViewView.isHidden = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelegate {
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 6
+        return 7
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -747,15 +535,12 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
                 
                 cell.lunchLabel.isHidden = true
                 let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-//                if (dict["day"] as? String) != nil
                 if dict.day != ""
                 {
-//                    let courseArray = dict.value(forKey: "CourseData") as! NSArray
-//                    let courseDict = courseArray.object(at: 0) as! NSDictionary
                     let courseModel = dict.courseData
-                    let courseNo = courseModel.number//courseDict.value(forKey: "number")
+                    let courseNo = courseModel.number
                     var theoryStatus = String()
-                    let isTheory = dict.isTheory//dict.value(forKey: "is_theory") as! String
+                    let isTheory = dict.isTheory
                     if isTheory == "Yes"
                     {
                         theoryStatus = " (T)"
@@ -764,22 +549,18 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
                     {
                         theoryStatus = " (L)"
                     }
-//                    let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-//                    let techerDict = techerArray.object(at: 0) as! NSDictionary
                     let teacherModel = dict.teacherData
-                    let teacherName = teacherModel.name//techerDict.value(forKey: "name") as! String
+                    let teacherName = teacherModel.name
                     let aray = teacherName.components(separatedBy: " ")
                     var teacherCode = String()
-                    for i in 0..<aray.count
+                    for each in aray
                     {
-                        let gg = aray[i]
-                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
+                        teacherCode = "\(teacherCode)\(each.first ?? Character(""))"
                     }
                     let course = courseNo
                     let cellString = course + theoryStatus + " (" + teacherCode + ")"
                     cell.configure(cellString)
                 }
-//                cell.configure("T 506 T")
                 
                 if indexPath.row % 2 == 0
                 {
@@ -800,14 +581,6 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
     func getObjectAtIntersectionOfDayAndTime(indexPath: IndexPath) -> TimeLocalModel
     {
         let key = String(indexPath.row) + String(indexPath.column)
-//        var dict = NSDictionary()
-//        
-//        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
-//        {
-//            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
-//        }
-        
-        
         var model = TimeLocalModel()
         
         if (self.timeTable2DMutableDict[key] as? TimeLocalModel) != nil
@@ -826,7 +599,6 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
     func gridView(_ gridView: GridView, didSelectRowAt indexPath: IndexPath) {
         gridView.deselectRow(at: indexPath)
         let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-//        if (dict["day"] as? String) != nil
         if dict.day != ""
         {
             setupCourseInfo(model: dict)
@@ -837,26 +609,102 @@ extension FullTimeTableMorningViewController: GridViewDataSource, GridViewDelega
     {
         self.transparentView.isHidden = false
         self.timeTableInfoContainerViewView.isHidden = false
-//        let courseArray = model.value(forKey: "CourseData") as! NSArray
-//        let courseDict = courseArray.object(at: 0) as! NSDictionary
         let courseModel = model.courseData
-        let courseNo = courseModel.number//courseDict.value(forKey: "number")
+        let courseNo = courseModel.number
         self.courseNoLabel.text = courseNo
-//        let techerArray = model.value(forKey: "TeacherData") as! NSArray
-//        let techerDict = techerArray.object(at: 0) as! NSDictionary
         let teacherModel = model.teacherData
-        let teacherName = teacherModel.name//techerDict.value(forKey: "name") as! String
+        let teacherName = teacherModel.name
         self.courseInstructorLabel.text = teacherName
-        self.courseCreditHoursLabel.text = courseModel.credit_hours//(courseDict.value(forKey: "credit_hours") as! String)
-        self.courseNameLabel.text = courseModel.name//courseDict.value(forKey: "name") as? String
-        let isTheory = model.isTheory//model.value(forKey: "is_theory") as! String
+        self.courseCreditHoursLabel.text = courseModel.credit_hours
+        self.courseNameLabel.text = courseModel.name
+        let isTheory = model.isTheory
         if isTheory == "Yes"
         {
-            self.courseLocationLabel.text = "GF 22"
+            if model.semester == Semester.Seventh.rawValue || model.semester == Semester.Eighth.rawValue
+            {
+                if model.program == Program.BSCS.rawValue{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "GF 22"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "GF 23"
+                    }
+                }
+                else{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "GF 16"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "GF 17"
+                    }
+                }
+            }
+            else if model.semester == Semester.Fifth.rawValue || model.semester == Semester.Sixth.rawValue
+            {
+                if model.program == Program.BSCS.rawValue{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "FF 22"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "FF 23"
+                    }
+                }
+                else{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "FF 16"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "FF 17"
+                    }
+                }
+            }
+            else{
+                self.courseLocationLabel.text = "SF 16"
+            }
         }
         else
         {
-            self.courseLocationLabel.text = "FF 01"
+            if model.semester == Semester.Seventh.rawValue || model.semester == Semester.Eighth.rawValue
+            {
+                if model.program == Program.BSCS.rawValue{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "FF 01"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "FF 02"
+                    }
+                }
+                else{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "GF 03"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "GF 04"
+                    }
+                }
+            }
+            else if model.semester == Semester.Fifth.rawValue || model.semester == Semester.Sixth.rawValue
+            {
+                if model.program == Program.BSCS.rawValue{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "FF 07"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "FF 08"
+                    }
+                }
+                else{
+                    if model.section == Section.SectionA.rawValue{
+                        self.courseLocationLabel.text = "FF 09"
+                    }
+                    else{
+                        self.courseLocationLabel.text = "FF 10"
+                    }
+                }
+            }
+            else{
+                self.courseLocationLabel.text = "FF 12"
+            }
         }
     }
     
@@ -895,7 +743,7 @@ final class TimeListDataSourceMorning: NSObject, GridViewDataSource, GridViewDel
     }
     
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 6//channels.count
+        return 7//channels.count
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -917,19 +765,19 @@ final class TimeListDataSourceMorning: NSObject, GridViewDataSource, GridViewDel
             {
                 if indexPath.column == 0
                 {
-                    cell.configure(self.channels.object(at: 6) as! String)
+                    cell.configure(self.channels.object(at: 7) as! String)
                 }
                 else if indexPath.column == 1
                 {
-                    cell.configure(self.channels.object(at: 7) as! String)
+                    cell.configure(self.channels.object(at: 8) as! String)
                 }
                 else if indexPath.column == 2
                 {
-                    cell.configure(self.channels.object(at: 8) as! String)
+                    cell.configure(self.channels.object(at: 9) as! String)
                 }
                 else if indexPath.column == 3
                 {
-                    cell.configure(self.channels.object(at: 9) as! String)
+                    cell.configure(self.channels.object(at: 10) as! String)
                 }
                 else
                 {

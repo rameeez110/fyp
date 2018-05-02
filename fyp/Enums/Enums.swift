@@ -59,3 +59,19 @@ enum Choice: String{
     case Fourth = "Fourth"
 }
 
+enum TheoryRoom: String{
+    case FF15 = "FF-15"
+    case FF16 = "FF-16"
+    case GF23 = "GF-23"
+    case GF22 = "GF-22"
+    case SF23 = "SF-23"
+    case SF22 = "SF-22"
+}
+
+enum LabRoom: String{
+    case FF02 = "First"
+    case FF03 = "Second"
+    case FF07 = "Third"
+    case FF08 = "Fourth"
+}
+

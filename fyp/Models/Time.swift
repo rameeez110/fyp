@@ -44,7 +44,7 @@ class TimeLocalModel{
     var program = String()
     
     var description: String {
-        return "day : \(self.day) \n teacherID : \(self.teacherID) \n courseID : \(self.courseID) \n time_duration : \(self.time_duration) \n isTheory : \(self.isTheory) \n"
+        return "day : \(self.day) \n teacherID : \(self.teacherID) \n courseID : \(self.courseID) \n time_duration : \(self.time_duration) \n isTheory : \(self.isTheory) \n section : \(self.section)"
     }
     
 }

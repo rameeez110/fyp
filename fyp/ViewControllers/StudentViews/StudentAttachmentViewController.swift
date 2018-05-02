@@ -67,7 +67,7 @@ class StudentAttachmentViewController: UIViewController ,UITableViewDelegate , U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let attachmentDetailView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "attachmentDetailView") as! AttachmentDetailViewController
-        attachmentDetailView.teacherName = "teacher 4"
+        attachmentDetailView.teacherName = "Dr M Sadiq Ali Khan"
         attachmentDetailView.descriptionText = self.descriptionArray[indexPath.row]
         if indexPath.row == 1
         {

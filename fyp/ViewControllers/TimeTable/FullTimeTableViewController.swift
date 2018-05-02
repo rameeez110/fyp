@@ -42,6 +42,7 @@ class FullTimeTableViewController: UIViewController {
     let timeArray = NSMutableArray()
     var timeListDataSource: TimeListDataSource?
     private let dayDataSource = DayGridViewDataSource()
+    public var titleString = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -481,23 +482,7 @@ class FullTimeTableViewController: UIViewController {
         self.transparentView.isHidden = true
         self.timeTableInfoContainerViewView.isHidden = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
@@ -518,70 +503,6 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
         if let cell = cell as? DataGridViewCell {
 
             let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-            let cm = dict.courseData
-            var dict1CellString = ""
-            var dict2CellString = ""
-            if cm.credit_hours == "2+1"
-            {
-                // has lab and theory
-            }
-            else{
-                // has only theory
-                let tempDict = getObjectAtIntersectionOfDayAndTime(row: indexPath.row - 1, column: indexPath.column - 1)
-                let tempDict1 = getObjectAtIntersectionOfDayAndTime(row: indexPath.row + 1, column: indexPath.column + 1)
-                if tempDict.day != ""{
-                    let courseModel = dict.courseData
-                    let courseNo = courseModel.number
-                    var theoryStatus = String()
-                    let isTheory = dict.isTheory
-                    if isTheory == "Yes"
-                    {
-                        theoryStatus = " (T)"
-                    }
-                    else
-                    {
-                        theoryStatus = " (L)"
-                    }
-                    let teacherModel = dict.teacherData
-                    let teacherName = teacherModel.name
-                    let aray = teacherName.components(separatedBy: " ")
-                    var teacherCode = String()
-                    for i in 0..<aray.count
-                    {
-                        let gg = aray[i]
-                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
-                    }
-                    let course = courseNo
-                    let cellString = course + theoryStatus + " (" + teacherCode + ")"
-                    dict2CellString = cellString
-                }
-                if tempDict1.day != ""{
-                    let courseModel = dict.courseData
-                    let courseNo = courseModel.number
-                    var theoryStatus = String()
-                    let isTheory = dict.isTheory
-                    if isTheory == "Yes"
-                    {
-                        theoryStatus = " (T)"
-                    }
-                    else
-                    {
-                        theoryStatus = " (L)"
-                    }
-                    let teacherModel = dict.teacherData
-                    let teacherName = teacherModel.name
-                    let aray = teacherName.components(separatedBy: " ")
-                    var teacherCode = String()
-                    for i in 0..<aray.count
-                    {
-                        let gg = aray[i]
-                        teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
-                    }
-                    let course = courseNo
-                    let cellString = course + theoryStatus + " (" + teacherCode + ")"
-                    dict1CellString = cellString
-                }
-            }
             if dict.day != ""
             {
                 let courseModel = dict.courseData
@@ -600,22 +521,12 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
                 let teacherName = teacherModel.name
                 let aray = teacherName.components(separatedBy: " ")
                 var teacherCode = String()
-                for i in 0..<aray.count
+                for each in aray
                 {
-                    let gg = aray[i]
-                    teacherCode = teacherCode + gg.components(separatedBy: " ")[0]
+                    teacherCode = "\(teacherCode)\(each.first ?? Character(""))"
                 }
                 let course = courseNo
                 let cellString = course + theoryStatus + " (" + teacherCode + ")"
-                
-//                if cellString == dict2CellString && cellString == dict2CellString{
-//                    if dict.time_duration == "4:20 - 5:10" || dict.time_duration == "6:50 - 7:40"{
-//                        cell.configure(cellString)
-//                    }
-//                }
-//                if dict.time_duration == "4:20 - 5:10" || dict.time_duration == "6:50 - 7:40"{
-//                    cell.configure(cellString)
-//                }
                 cell.configure(cellString)
             }
             
@@ -632,45 +543,15 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
         return cell
     }
     
-    func getObjectAtIntersectionOfDayAndTime(row: Int, column: Int) -> TimeLocalModel
-    {
-        let key = String(row) + String(column)
-        //        var dict = NSDictionary()
-        //
-        //        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
-        //        {
-        //            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
-        //        }
-        
-        var model = TimeLocalModel()
-        
-        if (self.timeTable2DMutableDict[key] as? TimeLocalModel) != nil
-        {
-            model = self.timeTable2DMutableDict.value(forKey: key) as! TimeLocalModel
-        }
-        
-        
-        return model
-    }
-    
     func getObjectAtIntersectionOfDayAndTime(indexPath: IndexPath) -> TimeLocalModel
     {
         let key = String(indexPath.row) + String(indexPath.column)
-//        var dict = NSDictionary()
-//
-//        if (self.timeTable2DMutableDict[key] as? NSDictionary) != nil
-//        {
-//            dict = self.timeTable2DMutableDict.value(forKey: key) as! NSDictionary
-//        }
-        
         var model = TimeLocalModel()
         
         if (self.timeTable2DMutableDict[key] as? TimeLocalModel) != nil
         {
             model = self.timeTable2DMutableDict.value(forKey: key) as! TimeLocalModel
         }
-
-        
         return model
     }
     
@@ -682,31 +563,106 @@ extension FullTimeTableViewController: GridViewDataSource, GridViewDelegate {
     func gridView(_ gridView: GridView, didSelectRowAt indexPath: IndexPath) {
         gridView.deselectRow(at: indexPath)
         let dict = getObjectAtIntersectionOfDayAndTime(indexPath: indexPath)
-//        if (dict["day"] as? String) != nil
         if dict.day != ""
         {
             self.transparentView.isHidden = false
             self.timeTableInfoContainerViewView.isHidden = false
-//            let courseArray = dict.value(forKey: "CourseData") as! NSArray
-//            let courseDict = courseArray.object(at: 0) as! NSDictionary
             let courseModel = dict.courseData
-            let courseNo = courseModel.number//courseDict.value(forKey: "number")
-            self.courseNoLabel.text = courseNo//courseNo as? String
-//            let techerArray = dict.value(forKey: "TeacherData") as! NSArray
-//            let techerDict = techerArray.object(at: 0) as! NSDictionary
+            let courseNo = courseModel.number
+            self.courseNoLabel.text = courseNo
             let teacherModel = dict.teacherData
-            let teacherName = teacherModel.name//techerDict.value(forKey: "name") as! String
+            let teacherName = teacherModel.name
             self.courseInstructorLabel.text = teacherName
-            self.courseCreditHoursLabel.text = courseModel.credit_hours//(courseDict.value(forKey: "credit_hours") as! String)
-            self.courseNameLabel.text = courseModel.name//courseDict.value(forKey: "name") as? String
-            let isTheory = dict.isTheory//dict.value(forKey: "is_theory") as! String
+            self.courseCreditHoursLabel.text = courseModel.credit_hours
+            self.courseNameLabel.text = courseModel.name
+            let isTheory = dict.isTheory
             if isTheory == "Yes"
             {
-                self.courseLocationLabel.text = "GF 22"
+                if dict.semester == Semester.Seventh.rawValue || dict.semester == Semester.Eighth.rawValue
+                {
+                    if dict.program == Program.BSCS.rawValue{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "GF 22"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "GF 23"
+                        }
+                    }
+                    else{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "GF 16"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "GF 17"
+                        }
+                    }
+                }
+                else if dict.semester == Semester.Fifth.rawValue || dict.semester == Semester.Sixth.rawValue
+                {
+                    if dict.program == Program.BSCS.rawValue{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "FF 22"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "FF 23"
+                        }
+                    }
+                    else{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "FF 16"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "FF 17"
+                        }
+                    }
+                }
+                else{
+                    self.courseLocationLabel.text = "SF 16"
+                }
             }
             else
             {
-                self.courseLocationLabel.text = "FF 01"
+                if dict.semester == Semester.Seventh.rawValue || dict.semester == Semester.Eighth.rawValue
+                {
+                    if dict.program == Program.BSCS.rawValue{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "FF 01"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "FF 02"
+                        }
+                    }
+                    else{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "GF 03"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "GF 04"
+                        }
+                    }
+                }
+                else if dict.semester == Semester.Fifth.rawValue || dict.semester == Semester.Sixth.rawValue
+                {
+                    if dict.program == Program.BSCS.rawValue{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "FF 07"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "FF 08"
+                        }
+                    }
+                    else{
+                        if dict.section == Section.SectionA.rawValue{
+                            self.courseLocationLabel.text = "GF 09"
+                        }
+                        else{
+                            self.courseLocationLabel.text = "GF 10"
+                        }
+                    }
+                }
+                else{
+                    self.courseLocationLabel.text = "FF 11"
+                }
             }
         }
     }
@@ -738,7 +694,6 @@ final class DayGridViewDataSource: NSObject, GridViewDataSource, GridViewDelegat
 }
 
 final class TimeListDataSource: NSObject, GridViewDataSource, GridViewDelegate {
-//    let channels: [String]
     var channels = NSMutableArray()
     
     init(channels: NSMutableArray) {

@@ -95,8 +95,6 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                 if self.selectedMorning == "Morning"
                 {
                     let fullTimeTableMorningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTableMorning") as! FullTimeTableMorningViewController
-//                    fullTimeTableMorningViewController.timeTableMutableArray = NSMutableArray()
-//                    fullTimeTableMorningViewController.timeTableMutableArray = array
                     fullTimeTableMorningViewController.timeTableArray = timeArray
                     self.navigationController!.pushViewController(fullTimeTableMorningViewController, animated:true)
                 }
@@ -106,6 +104,13 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                     fullTimeTableViewController.timeTableArray = timeArray
                     self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
                 }
+            }
+            else{
+                let alert = UIAlertController(title: "Time table not existed!", message: "Please create timetable first.", preferredStyle: .alert) // 1
+                let firstAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+                }
+                alert.addAction(firstAction)
+                self.present(alert, animated: true, completion:nil)
             }
         }
     }
@@ -291,6 +296,7 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
                         else
                         {
                             let fullTimeTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showTimeTable") as! FullTimeTableViewController
+//                            fullTimeTableViewController.titleString = "Department of Computer Science"
 //                            fullTimeTableViewController.timeTableMutableArray = NSMutableArray()
 //                            fullTimeTableViewController.timeTableMutableArray = array
                             self.navigationController!.pushViewController(fullTimeTableViewController, animated:true)
@@ -324,21 +330,4 @@ class ShowTimeTableViewController: UIViewController ,UIPickerViewDelegate , UIPi
         let name = nameDict.value(forKey: "Data") as? String
         return name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
